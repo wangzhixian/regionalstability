@@ -1,9 +1,11 @@
 package cn.yuchen.bigdate.rs.usermanagement.pojo.vo;
 
+import java.io.Serializable;
+
 /**
  * 用户
  */
-public class UserVo {
+public class UserVo implements Serializable {
     /**
      * id
      */
