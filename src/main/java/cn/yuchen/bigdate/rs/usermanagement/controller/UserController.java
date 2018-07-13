@@ -32,25 +32,22 @@ public class UserController {
     private RedisTemplate<String, Serializable> redisCacheTemplate;
 
     @GetMapping("/getUser/{id}")
-    public ResponseResult<UserVo> findUserVoById(@PathVariable("id") Integer id){
-        UserVo userVo = new UserVo();
-        try {
-            userVo = userService.findUserVoById(id);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public ResponseResult<UserVo> findUserVoById(@PathVariable("id") Integer id) {
+
+        UserVo userVo = userService.findUserVoById(id);
+
 //      测试redis缓存   start
         String keyStr = "rsName";
         String valueStr = "rsValue";
-        log.info("stringRedisTemplate类操作redis缓存存储：key:{},value:{}",keyStr,valueStr);
-        stringRedisTemplate.opsForValue().set(keyStr,valueStr);
+        log.info("stringRedisTemplate类操作redis缓存存储：key:{},value:{}", keyStr, valueStr);
+        stringRedisTemplate.opsForValue().set(keyStr, valueStr);
         log.info("存储成功");
         String redisStr = stringRedisTemplate.opsForValue().get(keyStr);
-        log.info("stringRedisTemplate类操作redis缓存获取：redisStr:key:{},value:{}",keyStr,redisStr);
+        log.info("stringRedisTemplate类操作redis缓存获取：redisStr:key:{},value:{}", keyStr, redisStr);
         String keyforObject = "kfo";
-        redisCacheTemplate.opsForValue().set(keyforObject,userVo);
-        UserVo vo  = (UserVo) redisCacheTemplate.opsForValue().get(keyforObject);
-        log.info("redisCacheTemplate类操作redis存储对象:userVo:{}",vo);
+        redisCacheTemplate.opsForValue().set(keyforObject, userVo);
+        UserVo vo = (UserVo) redisCacheTemplate.opsForValue().get(keyforObject);
+        log.info("redisCacheTemplate类操作redis存储对象:userVo:{}", vo);
 //      测试redis缓存   end
         return new ResponseResult<>(userVo);
     }
@@ -58,18 +55,11 @@ public class UserController {
 
     @PostMapping("/add")
     public ResponseResult<Boolean> addUser(@RequestBody UserVo userVo){
-        if(Objects.isNull(userVo)){
-            return new ResponseResult<>(RestResultEnum.ARGUMENT_ERROR.getKey(),"要添加的用户为null");
+        if (Objects.isNull(userVo)) {
+            return new ResponseResult<>(RestResultEnum.ARGUMENT_ERROR.getKey(), "要添加的用户为null");
         }
-
-        try {
-            userService.addUserVo(userVo);
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
+        userService.addUserVo(userVo);
         return new ResponseResult<>(true);
     }
+
 }

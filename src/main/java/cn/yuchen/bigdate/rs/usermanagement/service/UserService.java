@@ -11,12 +11,12 @@ public interface UserService {
      * @param id
      * @return
      */
-    UserVo findUserVoById(Integer id) throws Exception;
+    UserVo findUserVoById(Integer id);
 
     /**
      * 添加用户
      * @param userVo
      * @return
      */
-    int addUserVo(UserVo userVo)throws InvocationTargetException, IllegalAccessException ;
+    int addUserVo(UserVo userVo);
 }

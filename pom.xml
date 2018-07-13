@@ -23,7 +23,6 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <mybatis.version>1.3.2</mybatis.version>
-        <commons.beanutils>1.9.2</commons.beanutils>
         <commons.codec>1.10</commons.codec>
         <lombok.version>1.16.18</lombok.version>
         <logback-core>1.2.3</logback-core>
@@ -74,12 +73,6 @@
         </dependency>
 
 
-        <!-- 这是一组Java实用程序类 -->
-        <dependency>
-            <groupId>commons-beanutils</groupId>
-            <artifactId>commons-beanutils</artifactId>
-            <version>${commons.beanutils}</version>
-        </dependency>
 
         <!-- 自动资源管理，自动生成getter、setter、equals、hashCode和toString，等等！  -->
         <dependency>

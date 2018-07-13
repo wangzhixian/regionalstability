@@ -6,7 +6,8 @@ import cn.yuchen.bigdate.rs.usermanagement.pojo.vo.UserVo;
 import cn.yuchen.bigdate.rs.usermanagement.service.UserService;
 
 
-import org.apache.commons.beanutils.BeanUtils;
+import cn.yuchen.bigdate.rs.utility.AssertUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,17 +21,22 @@ public class UserSeviceImpl implements UserService {
     private UserDao userDao;
 
     @Override
-    public UserVo findUserVoById(Integer id) throws Exception{
+    public UserVo findUserVoById(Integer id){
+        AssertUtils.greaterThanZero(id,"id不能为空且不能小于等于0");
         UserPo userPo = userDao.selectUserPoById(id);
         UserVo userVo = new UserVo();
-        BeanUtils.copyProperties(userVo,userPo);    //BeanUtils.copyProperties(m,n);  对象n中的属性复制到对象m中
+        BeanUtils.copyProperties(userPo, userVo);    //BeanUtils.copyProperties(m,n);  对象m中的属性复制到对象n中
         return userVo;
     }
 
     @Override
-    public int addUserVo(UserVo userVo) throws InvocationTargetException, IllegalAccessException {
+    public int addUserVo(UserVo userVo){
+        AssertUtils.notNull(userVo,"添加对象不能为空");
+        AssertUtils.hasText(userVo.getUserName(),"用户名不能为空");
+        AssertUtils.hasText(userVo.getPassword(),"密码不能为空");
+        AssertUtils.greaterThanZero(userVo.getAge(),"年龄不能为空且不能小于等于0");
         UserPo userPo = new UserPo();
-        BeanUtils.copyProperties(userPo,userVo);
+        BeanUtils.copyProperties(userVo, userPo);
         return userDao.insert(userPo);
     }
 }
