@@ -22,5 +22,4 @@ public class RSException extends RuntimeException {
         super(cause);
     }
 
-
 }

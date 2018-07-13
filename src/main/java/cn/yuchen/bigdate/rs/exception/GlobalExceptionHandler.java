@@ -5,6 +5,7 @@ import cn.yuchen.bigdate.rs.utility.RestResultEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
+import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
@@ -22,7 +23,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseResult<String> handleException(Exception e){
-        log.error("未知异常,Exception：{}",e);
+        log.error("未知异常,请通知管理员。Exception：{}",e);
         return new ResponseResult<>(RestResultEnum.UNKNOWN_ERROR.getKey(),RestResultEnum.UNKNOWN_ERROR.getMessage());
     }
 
@@ -43,4 +44,9 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseResult<>(RestResultEnum.ERROR,"对象复制异常");
     }
 
+    @ExceptionHandler(BadSqlGrammarException.class)
+    public ResponseResult<String> handleBadSqlGrammarException(BadSqlGrammarException sql){
+        log.error("sql语句异常：BadSqlGrammarException:{}",sql);
+        return new ResponseResult<>(RestResultEnum.ERROR,"sql语句异常，通知开发者。");
+    }
 }
