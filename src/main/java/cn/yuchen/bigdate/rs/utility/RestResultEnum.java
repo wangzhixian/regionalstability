@@ -2,7 +2,6 @@ package cn.yuchen.bigdate.rs.utility;
 
 /**
  * 自定义异常枚举类
- * Created by wzx on 2018/7/11.
  */
 public enum RestResultEnum {
     SUCCESS(2000000, "操作成功"),

@@ -12,6 +12,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Objects;
 
 
@@ -60,11 +61,15 @@ public class UserController {
         if(Objects.isNull(userVo)){
             return new ResponseResult<>(RestResultEnum.ARGUMENT_ERROR.getKey(),"要添加的用户为null");
         }
+
         try {
             userService.addUserVo(userVo);
-        } catch (Exception e) {
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
+
         return new ResponseResult<>(true);
     }
 }

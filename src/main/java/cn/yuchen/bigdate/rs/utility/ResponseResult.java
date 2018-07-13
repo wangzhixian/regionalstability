@@ -7,7 +7,6 @@ import java.io.Serializable;
 
 /**
  * 标准返回体
- * Created by wzx on 2018/7/11.
  */
 @Data
 public class ResponseResult<T> implements Serializable {

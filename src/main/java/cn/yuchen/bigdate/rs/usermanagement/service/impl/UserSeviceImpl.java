@@ -10,6 +10,8 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.InvocationTargetException;
+
 
 @Service
 public class UserSeviceImpl implements UserService {
@@ -26,7 +28,7 @@ public class UserSeviceImpl implements UserService {
     }
 
     @Override
-    public int addUserVo(UserVo userVo)throws Exception{
+    public int addUserVo(UserVo userVo) throws InvocationTargetException, IllegalAccessException {
         UserPo userPo = new UserPo();
         BeanUtils.copyProperties(userPo,userVo);
         return userDao.insert(userPo);
