@@ -2,6 +2,7 @@ package cn.yuchen.bigdate.rs.exception;
 
 import cn.yuchen.bigdate.rs.utility.ResponseResult;
 import cn.yuchen.bigdate.rs.utility.RestResultEnum;
+import org.apache.solr.client.solrj.SolrServerException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
 /**
@@ -49,4 +51,17 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         log.error("sql语句异常：BadSqlGrammarException:{}",sql);
         return new ResponseResult<>(RestResultEnum.ERROR,"sql语句异常，通知开发者。");
     }
+
+    @ExceptionHandler(IOException.class)
+    public ResponseResult<String> handleIOException(IOException io){
+        log.error("io流异常：IOException:{}",io);
+        return new ResponseResult<>(RestResultEnum.ERROR,"io流异常，重新尝试。");
+    }
+
+    @ExceptionHandler(SolrServerException.class)
+    public ResponseResult<String> handleSolrServerException(SolrServerException solr){
+        log.error("solr操作异常：SolrServerException:{}",solr);
+        return new ResponseResult<>(RestResultEnum.ERROR,"solr操作异常，通知开发者。");
+    }
+
 }

@@ -28,6 +28,7 @@
         <logback-core>1.2.3</logback-core>
         <logback.starter.version>2.1.0</logback.starter.version>
         <commons-pool2>2.4.2</commons-pool2>
+        <solr-solrj.version>7.2.1</solr-solrj.version>
     </properties>
 
     <dependencies>
@@ -58,6 +59,11 @@
             <version>${commons-pool2}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.solr</groupId>
+            <artifactId>solr-solrj</artifactId>
+            <version>${solr-solrj.version}</version>
+        </dependency>
 
         <!-- mybatis整合包 -->
         <dependency>
