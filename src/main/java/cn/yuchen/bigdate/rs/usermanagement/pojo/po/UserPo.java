@@ -1,12 +1,17 @@
 package cn.yuchen.bigdate.rs.usermanagement.pojo.po;
 
+import org.springframework.data.annotation.Id;
+
+import java.io.Serializable;
+
 /**
  * 用户
  */
-public class UserPo {
+public class UserPo implements Serializable {
     /**
      * id
      */
+    @Id
     private Integer id;
 
     /**

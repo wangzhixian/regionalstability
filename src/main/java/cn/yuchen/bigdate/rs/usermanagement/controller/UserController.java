@@ -98,4 +98,22 @@ public class UserController {
         return new ResponseResult<>(true);
     }
 
+
+    @PostMapping("/addDB")
+    public ResponseResult<String> addUserForDB(@RequestBody UserVo userVo){
+        if (Objects.isNull(userVo)) {
+            return new ResponseResult<>(RestResultEnum.ARGUMENT_ERROR.getKey(), "要添加的用户为null");
+        }
+        log.info("我被访问了");
+        userService.addUserVoForDB(userVo);
+        log.info("存入MongoDB成功没不知道，如果没抛出异常就一会写一个");
+        return new ResponseResult<>("看控制台");
+    }
+
+    @GetMapping("/hello")
+    public ResponseResult<String> sayHello(){
+        log.info("我被访问了");
+        return new ResponseResult<>("我是测试接口");
+    }
+
 }

@@ -2,10 +2,12 @@ package cn.yuchen.bigdate.rs.exception;
 
 import cn.yuchen.bigdate.rs.utility.ResponseResult;
 import cn.yuchen.bigdate.rs.utility.RestResultEnum;
+import com.mongodb.MongoCommandException;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
+import org.springframework.data.mongodb.UncategorizedMongoDbException;
 import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -64,4 +66,9 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseResult<>(RestResultEnum.ERROR,"solr操作异常，通知开发者。");
     }
 
+    @ExceptionHandler({MongoCommandException.class,UncategorizedMongoDbException.class})
+    public ResponseResult<String> handleMongoDBException(MongoCommandException mogoc,UncategorizedMongoDbException mogou){
+        log.error("操作mongo异常，出现这个一般是mongodb操作权限的问题：MongoCommandException:{},UncategorizedMongoDbException:{}",mogoc,mogou);
+        return new ResponseResult<>(RestResultEnum.ERROR,"操作mongo异常，通知开发者。");
+    }
 }

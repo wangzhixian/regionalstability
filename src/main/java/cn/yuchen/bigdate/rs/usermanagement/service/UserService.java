@@ -19,4 +19,10 @@ public interface UserService {
      * @return
      */
     int addUserVo(UserVo userVo);
+
+    /**
+     * 添加用户到MongoDB里
+     * @param userVo
+     */
+    void addUserVoForDB(UserVo userVo);
 }
