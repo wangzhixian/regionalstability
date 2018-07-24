@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yuchen.bigdate.rs.operatedlog.dao.OperatedLogDao">
+
+    <resultMap id="BaseResultMap" type="cn.yuchen.bigdate.rs.operatedlog.pojo.po.OperatedLogPo">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="operated_by" jdbcType="VARCHAR" property="operatedBy"/>
+        <result column="records" jdbcType="VARCHAR" property="records"/>
+        <result column="properties" jdbcType="VARCHAR" property="properties"/>
+        <result column="operated_type" jdbcType="VARCHAR" property="operatedType"/>
+        <result column="deleted" jdbcType="INTEGER" property="deleted"/>
+        <result column="created_time" jdbcType="TIMESTAMP" property="createdTime"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+      id, operated_by, records, properties,operated_type,created_time
+    </sql>
+
+    <insert id="insert" parameterType="cn.yuchen.bigdate.rs.operatedlog.pojo.po.OperatedLogPo">
+        insert into `log_operated`
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="operatedBy != null">
+                operated_by,
+            </if>
+            <if test="records != null">
+                records,
+            </if>
+            <if test="properties != null">
+                properties,
+            </if>
+            <if test="operatedType != null">
+                operated_type,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="operatedBy != null">
+                #{operatedBy,jdbcType=VARCHAR},
+            </if>
+            <if test="records != null">
+                #{records,jdbcType=VARCHAR},
+            </if>
+            <if test="properties != null">
+                #{properties,jdbcType=VARCHAR},
+            </if>
+            <if test="operatedType != null">
+                #{operatedType,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="selectByPage" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM
+        `log_operated`
+    </select>
+</mapper>

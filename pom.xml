@@ -29,6 +29,7 @@
         <logback.starter.version>2.1.0</logback.starter.version>
         <commons-pool2>2.4.2</commons-pool2>
         <solr-solrj.version>7.2.1</solr-solrj.version>
+        <joda-time.version>2.9.4</joda-time.version>
     </properties>
 
     <dependencies>
@@ -85,6 +86,11 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>${joda-time.version}</version>
+        </dependency>
 
 
         <!-- 自动资源管理，自动生成getter、setter、equals、hashCode和toString，等等！  -->
