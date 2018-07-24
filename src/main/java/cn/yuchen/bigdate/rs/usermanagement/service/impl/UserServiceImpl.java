@@ -9,9 +9,16 @@ import cn.yuchen.bigdate.rs.usermanagement.service.UserService;
 
 
 import cn.yuchen.bigdate.rs.utility.AssertUtils;
+import org.apache.ibatis.mapping.BoundSql;
+import org.apache.ibatis.mapping.MappedStatement;
+import org.apache.ibatis.mapping.SqlSource;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 @Service
@@ -26,10 +33,20 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRep userRep;
 
+    @Autowired
+    private SqlSessionFactory sqlSessionFactory;
+
     @Override
     public UserVo findUserVoById(Integer id){
         AssertUtils.greaterThanZero(id,"id不能为空且不能小于等于0");
         UserPo userPo = userDao.selectUserPoById(id);
+        //获取sql start
+        String sqlId = UserDao.class.getName() + ".selectUserPoById";
+        MappedStatement ms = sqlSessionFactory.getConfiguration().getMappedStatement(sqlId);
+        String sql = ms.getSqlSource().getBoundSql(0).getSql();
+        String s = sql.replace("\n","");
+        System.out.println("这里测试一下打印sql:"+s);
+        //获取sql end
         UserVo userVo = new UserVo();
         BeanUtils.copyProperties(userPo, userVo);    //BeanUtils.copyProperties(m,n);  对象m中的属性复制到对象n中
         return userVo;

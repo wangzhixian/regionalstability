@@ -20,6 +20,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.io.IOException;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
@@ -28,7 +29,7 @@ import java.util.Objects;
 
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping( value = "/user")
 public class UserController {
 
     private static final Logger log = LoggerFactory.getLogger(UserController.class);
@@ -51,17 +52,17 @@ public class UserController {
         UserVo userVo = userService.findUserVoById(id);
 
 //      测试redis缓存   start
-        String keyStr = "rsName";
-        String valueStr = "rsValue";
-        log.info("stringRedisTemplate类操作redis缓存存储：key:{},value:{}", keyStr, valueStr);
-        stringRedisTemplate.opsForValue().set(keyStr, valueStr);//存字符串
-        log.info("存储成功");
-        String redisStr = stringRedisTemplate.opsForValue().get(keyStr);
-        log.info("stringRedisTemplate类操作redis缓存获取：redisStr:key:{},value:{}", keyStr, redisStr);
-        String keyforObject = "kfo";
-        redisCacheTemplate.opsForValue().set(keyforObject, userVo);//存对象，但是对象必须实现序列化
-        UserVo vo = (UserVo) redisCacheTemplate.opsForValue().get(keyforObject);
-        log.info("redisCacheTemplate类操作redis存储对象:userVo:{}", vo);
+//        String keyStr = "rsName";
+//        String valueStr = "rsValue";
+//        log.info("stringRedisTemplate类操作redis缓存存储：key:{},value:{}", keyStr, valueStr);
+//        stringRedisTemplate.opsForValue().set(keyStr, valueStr);//存字符串
+//        log.info("存储成功");
+//        String redisStr = stringRedisTemplate.opsForValue().get(keyStr);
+//        log.info("stringRedisTemplate类操作redis缓存获取：redisStr:key:{},value:{}", keyStr, redisStr);
+//        String keyforObject = "kfo";
+//        redisCacheTemplate.opsForValue().set(keyforObject, userVo);//存对象，但是对象必须实现序列化
+//        UserVo vo = (UserVo) redisCacheTemplate.opsForValue().get(keyforObject);
+//        log.info("redisCacheTemplate类操作redis存储对象:userVo:{}", vo);
 //      测试redis缓存   end
         return new ResponseResult<>(userVo);
     }
@@ -110,10 +111,12 @@ public class UserController {
         return new ResponseResult<>("看控制台");
     }
 
-    @GetMapping("/hello")
-    public ResponseResult<String> sayHello(){
+    @PostMapping("/hello")
+    public ResponseResult<String> sayHello(@RequestParam String s){
         log.info("我被访问了");
-        return new ResponseResult<>("我是测试接口");
+        System.out.println(s);
+        String result = "我是测试接口,接受了参数："+ s;
+        return new ResponseResult<>(result);
     }
 
 }

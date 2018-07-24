@@ -18,7 +18,7 @@ public class ResponseResult<T> implements Serializable {
     /**
      * 信息
      */
-    private String msg;
+    private String msg ="success";
     /**
      * 数据
      */
