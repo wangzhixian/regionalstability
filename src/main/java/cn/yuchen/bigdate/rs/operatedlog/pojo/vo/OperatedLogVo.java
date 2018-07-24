@@ -1,7 +1,10 @@
 package cn.yuchen.bigdate.rs.operatedlog.pojo.vo;
 
 
+import cn.yuchen.bigdate.rs.utility.PageUtils;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.util.PageObjectUtil;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
@@ -10,7 +13,7 @@ import java.util.Date;
 /**
  * Created by wzx on 2018/7/24.
  */
-public class OperatedLogVo implements Serializable {
+public class OperatedLogVo extends PageUtils implements Serializable {
     /**
      * 自增主键
      */

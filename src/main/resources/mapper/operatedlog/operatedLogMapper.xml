@@ -12,6 +12,16 @@
         <result column="created_time" jdbcType="TIMESTAMP" property="createdTime"/>
     </resultMap>
 
+    <resultMap id="queryOperatedLogVosResultMap" type="cn.yuchen.bigdate.rs.operatedlog.pojo.vo.OperatedLogVo">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="operated_by" jdbcType="VARCHAR" property="operatedBy"/>
+        <result column="records" jdbcType="VARCHAR" property="records"/>
+        <result column="properties" jdbcType="VARCHAR" property="properties"/>
+        <result column="operated_type" jdbcType="VARCHAR" property="operatedType"/>
+        <result column="deleted" jdbcType="INTEGER" property="deleted"/>
+        <result column="created_time" jdbcType="TIMESTAMP" property="createdTime"/>
+    </resultMap>
+
 
     <sql id="Base_Column_List">
       id, operated_by, records, properties,operated_type,created_time
@@ -55,10 +65,19 @@
         </trim>
     </insert>
 
-    <select id="selectByPage" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <select id="selectByPage" parameterType="cn.yuchen.bigdate.rs.operatedlog.pojo.vo.OperatedLogVo" resultMap="queryOperatedLogVosResultMap">
         SELECT
         <include refid="Base_Column_List" />
         FROM
         `log_operated`
+        <where>
+            deleted = 0
+            <if test="id != null">
+                AND id = #{id,jdbcType=INTEGER}
+            </if>
+            <if test="operatedBy !=null and operatedBy != ''">
+                AND operated_by LIKE CONCAT('%',#{operatedBy},'%')
+            </if>
+        </where>
     </select>
 </mapper>

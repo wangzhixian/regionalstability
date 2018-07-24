@@ -1,6 +1,7 @@
 package cn.yuchen.bigdate.rs.operatedlog.dao;
 
 import cn.yuchen.bigdate.rs.operatedlog.pojo.po.OperatedLogPo;
+import cn.yuchen.bigdate.rs.operatedlog.pojo.vo.OperatedLogVo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public interface OperatedLogDao {
      * 分页查询操作日志
      * @return
      */
-    List<OperatedLogPo> selectByPage();
+    List<OperatedLogVo> selectByPage(OperatedLogVo operatedLogVo);
 
     /**
      * 添加操作日志

@@ -30,6 +30,7 @@
         <commons-pool2>2.4.2</commons-pool2>
         <solr-solrj.version>7.2.1</solr-solrj.version>
         <joda-time.version>2.9.4</joda-time.version>
+        <pagehelper.version>1.2.5</pagehelper.version>
     </properties>
 
     <dependencies>
@@ -86,6 +87,14 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
+        <!-- pagehelper分页插件 -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>${pagehelper.version}</version>
+        </dependency>
+
+        <!-- 日期转换处理 -->
         <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>

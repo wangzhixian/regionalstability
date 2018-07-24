@@ -1,6 +1,7 @@
 package cn.yuchen.bigdate.rs.operatedlog.service;
 
 import cn.yuchen.bigdate.rs.operatedlog.pojo.vo.OperatedLogVo;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ public interface OperatedLogService {
      * 分页查询操作日志
      * @return
      */
-    List<OperatedLogVo> findOperatedLogVoByPage();
+    PageInfo<OperatedLogVo> findOperatedLogVoByPage(OperatedLogVo operatedLogVo);
 
     /**
      * 添加操作日志
