@@ -1,6 +1,7 @@
 package cn.yuchen.bigdate.rs.usermanagement.service;
 
 import cn.yuchen.bigdate.rs.usermanagement.pojo.vo.UserVo;
+import org.apache.catalina.User;
 import org.springframework.beans.BeansException;
 
 import java.lang.reflect.InvocationTargetException;
@@ -25,4 +26,10 @@ public interface UserService {
      * @param userVo
      */
     void addUserVoForDB(UserVo userVo);
+
+    /**
+     * 从MongoDB中取对象
+     * @return
+     */
+    UserVo fundUserVoForDB();
 }

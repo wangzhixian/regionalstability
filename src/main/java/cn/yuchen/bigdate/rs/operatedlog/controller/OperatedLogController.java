@@ -4,14 +4,13 @@ import cn.yuchen.bigdate.rs.operatedlog.pojo.vo.OperatedLogVo;
 import cn.yuchen.bigdate.rs.operatedlog.service.OperatedLogService;
 import cn.yuchen.bigdate.rs.utility.ResponseResult;
 import com.github.pagehelper.PageInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
-import java.util.Objects;
 
 /**
  * Created by wzx on 2018/7/24.
@@ -19,6 +18,8 @@ import java.util.Objects;
 @RestController
 @RequestMapping("/log")
 public class OperatedLogController {
+
+    private static final Logger log = LoggerFactory.getLogger(OperatedLogController.class);
 
     @Autowired
     private OperatedLogService  operatedLogService;
@@ -35,6 +36,7 @@ public class OperatedLogController {
         if(addFlag == 1){
             result = true;
         }
+        log.info("这里使用了系统日志记录操作");
         return new ResponseResult<>(result);
     }
 

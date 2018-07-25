@@ -15,6 +15,7 @@ import org.apache.ibatis.mapping.SqlSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -30,8 +31,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private UserRep userRep;
+//    @Autowired
+//    private UserRep userRep;
 
     @Autowired
     private SqlSessionFactory sqlSessionFactory;
@@ -73,5 +74,14 @@ public class UserServiceImpl implements UserService {
         BeanUtils.copyProperties(userVo, userPo);
 //        userRep.savaUser(userPo);
         userRepository.save(userPo);
+    }
+
+    @Override
+    public UserVo fundUserVoForDB() {
+        UserPo userPo = userRepository.findByUserName("wzx");    // 只写MongoDB接口的方式   实现交于Springboot实现
+//        UserPo userPo = userRep.getUserPo();    自己写MongoDB接口与实现类的方式
+        UserVo vo = new UserVo();
+        BeanUtils.copyProperties(userPo,vo);
+        return vo;
     }
 }
