@@ -64,6 +64,7 @@ public class UserController {
 //        UserVo vo = (UserVo) redisCacheTemplate.opsForValue().get(keyforObject);
 //        log.info("redisCacheTemplate类操作redis存储对象:userVo:{}", vo);
 //      测试redis缓存   end
+        log.info("顺序2");
         return new ResponseResult<>(userVo);
     }
 

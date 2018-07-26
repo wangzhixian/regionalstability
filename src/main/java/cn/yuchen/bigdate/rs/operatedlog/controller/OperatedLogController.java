@@ -30,12 +30,13 @@ public class OperatedLogController {
      * @return
      */
     @PostMapping("/add")
-    public ResponseResult<Boolean> add(@RequestBody OperatedLogVo operatedLogVo){
+    public ResponseResult<Boolean> add(OperatedLogVo operatedLogVo){
         Boolean result = false;
         int addFlag = operatedLogService.add(operatedLogVo);
         if(addFlag == 1){
             result = true;
         }
+        log.info("顺序1");
         log.info("这里使用了系统日志记录操作");
         return new ResponseResult<>(result);
     }
