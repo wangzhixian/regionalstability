@@ -36,6 +36,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private SqlSessionFactory sqlSessionFactory;
 
+    @Autowired
+    private LogUtils logUtils;
+
 //    @Autowired
 //    private UserRep userRep;
 
@@ -44,7 +47,6 @@ public class UserServiceImpl implements UserService {
         AssertUtils.greaterThanZero(id,"id不能为空且不能小于等于0");
         UserPo userPo = userDao.selectUserPoById(id);
         //记录操作日志
-        LogUtils logUtils = new LogUtils();
         //addOperatedLog(SqlSessionFactory，调用接口类名，调用接口方法名,参数名，参数值)
         logUtils.addOperatedLog(sqlSessionFactory,UserDao.class.getName(),"selectUserPoById","id",id);
         UserVo userVo = new UserVo();

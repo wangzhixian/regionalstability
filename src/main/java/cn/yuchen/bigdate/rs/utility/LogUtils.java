@@ -2,8 +2,9 @@ package cn.yuchen.bigdate.rs.utility;
 
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,9 +12,12 @@ import java.util.Map;
 /**
  * Created by wzx on 2018/7/26.
  */
+@Component
 public class LogUtils {
 
-    private static final String URLSTR = "http://192.168.100.22:8080/test/log/add";
+//    private static final String URLSTR = "http://192.168.100.22:8080/test/log/add";
+    @Value("${operatedlog.addUrl}")
+    private String url_str;
 
     /**
      * 记录操作日志
@@ -30,7 +34,7 @@ public class LogUtils {
         params.put("records",records);
         params.put("properties",properties);
         params.put("operatedBy","wzx");
-        HttpRequest.post(URLSTR,params);
+        HttpRequest.post(url_str,params);
     }
 
     /**
