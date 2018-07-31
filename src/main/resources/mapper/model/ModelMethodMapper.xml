@@ -6,123 +6,98 @@
     <result column="model_id" jdbcType="BIGINT" property="modelId" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="script" jdbcType="VARCHAR" property="script" />
+    <result column="display" jdbcType="VARCHAR" property="display" />
     <result column="deleted" jdbcType="INTEGER" property="deleted" />
     <result column="operator" jdbcType="VARCHAR" property="operator" />
     <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
+
+  <resultMap id="PageResultMap" type="cn.yuchen.bigdate.rs.model.pojo.vo.ModelMethodVo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="model_id" jdbcType="BIGINT" property="modelId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="script" jdbcType="VARCHAR" property="script" />
+    <result column="display" jdbcType="VARCHAR" property="display" />
+    <result column="deleted" jdbcType="INTEGER" property="deleted" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
   <sql id="Base_Column_List">
-    id, model_id, name, script, deleted, operator, insert_time, update_time
+    id, model_id, `name`, script,display, deleted, operator, insert_time, update_time
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+
+  <select id="selectByPage" parameterType="cn.yuchen.bigdate.rs.model.pojo.webvo.ModelPageVo" resultMap="PageResultMap">
     select 
     <include refid="Base_Column_List" />
     from model_method
-    where id = #{id,jdbcType=BIGINT}
+    <where>
+      deleted = 0
+      AND
+      model_id = #{modelId}
+      <if test="name != null">
+        AND `name` LIKE CONCAT('%',#{name},'%')
+      </if>
+      <if test="script !=null and operatedBy != ''">
+        AND script LIKE CONCAT('%',#{script},'%')
+      </if>
+    </where>
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from model_method
+
+
+  <select id="selectById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from model_method
+    where id = #{id,jdbcType=BIGINT}
+    and deleted = 0
+  </select>
+
+
+  <delete id="delete" parameterType="java.lang.Long">
+    update model_method
+    set deleted = 1
     where id = #{id,jdbcType=BIGINT}
   </delete>
+
   <insert id="insert" parameterType="cn.yuchen.bigdate.rs.model.pojo.po.ModelMethodPo">
-    insert into model_method (id, model_id, name, 
-      script, deleted, operator, 
-      insert_time, update_time)
-    values (#{id,jdbcType=BIGINT}, #{modelId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
-      #{script,jdbcType=VARCHAR}, #{deleted,jdbcType=INTEGER}, #{operator,jdbcType=VARCHAR}, 
-      #{insertTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    INSERT INTO model_method (model_id, `name`, script,operator)
+    VALUES (
+    #{modelId,jdbcType=VARCHAR},
+    #{name,jdbcType=VARCHAR},
+    #{script,jdbcType=VARCHAR},
+    #{operator,jdbcType=VARCHAR}
+    )
   </insert>
-  <insert id="insertSelective" parameterType="cn.yuchen.bigdate.rs.model.pojo.po.ModelMethodPo">
-    insert into model_method
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="modelId != null">
-        model_id,
-      </if>
-      <if test="name != null">
-        name,
-      </if>
-      <if test="script != null">
-        script,
-      </if>
-      <if test="deleted != null">
-        deleted,
-      </if>
-      <if test="operator != null">
-        operator,
-      </if>
-      <if test="insertTime != null">
-        insert_time,
-      </if>
-      <if test="updateTime != null">
-        update_time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
-      <if test="modelId != null">
-        #{modelId,jdbcType=BIGINT},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="script != null">
-        #{script,jdbcType=VARCHAR},
-      </if>
-      <if test="deleted != null">
-        #{deleted,jdbcType=INTEGER},
-      </if>
-      <if test="operator != null">
-        #{operator,jdbcType=VARCHAR},
-      </if>
-      <if test="insertTime != null">
-        #{insertTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.yuchen.bigdate.rs.model.pojo.po.ModelMethodPo">
+
+  <update id="update" parameterType="cn.yuchen.bigdate.rs.model.pojo.po.ModelMethodPo">
     update model_method
     <set>
       <if test="modelId != null">
         model_id = #{modelId,jdbcType=BIGINT},
       </if>
       <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
+        `name` = #{name,jdbcType=VARCHAR},
       </if>
       <if test="script != null">
         script = #{script,jdbcType=VARCHAR},
       </if>
-      <if test="deleted != null">
-        deleted = #{deleted,jdbcType=INTEGER},
+      <if test="display != null">
+        display = #{display,jdbcType=INTEGER},
       </if>
       <if test="operator != null">
         operator = #{operator,jdbcType=VARCHAR},
       </if>
-      <if test="insertTime != null">
-        insert_time = #{insertTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
     </set>
-    where id = #{id,jdbcType=BIGINT}
+    where
+    id = #{id,jdbcType=BIGINT}
+    and
+    deleted = 0
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.yuchen.bigdate.rs.model.pojo.po.ModelMethodPo">
-    update model_method
-    set model_id = #{modelId,jdbcType=BIGINT},
-      name = #{name,jdbcType=VARCHAR},
-      script = #{script,jdbcType=VARCHAR},
-      deleted = #{deleted,jdbcType=INTEGER},
-      operator = #{operator,jdbcType=VARCHAR},
-      insert_time = #{insertTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=BIGINT}
-  </update>
+
 </mapper>

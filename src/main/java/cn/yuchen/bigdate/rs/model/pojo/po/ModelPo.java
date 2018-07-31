@@ -25,6 +25,11 @@ public class ModelPo implements Serializable {
     private String script;
 
     /**
+     * 使用模块id组，id之间使用;分隔，例如：1;2;3
+     */
+    private String modelModuleIds;
+
+    /**
      * 逻辑删除: 0 正常 1 删除
      */
     private Integer deleted;
@@ -56,7 +61,7 @@ public class ModelPo implements Serializable {
     }
 
     public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+        this.name = name;
     }
 
     public String getScene() {
@@ -64,7 +69,7 @@ public class ModelPo implements Serializable {
     }
 
     public void setScene(String scene) {
-        this.scene = scene == null ? null : scene.trim();
+        this.scene = scene;
     }
 
     public String getScript() {
@@ -72,7 +77,15 @@ public class ModelPo implements Serializable {
     }
 
     public void setScript(String script) {
-        this.script = script == null ? null : script.trim();
+        this.script = script;
+    }
+
+    public String getModelModuleIds() {
+        return modelModuleIds;
+    }
+
+    public void setModelModuleIds(String modelModuleIds) {
+        this.modelModuleIds = modelModuleIds;
     }
 
     public Integer getDeleted() {
@@ -88,7 +101,7 @@ public class ModelPo implements Serializable {
     }
 
     public void setOperator(String operator) {
-        this.operator = operator == null ? null : operator.trim();
+        this.operator = operator;
     }
 
     public Date getInsertTime() {
@@ -114,6 +127,7 @@ public class ModelPo implements Serializable {
                 ", name='" + name + '\'' +
                 ", scene='" + scene + '\'' +
                 ", script='" + script + '\'' +
+                ", modelModuleIds='" + modelModuleIds + '\'' +
                 ", deleted=" + deleted +
                 ", operator='" + operator + '\'' +
                 ", insertTime=" + insertTime +

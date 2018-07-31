@@ -20,6 +20,12 @@ public class ModelMethodPo implements Serializable {
      * 方法描述
      */
     private String script;
+
+    /**
+     * 逻辑显示: 0 不显示 1 显示
+     */
+    private Integer display;
+
     /**
      * 逻辑删除: 0 正常 1 删除
      */
@@ -58,7 +64,7 @@ public class ModelMethodPo implements Serializable {
     }
 
     public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+        this.name = name;
     }
 
     public String getScript() {
@@ -66,7 +72,15 @@ public class ModelMethodPo implements Serializable {
     }
 
     public void setScript(String script) {
-        this.script = script == null ? null : script.trim();
+        this.script = script;
+    }
+
+    public Integer getDisplay() {
+        return display;
+    }
+
+    public void setDisplay(Integer display) {
+        this.display = display;
     }
 
     public Integer getDeleted() {
@@ -82,7 +96,7 @@ public class ModelMethodPo implements Serializable {
     }
 
     public void setOperator(String operator) {
-        this.operator = operator == null ? null : operator.trim();
+        this.operator = operator;
     }
 
     public Date getInsertTime() {
@@ -108,6 +122,7 @@ public class ModelMethodPo implements Serializable {
                 ", modelId=" + modelId +
                 ", name='" + name + '\'' +
                 ", script='" + script + '\'' +
+                ", display=" + display +
                 ", deleted=" + deleted +
                 ", operator='" + operator + '\'' +
                 ", insertTime=" + insertTime +

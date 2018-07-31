@@ -1,19 +1,22 @@
 package cn.yuchen.bigdate.rs.model.dao;
 
+import cn.yuchen.bigdate.rs.model.pojo.webvo.ModelPageVo;
 import cn.yuchen.bigdate.rs.model.pojo.po.ModelModulePo;
+import cn.yuchen.bigdate.rs.model.pojo.vo.ModelModuleVo;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 @Mapper
 public interface ModelModuleDao {
-    int deleteByPrimaryKey(Long id);
 
     int insert(ModelModulePo record);
 
-    int insertSelective(ModelModulePo record);
+    int deleteByPrimaryKey(Long id);
 
-    ModelModulePo selectByPrimaryKey(Long id);
+    int update(ModelModulePo record);
 
-    int updateByPrimaryKeySelective(ModelModulePo record);
+    List<ModelModuleVo> selectByPage(ModelPageVo modelPageVo);
 
-    int updateByPrimaryKey(ModelModulePo record);
+    List<ModelModulePo> selectAll();
 }

@@ -1,6 +1,6 @@
 package cn.yuchen.bigdate.rs.model.controller;
 
-import cn.yuchen.bigdate.rs.model.pojo.pagevo.ModelPageVo;
+import cn.yuchen.bigdate.rs.model.pojo.webvo.ModelPageVo;
 import cn.yuchen.bigdate.rs.model.pojo.vo.ModelVo;
 import cn.yuchen.bigdate.rs.model.service.ModelService;
 import cn.yuchen.bigdate.rs.utility.ResponseResult;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
+ * 模型控制类
  * Created by wzx on 2018/7/27.
  */
 @RestController
@@ -33,8 +34,8 @@ public class ModelController {
     @PostMapping("/update")
     public ResponseResult<Boolean> update(@RequestBody ModelVo modelVo){
         Boolean result = false;
-        int addFlag = modelService.update(modelVo);
-        if(addFlag == 1){
+        int updateFlag = modelService.update(modelVo);
+        if(updateFlag == 1){
             result = true;
         }
         return new ResponseResult<>(result);
@@ -43,20 +44,31 @@ public class ModelController {
     @PostMapping("/delete/{id}")
     public ResponseResult<Boolean> delete(@PathVariable("id") Long id){
         Boolean result = false;
-        int addFlag = modelService.delete(id);
-        if(addFlag == 1){
+        int deleteFlag = modelService.delete(id);
+        if(deleteFlag == 1){
             result = true;
         }
         return new ResponseResult<>(result);
     }
 
-    @PostMapping("/findByPage")
+    /**
+     * 分页条件查询模型列表
+     * @param modelPageVo
+     * @return
+     */
+    @PostMapping("/findbypage")
     public ResponseResult<PageInfo<ModelVo>> findByPage(@RequestBody ModelPageVo modelPageVo){
         List<ModelVo> modelVos =  modelService.findByPage(modelPageVo);
         return new ResponseResult<>(new PageInfo<>(modelVos));
     }
 
-    @PostMapping("/findById/{id}")
+    /**
+     * 查询模型详情
+     * @param id
+     * @return
+     */
+    //TODO 这里查询的时候需要查出ids、函数对象、参数对象，所以这里需要一个对象：包含函数与参数的字段对象
+    @PostMapping("/find/{id}")
     public ResponseResult<ModelVo> findByPage(@PathVariable("id") Long id){
         ModelVo modelVo = modelService.findById(id);
         return new ResponseResult<>(modelVo);

@@ -5,15 +5,13 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface ModelParameterDao {
-    int deleteByPrimaryKey(Long id);
 
     int insert(ModelParameterPo record);
 
-    int insertSelective(ModelParameterPo record);
+    int delete(Long id);
 
-    ModelParameterPo selectByPrimaryKey(Long id);
+    int update(ModelParameterPo record);
 
-    int updateByPrimaryKeySelective(ModelParameterPo record);
+    ModelParameterPo selectById(Long id);
 
-    int updateByPrimaryKey(ModelParameterPo record);
 }

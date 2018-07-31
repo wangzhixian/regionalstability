@@ -2,7 +2,7 @@ package cn.yuchen.bigdate.rs.model.service.impl;
 
 import cn.yuchen.bigdate.rs.model.dao.ModelDao;
 import cn.yuchen.bigdate.rs.model.pojo.po.ModelPo;
-import cn.yuchen.bigdate.rs.model.pojo.pagevo.ModelPageVo;
+import cn.yuchen.bigdate.rs.model.pojo.webvo.ModelPageVo;
 import cn.yuchen.bigdate.rs.model.pojo.vo.ModelVo;
 import cn.yuchen.bigdate.rs.model.service.ModelService;
 import cn.yuchen.bigdate.rs.utility.AssertUtils;
@@ -73,7 +73,7 @@ public class ModelServiceImpl implements ModelService {
     public ModelVo findById(Long id) {
         AssertUtils.greaterThanZero(id,"查询id不能为空.");
         ModelPo modelPo = modelDao.selectById(id);
-        ModelVo modelVo = new ModelVo();
+    ModelVo modelVo = new ModelVo();
         BeanUtils.copyProperties(modelPo,modelVo);
         return modelVo;
     }

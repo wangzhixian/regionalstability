@@ -1,4 +1,4 @@
-package cn.yuchen.bigdate.rs.model.pojo.pagevo;
+package cn.yuchen.bigdate.rs.model.pojo.webvo;
 
 import cn.yuchen.bigdate.rs.utility.PageUtils;
 
@@ -8,7 +8,7 @@ import cn.yuchen.bigdate.rs.utility.PageUtils;
  */
 public class ModelPageVo extends PageUtils {
     /**
-     * 模型名称
+     * 名称
      */
     private String name;
     /**
@@ -16,9 +16,13 @@ public class ModelPageVo extends PageUtils {
      */
     private String scene;
     /**
-     * 模型描述
+     * 描述
      */
     private String script;
+    /**
+     * 模型id（外键）
+     */
+    private Integer modelId;
 
     public String getName() {
         return name;
@@ -44,12 +48,21 @@ public class ModelPageVo extends PageUtils {
         this.script = script;
     }
 
+    public Integer getModelId() {
+        return modelId;
+    }
+
+    public void setModelId(Integer modelId) {
+        this.modelId = modelId;
+    }
+
     @Override
     public String toString() {
         return "ModelPageVo{" +
                 "name='" + name + '\'' +
                 ", scene='" + scene + '\'' +
                 ", script='" + script + '\'' +
+                ", modelId=" + modelId +
                 '}';
     }
 }

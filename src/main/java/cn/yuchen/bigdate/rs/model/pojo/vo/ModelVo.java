@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 public class ModelVo implements Serializable {
     /**
@@ -22,6 +23,11 @@ public class ModelVo implements Serializable {
      * 模型描述
      */
     private String script;
+
+    /**
+     * 使用模块id组，id之间使用;分隔，例如：1;2;3
+     */
+    private String modelModuleIds;
 
     /**
      * 逻辑删除: 0 正常 1 删除
@@ -55,7 +61,7 @@ public class ModelVo implements Serializable {
     }
 
     public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+        this.name = name;
     }
 
     public String getScene() {
@@ -63,7 +69,7 @@ public class ModelVo implements Serializable {
     }
 
     public void setScene(String scene) {
-        this.scene = scene == null ? null : scene.trim();
+        this.scene = scene;
     }
 
     public String getScript() {
@@ -71,7 +77,15 @@ public class ModelVo implements Serializable {
     }
 
     public void setScript(String script) {
-        this.script = script == null ? null : script.trim();
+        this.script = script;
+    }
+
+    public String getModelModuleIds() {
+        return modelModuleIds;
+    }
+
+    public void setModelModuleIds(String modelModuleIds) {
+        this.modelModuleIds = modelModuleIds;
     }
 
     public Integer getDeleted() {
@@ -87,7 +101,7 @@ public class ModelVo implements Serializable {
     }
 
     public void setOperator(String operator) {
-        this.operator = operator == null ? null : operator.trim();
+        this.operator = operator;
     }
 
     public Date getInsertTime() {
@@ -113,6 +127,7 @@ public class ModelVo implements Serializable {
                 ", name='" + name + '\'' +
                 ", scene='" + scene + '\'' +
                 ", script='" + script + '\'' +
+                ", modelModuleIds='" + modelModuleIds + '\'' +
                 ", deleted=" + deleted +
                 ", operator='" + operator + '\'' +
                 ", insertTime=" + insertTime +

@@ -1,7 +1,7 @@
 package cn.yuchen.bigdate.rs.model.dao;
 
 import cn.yuchen.bigdate.rs.model.pojo.po.ModelPo;
-import cn.yuchen.bigdate.rs.model.pojo.pagevo.ModelPageVo;
+import cn.yuchen.bigdate.rs.model.pojo.webvo.ModelPageVo;
 import cn.yuchen.bigdate.rs.model.pojo.vo.ModelVo;
 import org.apache.ibatis.annotations.Mapper;
 

@@ -6,6 +6,7 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="scene" jdbcType="VARCHAR" property="scene" />
     <result column="script" jdbcType="VARCHAR" property="script" />
+    <result column="model_module_ids" jdbcType="VARCHAR" property="modelModuleIds" />
     <result column="deleted" jdbcType="INTEGER" property="deleted" />
     <result column="operator" jdbcType="VARCHAR" property="operator" />
     <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
@@ -17,6 +18,7 @@
         <result column="name" jdbcType="VARCHAR" property="name" />
         <result column="scene" jdbcType="VARCHAR" property="scene" />
         <result column="script" jdbcType="VARCHAR" property="script" />
+        <result column="model_module_ids" jdbcType="VARCHAR" property="modelModuleIds" />
         <result column="deleted" jdbcType="INTEGER" property="deleted" />
         <result column="operator" jdbcType="VARCHAR" property="operator" />
         <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
@@ -24,10 +26,10 @@
     </resultMap>
 
   <sql id="Base_Column_List">
-    id, `name`, scene, script, deleted, operator, insert_time, update_time
+    id, `name`, scene, script, model_module_ids, deleted, operator, insert_time, update_time
   </sql>
 
-    <select id="selectByPage" parameterType="cn.yuchen.bigdate.rs.model.pojo.pagevo.ModelPageVo" resultMap="PageResultMap">
+    <select id="selectByPage" parameterType="cn.yuchen.bigdate.rs.model.pojo.webvo.ModelPageVo" resultMap="PageResultMap">
         select
         <include refid="Base_Column_List" />
         from model
@@ -110,6 +112,9 @@
       </if>
       <if test="script != null">
         script = #{script,jdbcType=VARCHAR},
+      </if>
+      <if test="modelModuleIds != null">
+          model_module_ids = #{modelModuleIds,jdbcType=VARCHAR},
       </if>
     </set>
     where

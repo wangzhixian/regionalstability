@@ -1,6 +1,6 @@
 package cn.yuchen.bigdate.rs.model.service;
 
-import cn.yuchen.bigdate.rs.model.pojo.pagevo.ModelPageVo;
+import cn.yuchen.bigdate.rs.model.pojo.webvo.ModelPageVo;
 import cn.yuchen.bigdate.rs.model.pojo.vo.ModelVo;
 
 import java.util.List;
