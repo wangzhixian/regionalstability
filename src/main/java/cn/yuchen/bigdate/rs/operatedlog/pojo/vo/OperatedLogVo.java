@@ -22,6 +22,7 @@ public class OperatedLogVo extends PageUtils implements Serializable {
      * 操作用户
      */
     private String operatedBy;
+
     /**
      * 操作sql
      */

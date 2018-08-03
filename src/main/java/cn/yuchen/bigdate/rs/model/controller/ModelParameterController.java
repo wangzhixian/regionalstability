@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/modelparameter")
+@CrossOrigin
 public class ModelParameterController {
 
     @Autowired

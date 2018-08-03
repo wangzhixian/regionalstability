@@ -9,10 +9,6 @@ public class ModelModuleVo implements Serializable {
      */
     private Long id;
     /**
-     * 模型ID（外键）
-     */
-    private Long modelId;
-    /**
      * 模块名称
      */
     private String name;
@@ -45,13 +41,6 @@ public class ModelModuleVo implements Serializable {
         this.id = id;
     }
 
-    public Long getModelId() {
-        return modelId;
-    }
-
-    public void setModelId(Long modelId) {
-        this.modelId = modelId;
-    }
 
     public String getName() {
         return name;
@@ -105,7 +94,6 @@ public class ModelModuleVo implements Serializable {
     public String toString() {
         return "ModelModuleVo{" +
                 "id=" + id +
-                ", modelId=" + modelId +
                 ", name='" + name + '\'' +
                 ", script='" + script + '\'' +
                 ", deleted=" + deleted +

@@ -41,7 +41,6 @@ public class ModelModuleServiceImpl implements ModelModuleService {
      */
     private void checkParams(ModelModuleVo modelModuleVo) {
         AssertUtils.notNull(modelModuleVo,"要添加的对象不能为空");
-        AssertUtils.greaterThanZero(modelModuleVo.getModelId(),"模型ID（外键）不能为空");
         AssertUtils.hasText(modelModuleVo.getName(),"模块名称不能为空");
     }
 

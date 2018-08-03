@@ -16,6 +16,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/model")
+@CrossOrigin   //解决了跨域问题
 public class ModelController {
 
     @Autowired
@@ -69,7 +70,7 @@ public class ModelController {
      */
     //TODO 这里查询的时候需要查出ids、函数对象、参数对象，所以这里需要一个对象：包含函数与参数的字段对象
     @PostMapping("/find/{id}")
-    public ResponseResult<ModelVo> findByPage(@PathVariable("id") Long id){
+    public ResponseResult<ModelVo> findById(@PathVariable("id") Long id){
         ModelVo modelVo = modelService.findById(id);
         return new ResponseResult<>(modelVo);
     }
