@@ -25,6 +25,21 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
 
+  <resultMap id="MPResultMap" type="cn.yuchen.bigdate.rs.model.pojo.webvo.ModelMethodParameterVo">
+    <result column="method_id" jdbcType="BIGINT" property="methodId" />
+    <result column="model_id" jdbcType="BIGINT" property="modelId" />
+    <result column="method_name" jdbcType="VARCHAR" property="methodName" />
+    <result column="method_script" jdbcType="VARCHAR" property="methodScript" />
+    <result column="parameter_id" jdbcType="BIGINT" property="parameterId" />
+    <result column="display" jdbcType="INTEGER" property="display" />
+    <result column="x_id" jdbcType="BIGINT" property="xId" />
+    <result column="parameter_name" jdbcType="VARCHAR" property="parameterName" />
+    <result column="parameter_script" jdbcType="VARCHAR" property="parameterScript" />
+    <result column="parameter_category" jdbcType="VARCHAR" property="parameterCategory" />
+    <result column="owerid" jdbcType="BIGINT" property="owerid" />
+  </resultMap>
+  <!--m.id as method_id , m.model_id as model_id, m.name as method_name ,m.script as method_script ,-->
+  <!--p.id as parameter_id ,p.x_id as x_id,p.name as parameter_name ,p.script as parameter_script ,p.category as parameter_category ,p.owerid as owerid-->
   <sql id="Base_Column_List">
     id, model_id, `name`, script,display, deleted, operator, insert_time, update_time
   </sql>
@@ -100,4 +115,37 @@
     deleted = 0
   </update>
 
+  <select id="selectMethodParameter" parameterType="cn.yuchen.bigdate.rs.model.pojo.webvo.ModelPageVo" resultMap="MPResultMap">
+    select
+    m.id as method_id , m.model_id as model_id, m.`name` as method_name ,m.script as method_script , m.display as display ,
+    p.id as parameter_id ,p.x_id as x_id,p.name as parameter_name ,p.script as parameter_script ,p.category as parameter_category ,p.owerid as owerid
+    from model_method as m ,model_parameter as p
+    <where>
+      m.deleted = 0
+      AND
+      m.model_id = #{modelId}
+      AND
+      p.method_id = m.id
+      <if test="name != null">
+        AND m.name LIKE CONCAT('%',#{name},'%')
+      </if>
+      <if test="script !=null">
+        AND m.script LIKE CONCAT('%',#{script},'%')
+      </if>
+    </where>
+  </select>
+
+  <select id="selectMethodParameterById" parameterType="java.lang.Long" resultMap="MPResultMap">
+    select
+    m.id as method_id , m.model_id as model_id, m.`name` as method_name ,m.script as method_script , m.display as display ,
+    p.id as parameter_id ,p.x_id as x_id,p.name as parameter_name ,p.script as parameter_script ,p.category as parameter_category ,p.owerid as owerid
+    from model_method as m ,model_parameter as p
+    where
+    m.deleted = 0
+    AND
+    m.id = #{id}
+    AND
+    p.method_id = m.id
+    limit 0,1
+  </select>
 </mapper>

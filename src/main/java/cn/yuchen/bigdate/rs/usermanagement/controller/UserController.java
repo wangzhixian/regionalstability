@@ -30,6 +30,7 @@ import java.util.Objects;
 
 @RestController
 @RequestMapping( value = "/user")
+@CrossOrigin
 public class UserController {
 
     private static final Logger log = LoggerFactory.getLogger(UserController.class);
@@ -110,8 +111,8 @@ public class UserController {
         return new ResponseResult<>(userVo);
     }
 
-    @PostMapping("/hello")
-    public ResponseResult<String> sayHello(@RequestParam String s){
+    @PostMapping("/hello/{s}")
+    public ResponseResult<String> sayHello(@PathVariable("s") String s){
         log.info("我被访问了");
         System.out.println(s);
         String result = "我是测试接口,接受了参数："+ s;
