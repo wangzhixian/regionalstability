@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yuchen.bigdate.rs.sysmanage.dao.SysUserDao">
+
+  <resultMap id="BaseResultMap" type="cn.yuchen.bigdate.rs.sysmanage.pojo.po.SysUserPo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="truename" jdbcType="VARCHAR" property="truename" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="deleted" jdbcType="INTEGER" property="deleted" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+  <resultMap id="PageResultMap" type="cn.yuchen.bigdate.rs.sysmanage.pojo.vo.SysUserVo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="truename" jdbcType="VARCHAR" property="truename" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="deleted" jdbcType="INTEGER" property="deleted" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, username, nickname, truename, password, deleted, operator, insert_time, update_time
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+
+  <select id="selectByPage" parameterType="cn.yuchen.bigdate.rs.sysmanage.pojo.webvo.SysPageVo" resultMap="PageResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_user
+    <where>
+      deleted = 0
+      <if test="username != null">
+        AND `username` LIKE CONCAT('%',#{username},'%')
+      </if>
+      <if test="nickname != null">
+        AND `nickname` LIKE CONCAT('%',#{nickname},'%')
+      </if>
+      <if test="truename != null">
+        AND `nickname` LIKE CONCAT('%',#{truename},'%')
+      </if>
+    </where>
+  </select>
+
+  <delete id="delete" parameterType="java.lang.Long">
+    update sys_user
+    set
+    deleted = 1
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+
+  <insert id="insert" parameterType="cn.yuchen.bigdate.rs.sysmanage.pojo.po.SysUserPo">
+    insert into sys_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="nickname != null">
+        nickname,
+      </if>
+      <if test="truename != null">
+        truename,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+      <if test="operator != null">
+        operator,
+      </if>
+      <if test="insertTime != null">
+        insert_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="truename != null">
+        #{truename,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null">
+        #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="update" parameterType="cn.yuchen.bigdate.rs.sysmanage.pojo.po.SysUserPo">
+    update sys_user
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="truename != null">
+        truename = #{truename,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="operator != null">
+        operator = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null">
+        insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+</mapper>

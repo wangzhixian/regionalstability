@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yuchen.bigdate.rs.sysmanage.dao.SysPowerDao">
+  <resultMap id="BaseResultMap" type="cn.yuchen.bigdate.rs.sysmanage.pojo.po.SysPowerPo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="power_name" jdbcType="VARCHAR" property="powerName" />
+    <result column="power_script" jdbcType="VARCHAR" property="powerScript" />
+    <result column="power_code" jdbcType="VARCHAR" property="powerCode" />
+    <result column="parent_id" jdbcType="BIGINT" property="parentId" />
+    <result column="deleted" jdbcType="INTEGER" property="deleted" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, power_name, power_script, power_code, parent_id, deleted, operator, insert_time, 
+    update_time
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_power
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <delete id="delete" parameterType="java.lang.Long">
+    update sys_power
+    set deleted = 1
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+
+  <insert id="insert" parameterType="cn.yuchen.bigdate.rs.sysmanage.pojo.po.SysPowerPo">
+    insert into sys_power
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="powerName != null">
+        power_name,
+      </if>
+      <if test="powerScript != null">
+        power_script,
+      </if>
+      <if test="powerCode != null">
+        power_code,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+      <if test="operator != null">
+        operator,
+      </if>
+      <if test="insertTime != null">
+        insert_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="powerName != null">
+        #{powerName,jdbcType=VARCHAR},
+      </if>
+      <if test="powerScript != null">
+        #{powerScript,jdbcType=VARCHAR},
+      </if>
+      <if test="powerCode != null">
+        #{powerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null">
+        #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="update" parameterType="cn.yuchen.bigdate.rs.sysmanage.pojo.po.SysPowerPo">
+    update sys_power
+    <set>
+      <if test="powerName != null">
+        power_name = #{powerName,jdbcType=VARCHAR},
+      </if>
+      <if test="powerScript != null">
+        power_script = #{powerScript,jdbcType=VARCHAR},
+      </if>
+      <if test="powerCode != null">
+        power_code = #{powerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="operator != null">
+        operator = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null">
+        insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+    and deleted = 0
+  </update>
+
+</mapper>
