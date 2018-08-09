@@ -1,5 +1,6 @@
 package cn.yuchen.bigdate.rs.sysmanage.service.impl;
 
+import cn.yuchen.bigdate.rs.exception.ArgumentException;
 import cn.yuchen.bigdate.rs.sysmanage.dao.SysUserDao;
 import cn.yuchen.bigdate.rs.sysmanage.pojo.po.SysUserPo;
 import cn.yuchen.bigdate.rs.sysmanage.pojo.vo.SysUserVo;
@@ -11,6 +12,7 @@ import com.github.pagehelper.PageHelper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +21,7 @@ import java.util.Objects;
 /**
  * Created by wzx on 2018/8/7.
  */
+@Service
 public class SysUserServiceImpl implements SysUserService {
 
     @Autowired
@@ -27,6 +30,11 @@ public class SysUserServiceImpl implements SysUserService {
     @Override
     public int add(SysUserVo sysUserVo) {
         checkParams(sysUserVo);
+        AssertUtils.hasText(sysUserVo.getUsername(),"用户登录名不能为空");
+        List<SysUserVo> sysUserVos = sysUserDao.selectByUsername(sysUserVo.getUsername());
+        if(Objects.nonNull(sysUserVos) && sysUserVos.size() > 0){
+           throw new ArgumentException("登录名已存在");
+        }
         SysUserPo po = new SysUserPo();
         BeanUtils.copyProperties(sysUserVo,po);
         return sysUserDao.insert(po);
@@ -38,7 +46,6 @@ public class SysUserServiceImpl implements SysUserService {
      */
     private void checkParams(SysUserVo sysUserVo) {
         AssertUtils.notNull(sysUserVo,"添加对象不能为空");
-        AssertUtils.hasText(sysUserVo.getUsername(),"用户登录名不能为空");
         AssertUtils.hasText(sysUserVo.getNickname(),"昵称不能为空");
         AssertUtils.hasText(sysUserVo.getTruename(),"真实姓名不能为空");
         AssertUtils.hasText(sysUserVo.getPassword(),"密码不能为空");

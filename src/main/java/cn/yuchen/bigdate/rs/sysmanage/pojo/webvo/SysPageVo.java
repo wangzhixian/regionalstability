@@ -18,6 +18,14 @@ public class SysPageVo extends PageUtils {
      * 真实名称
      */
     private String truename;
+    /**
+     * 角色名称
+     */
+    private String rolename;
+    /**
+     * 权限名称
+     */
+    private String powername;
 
     public String getUsername() {
         return username;
@@ -43,12 +51,30 @@ public class SysPageVo extends PageUtils {
         this.truename = truename;
     }
 
+    public String getRolename() {
+        return rolename;
+    }
+
+    public void setRolename(String rolename) {
+        this.rolename = rolename;
+    }
+
+    public String getPowername() {
+        return powername;
+    }
+
+    public void setPowername(String powername) {
+        this.powername = powername;
+    }
+
     @Override
     public String toString() {
         return "SysPageVo{" +
                 "username='" + username + '\'' +
                 ", nickname='" + nickname + '\'' +
                 ", truename='" + truename + '\'' +
+                ", rolename='" + rolename + '\'' +
+                ", powername='" + powername + '\'' +
                 '}';
     }
 }

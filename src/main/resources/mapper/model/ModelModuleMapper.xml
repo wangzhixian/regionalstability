@@ -30,10 +30,10 @@
     from model_module
     <where>
       deleted = 0
-      <if test="name != null">
+      <if test="name != null and name != ''">
         AND `name` LIKE CONCAT('%',#{name},'%')
       </if>
-      <if test="script !=null and operatedBy != ''">
+      <if test="script !=null and script != ''">
         AND script LIKE CONCAT('%',#{script},'%')
       </if>
     </where>

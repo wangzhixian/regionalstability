@@ -2,6 +2,7 @@ package cn.yuchen.bigdate.rs.utility;
 
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * 分页基类
@@ -16,7 +17,9 @@ public class PageUtils implements Serializable {
     }
 
     public void setPageNum(Integer pageNum) {
-        this.pageNum = pageNum;
+        if(Objects.nonNull(pageNum)){
+            this.pageNum = pageNum;
+        }
     }
 
     public Integer getPageSize() {
@@ -24,7 +27,9 @@ public class PageUtils implements Serializable {
     }
 
     public void setPageSize(Integer pageSize) {
-        this.pageSize = pageSize;
+        if(Objects.nonNull(pageSize)){
+            this.pageSize = pageSize;
+        }
     }
 
     @Override

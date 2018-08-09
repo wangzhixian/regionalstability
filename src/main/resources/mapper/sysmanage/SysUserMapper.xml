@@ -44,16 +44,27 @@
     from sys_user
     <where>
       deleted = 0
-      <if test="username != null">
+      <if test="username != null and username !='' ">
         AND `username` LIKE CONCAT('%',#{username},'%')
       </if>
-      <if test="nickname != null">
+      <if test="nickname != null and nickname !=''">
         AND `nickname` LIKE CONCAT('%',#{nickname},'%')
       </if>
-      <if test="truename != null">
-        AND `nickname` LIKE CONCAT('%',#{truename},'%')
+      <if test="truename != null and truename !=''">
+        AND `truename` LIKE CONCAT('%',#{truename},'%')
       </if>
     </where>
+  </select>
+
+
+  <select id="selectByUsername" parameterType="java.lang.String" resultMap="PageResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_user
+    where
+    deleted = 0
+    AND `username` = #{username}
+    limit 0,1
   </select>
 
   <delete id="delete" parameterType="java.lang.Long">

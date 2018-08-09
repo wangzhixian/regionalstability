@@ -1,7 +1,9 @@
 package cn.yuchen.bigdate.rs.sysmanage.dao;
 
 import cn.yuchen.bigdate.rs.sysmanage.pojo.po.SysRolePowerPo;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface SysRolePowerDao {
 
     int insert(SysRolePowerPo record);
