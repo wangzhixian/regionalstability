@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class ModelParameterVo implements Serializable {
+    private static final long serialVersionUID = -2415111335994182866L;
     /**
      * 唯一主键
      */

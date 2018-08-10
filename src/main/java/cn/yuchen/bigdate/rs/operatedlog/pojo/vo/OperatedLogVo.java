@@ -14,6 +14,7 @@ import java.util.Date;
  * Created by wzx on 2018/7/24.
  */
 public class OperatedLogVo extends PageUtils implements Serializable {
+    private static final long serialVersionUID = 6547888577737774653L;
     /**
      * 自增主键
      */

@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class SysUserRoleVo implements Serializable {
+    private static final long serialVersionUID = -7234957475342568327L;
     /**
      * 自增ID
      */

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class ModelModuleVo implements Serializable {
+    private static final long serialVersionUID = 746617039168730098L;
     /**
      * 唯一主键
      */

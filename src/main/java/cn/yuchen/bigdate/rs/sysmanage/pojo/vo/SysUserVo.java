@@ -7,6 +7,7 @@ import java.util.Date;
 
 public class SysUserVo implements Serializable {
 
+    private static final long serialVersionUID = 2884368021899334876L;
     /**
      * 自增ID
      */

@@ -6,6 +6,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class SysRolePowerPo  implements Serializable {
+
+    private static final long serialVersionUID = -716450689702213178L;
     /**
      * 自增ID
      */

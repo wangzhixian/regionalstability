@@ -6,6 +6,7 @@ import cn.yuchen.bigdate.rs.utility.PageUtils;
  * Created by wzx on 2018/8/8.
  */
 public class SysPageVo extends PageUtils {
+    private static final long serialVersionUID = -8729177918387597589L;
     /**
      * 用户登录名
      */

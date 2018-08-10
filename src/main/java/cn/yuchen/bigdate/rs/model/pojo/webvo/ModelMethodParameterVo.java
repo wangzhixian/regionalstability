@@ -1,9 +1,12 @@
 package cn.yuchen.bigdate.rs.model.pojo.webvo;
 
+import java.io.Serializable;
+
 /**
  * Created by wzx on 2018/8/3.
  */
-public class ModelMethodParameterVo {
+public class ModelMethodParameterVo implements Serializable {
+    private static final long serialVersionUID = 5253134895362386775L;
 
 //=========方法======================
     /**

@@ -7,6 +7,7 @@ import java.util.Date;
 
 public class SysRolePo implements Serializable {
 
+    private static final long serialVersionUID = 3172753471633514901L;
     /**
      * 自增ID
      */

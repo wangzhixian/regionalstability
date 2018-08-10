@@ -13,6 +13,7 @@ import java.util.Date;
  * Created by wzx on 2018/7/24.
  */
 public class OperatedLogPo implements Serializable {
+    private static final long serialVersionUID = -1732684062639655412L;
     /**
      * 自增主键
      */

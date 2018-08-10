@@ -36,8 +36,9 @@ public class LoginController {
      * 登录成功
      * @return
      */
-    @GetMapping("/loginsucces")
+    @GetMapping("/success")
     public ResponseResult<String> loginsucces(){
+
         return new ResponseResult<>("登录成功");
     }
 
@@ -74,6 +75,7 @@ public class LoginController {
             token.clear();
             return new ResponseResult<>(RestResultEnum.LOGIN_ERROR,"验证未通过");
         }
+
         return new ResponseResult<>("success");
     }
 

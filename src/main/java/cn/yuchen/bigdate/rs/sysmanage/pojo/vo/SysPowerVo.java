@@ -7,6 +7,7 @@ import java.util.Date;
 
 public class SysPowerVo implements Serializable {
 
+    private static final long serialVersionUID = -2957656181428689978L;
     /**
      * 自增ID
      */

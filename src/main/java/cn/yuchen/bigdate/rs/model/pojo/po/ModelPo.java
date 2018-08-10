@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class ModelPo implements Serializable {
+    private static final long serialVersionUID = 1945054917751574062L;
     /**
      * 唯一主键
      */

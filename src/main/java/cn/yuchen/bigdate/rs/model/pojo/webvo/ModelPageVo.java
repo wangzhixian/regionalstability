@@ -6,7 +6,9 @@ import cn.yuchen.bigdate.rs.utility.PageUtils;
  * 用于分页条件查询的模型对象
  * Created by wzx on 2018/7/27.
  */
-public class ModelPageVo extends PageUtils {
+public class ModelPageVo extends PageUtils  {
+
+    private static final long serialVersionUID = 8672204049486333587L;
     /**
      * 名称
      */
