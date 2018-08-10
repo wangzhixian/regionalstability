@@ -6,6 +6,8 @@ import cn.yuchen.bigdate.rs.utility.ResponseResult;
 import cn.yuchen.bigdate.rs.utility.RestResultEnum;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,12 +53,7 @@ public class LoginController {
 
     @PostMapping(value = "/login")
     public ResponseResult<String> login(@RequestBody SysUserVo sysUserVo) {
-
-        // 想要得到 SecurityUtils.getSubject() 的对象．．访问地址必须跟 shiro 的拦截地址内．不然后会报空指针
         Subject sub = SecurityUtils.getSubject();
-        // 用户输入的账号和密码,,存到UsernamePasswordToken对象中..然后由shiro内部认证对比,
-        // 认证执行者交由 AuthRealm 中 doGetAuthenticationInfo 处理
-        // 当以上认证成功后会向下执行,认证失败会抛出异常
         UsernamePasswordToken token = new UsernamePasswordToken(sysUserVo.getUsername(), sysUserVo.getPassword());
         try {
             sub.login(token);
@@ -80,4 +77,18 @@ public class LoginController {
         return new ResponseResult<>("success");
     }
 
+
+
+    /**
+     * 测试
+     * RequiresRoles 是所需角色 包含 AND 和 OR 两种
+     * RequiresPermissions 是所需权限 包含 AND 和 OR 两种
+     * @return
+     */
+    @GetMapping("/helloshiro")
+    @RequiresRoles(value = {"admin", "root"}, logical = Logical.OR)
+    //@RequiresPermissions(value = {"user:list", "user:query"}, logical = Logical.OR)
+    public ResponseResult<String> test(){
+        return new ResponseResult<>("hello shiro");
+    }
 }

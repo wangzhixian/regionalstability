@@ -20,7 +20,6 @@ import java.util.Map;
  */
 @Configuration
 public class ShiroConfiguration {
-    private static final Logger log = LoggerFactory.getLogger(ShiroConfiguration.class);
 
     @Bean
     public EhCacheManager getEhCacheManager() {
@@ -70,7 +69,6 @@ public class ShiroConfiguration {
     public DefaultWebSecurityManager getDefaultWebSecurityManager(AuthRealm authRealm) {
         DefaultWebSecurityManager defaultWebSecurityManager = new DefaultWebSecurityManager();
         defaultWebSecurityManager.setRealm(authRealm);
-        // <!-- 用户授权/认证信息Cache, 采用EhCache 缓存 -->
         defaultWebSecurityManager.setCacheManager(getEhCacheManager());
         return defaultWebSecurityManager;
     }
@@ -94,15 +92,11 @@ public class ShiroConfiguration {
     @Bean(name = "shiroFilter")
     public ShiroFilterFactoryBean getShiroFilterFactoryBean(DefaultWebSecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
-        // 必须设置 SecurityManager
         shiroFilterFactoryBean.setSecurityManager(securityManager);
-        // 如果不设置默认会自动寻找Web工程根目录下的"/login"页面
         shiroFilterFactoryBean.setLoginUrl("/gologin");
-        // 登录成功后要跳转的连接
         shiroFilterFactoryBean.setSuccessUrl("/loginsucces");
         shiroFilterFactoryBean.setUnauthorizedUrl("/denied");
         loadShiroFilterChain(shiroFilterFactoryBean);
-        //这里设置了 成功  或失败  的跳转页面以后，因为是前后端分离的，所以   可以自己写controller层接口 去返回消息
         return shiroFilterFactoryBean;
     }
 
@@ -110,24 +104,9 @@ public class ShiroConfiguration {
      * 加载shiroFilter权限控制规则（从数据库读取然后配置）
      */
     private void loadShiroFilterChain(ShiroFilterFactoryBean shiroFilterFactoryBean) {
-        /////////////////////// 下面这些规则配置最好配置到配置文件中 ///////////////////////
-        // TODO 重中之重啊，过滤顺序一定要根据自己需要排序
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         // king ----不需要验证的路径   （“地址”，“anon”）
-        // 需要验证的写 authc 不需要的写 anon
-//        filterChainDefinitionMap.put("/resource/**", "anon");
         filterChainDefinitionMap.put("/login", "anon");
-//        filterChainDefinitionMap.put("/user/**", "anon");
-        // anon：它对应的过滤器里面是空的,什么都没做
-//##################从数据库读取权限规则，加载到shiroFilter中##################
-
-        // 不用注解也可以通过 API 方式加载权限规则
-//        Map<String, String> permissions = new LinkedHashMap<>();
-//        permissions.put("/u/find", "perms[user:find]");
-        //这里是统一路径要赋予权限
-//        filterChainDefinitionMap.putAll(permissions);
-        //所有的/**   要通过authc验证
-
 //        filterChainDefinitionMap.put("/**", "authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
     }

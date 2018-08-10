@@ -167,4 +167,11 @@
     where id = #{id,jdbcType=BIGINT}
   </update>
 
+  <update id="initUpdate" parameterType="java.lang.Long">
+    update sys_user
+    set
+    password = "123456"
+    where id = #{id,jdbcType=BIGINT}
+    and deleted = 0
+  </update>
 </mapper>

@@ -95,4 +95,9 @@ public class SysUserServiceImpl implements SysUserService {
         }
         return sysUserVos.get(0);
     }
+
+    @Override
+    public int init(Long id) {
+        return sysUserDao.initUpdate(id);
+    }
 }

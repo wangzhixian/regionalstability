@@ -50,4 +50,11 @@ public interface SysUserService {
      * @return
      */
     SysUserVo findSysUserByUsername(String username);
+
+    /**
+     * 初始化用户密码
+     * @param id
+     * @return
+     */
+    int init(Long id);
 }

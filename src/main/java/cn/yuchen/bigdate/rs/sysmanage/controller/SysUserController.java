@@ -67,5 +67,19 @@ public class SysUserController {
         return new ResponseResult<>(new PageInfo<>(sysUserVos));
     }
 
+    /**
+     * 初始化密码
+     * @param id
+     * @return
+     */
+    @PostMapping("/init/{id}")
+    public ResponseResult<Boolean> update(@PathVariable("id") Long id){
+        Boolean result = false;
+        int updateFlag = sysUserService.init(id);
+        if(updateFlag == 1){
+            result = true;
+        }
+        return new ResponseResult<>(result);
+    }
 
 }

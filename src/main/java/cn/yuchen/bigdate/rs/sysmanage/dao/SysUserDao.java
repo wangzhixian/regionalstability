@@ -21,4 +21,6 @@ public interface SysUserDao {
 
     List<SysUserVo> selectByUsername(String Username);
 
+    int initUpdate(Long id);
+
 }

@@ -132,7 +132,7 @@
         role_script = #{roleScript,jdbcType=VARCHAR},
       </if>
       <if test="roleCode != null">
-        role_code = #{roleScript,jdbcType=VARCHAR},
+        role_code = #{roleCode,jdbcType=VARCHAR},
       </if>
       <if test="deleted != null">
         deleted = #{deleted,jdbcType=INTEGER},
