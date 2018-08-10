@@ -65,5 +65,6 @@ public class SysPowerController {
         List<SysPowerVo> sysPowerVos =  sysPowerService.findByPage(sysPageVo);
         return new ResponseResult<>(new PageInfo<>(sysPowerVos));
     }
+
 }
 

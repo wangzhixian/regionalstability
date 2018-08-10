@@ -3,8 +3,10 @@ package cn.yuchen.bigdate.rs.sysmanage.service.impl;
 import cn.yuchen.bigdate.rs.sysmanage.dao.SysPowerDao;
 import cn.yuchen.bigdate.rs.sysmanage.pojo.po.SysPowerPo;
 import cn.yuchen.bigdate.rs.sysmanage.pojo.vo.SysPowerVo;
+import cn.yuchen.bigdate.rs.sysmanage.pojo.vo.SysRolePowerVo;
 import cn.yuchen.bigdate.rs.sysmanage.pojo.webvo.SysPageVo;
 import cn.yuchen.bigdate.rs.sysmanage.service.SysPowerService;
+import cn.yuchen.bigdate.rs.sysmanage.service.SysRolePowerService;
 import cn.yuchen.bigdate.rs.utility.AssertUtils;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.BeanUtils;
@@ -24,6 +26,9 @@ public class SysPowerServiceImpl implements SysPowerService {
 
     @Autowired
     private SysPowerDao sysPowerDao;
+
+    @Autowired
+    private SysRolePowerService sysRolePowerService;
 
     @Override
     public int add(SysPowerVo sysPowerVo) {
@@ -65,5 +70,18 @@ public class SysPowerServiceImpl implements SysPowerService {
         }
         PageHelper.startPage(sysPageVo.getPageNum(),sysPageVo.getPageSize());
         return sysPowerDao.selectByPage(sysPageVo);
+    }
+
+    @Override
+    public List<SysPowerVo> findPowersByRoleIds(List<Long> ids) {
+        List<SysPowerVo> sysPowerVos = new ArrayList<>();
+        ids.forEach(id->{
+            List<SysRolePowerVo> sysRolePowerVos = sysRolePowerService.findByRoleId(id);
+            sysRolePowerVos.forEach(sysRolePowerVo -> {
+                SysPowerVo sysPowerVo = sysPowerDao.selectByPrimaryKey(sysRolePowerVo.getPowerId());
+                sysPowerVos.add(sysPowerVo);
+            });
+        });
+        return sysPowerVos;
     }
 }

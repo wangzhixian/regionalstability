@@ -43,4 +43,11 @@ public interface SysUserService {
      * @return
      */
     List<SysUserVo> findByPage(SysPageVo sysPageVo);
+
+    /**
+     * 根据登录名查询用户
+     * @param username
+     * @return
+     */
+    SysUserVo findSysUserByUsername(String username);
 }

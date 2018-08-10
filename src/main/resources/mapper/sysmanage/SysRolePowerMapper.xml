@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.yuchen.bigdate.rs.sysmanage.dao.SysRolePowerDao">
+
   <resultMap id="BaseResultMap" type="cn.yuchen.bigdate.rs.sysmanage.pojo.po.SysRolePowerPo">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="role_id" jdbcType="BIGINT" property="roleId" />
@@ -10,21 +11,44 @@
     <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
+
+  <resultMap id="VoResultMap" type="cn.yuchen.bigdate.rs.sysmanage.pojo.po.SysRolePowerPo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="role_id" jdbcType="BIGINT" property="roleId" />
+    <result column="power_id" jdbcType="BIGINT" property="powerId" />
+    <result column="deleted" jdbcType="INTEGER" property="deleted" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
   <sql id="Base_Column_List">
     id, role_id, power_id, deleted, operator, insert_time, update_time
   </sql>
 
+  <select id="selectByRoleId" parameterType="java.lang.Long" resultMap="VoResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_role_power
+    where
+    deleted = 0
+    and
+    role_id = #{id}
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from sys_role_power
     where id = #{id,jdbcType=BIGINT}
   </select>
 
-  <delete id="delete" parameterType="java.lang.Long">
+  <delete id="deleteByRoleId" parameterType="java.lang.Long">
     update sys_role_power
     set deleted = 1
-    where id = #{id,jdbcType=BIGINT}
+    where
+    deleted = 0
+    and role_id = #{id}
   </delete>
 
 

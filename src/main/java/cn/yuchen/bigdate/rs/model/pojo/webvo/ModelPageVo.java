@@ -24,6 +24,11 @@ public class ModelPageVo extends PageUtils {
      */
     private Integer modelId;
 
+    /**
+     * 逻辑显示: 0 不显示 1 显示
+     */
+    private Integer display;
+
     public String getName() {
         return name;
     }
@@ -56,6 +61,14 @@ public class ModelPageVo extends PageUtils {
         this.modelId = modelId;
     }
 
+    public Integer getDisplay() {
+        return display;
+    }
+
+    public void setDisplay(Integer display) {
+        this.display = display;
+    }
+
     @Override
     public String toString() {
         return "ModelPageVo{" +
@@ -63,6 +76,7 @@ public class ModelPageVo extends PageUtils {
                 ", scene='" + scene + '\'' +
                 ", script='" + script + '\'' +
                 ", modelId=" + modelId +
+                ", display=" + display +
                 '}';
     }
 }

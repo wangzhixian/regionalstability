@@ -23,4 +23,11 @@ public interface SysPowerService {
 
 
     List<SysPowerVo> findByPage(SysPageVo sysPageVo);
+
+    /**
+     * 根据角色ID集合查询权限关系
+     * @param ids
+     * @return
+     */
+    List<SysPowerVo> findPowersByRoleIds(List<Long> ids);
 }

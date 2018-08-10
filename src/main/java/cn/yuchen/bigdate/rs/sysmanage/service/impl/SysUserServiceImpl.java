@@ -83,4 +83,16 @@ public class SysUserServiceImpl implements SysUserService {
         PageHelper.startPage(sysPageVo.getPageNum(),sysPageVo.getPageSize());
         return sysUserDao.selectByPage(sysPageVo);
     }
+
+    @Override
+    public SysUserVo findSysUserByUsername(String username) {
+        if(Objects.isNull(username) || "".equals(username)){
+            return  new SysUserVo();
+        }
+        List<SysUserVo> sysUserVos = sysUserDao.selectByUsername(username);
+        if(Objects.isNull(sysUserVos) || sysUserVos.size() < 1){
+            return  new SysUserVo();
+        }
+        return sysUserVos.get(0);
+    }
 }

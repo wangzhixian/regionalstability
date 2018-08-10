@@ -23,6 +23,11 @@ public class SysRolePo implements Serializable {
     private String roleScript;
 
     /**
+     * 角色代码
+     */
+    private String roleCode;
+
+    /**
      * 逻辑删除: 0 正常 1 删除
      */
     private Integer deleted;
@@ -100,12 +105,21 @@ public class SysRolePo implements Serializable {
         this.updateTime = updateTime;
     }
 
+    public String getRoleCode() {
+        return roleCode;
+    }
+
+    public void setRoleCode(String roleCode) {
+        this.roleCode = roleCode;
+    }
+
     @Override
     public String toString() {
         return "SysRolePo{" +
                 "id=" + id +
                 ", roleName='" + roleName + '\'' +
                 ", roleScript='" + roleScript + '\'' +
+                ", roleCode='" + roleCode + '\'' +
                 ", deleted=" + deleted +
                 ", operator='" + operator + '\'' +
                 ", insertTime=" + insertTime +

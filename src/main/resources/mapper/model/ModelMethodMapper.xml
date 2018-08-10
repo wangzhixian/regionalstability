@@ -132,6 +132,9 @@
       <if test="script !=null and script != ''">
         AND m.script LIKE CONCAT('%',#{script},'%')
       </if>
+      <if test="script !=null">
+        AND m.display = #{display}
+      </if>
     </where>
   </select>
 

@@ -3,6 +3,7 @@ package cn.yuchen.bigdate.rs.exception;
 import cn.yuchen.bigdate.rs.utility.ResponseResult;
 import cn.yuchen.bigdate.rs.utility.RestResultEnum;
 import com.mongodb.MongoCommandException;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

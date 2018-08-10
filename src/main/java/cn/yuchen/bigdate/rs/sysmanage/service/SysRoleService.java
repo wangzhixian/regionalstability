@@ -25,4 +25,6 @@ public interface SysRoleService {
 
 
     List<SysRoleVo> findByPage(SysPageVo sysPageVo);
+
+    List<SysRoleVo> findRolesByUserId(Long id);
 }

@@ -9,7 +9,14 @@ public enum RestResultEnum {
     UNKNOWN_ERROR(906000, "未知异常错误"),
     NOT_FOUND_ERROR(905010, "请求地址不存在"),
     FORBIDDEN_ERROR(904000, "没有相关操作权限"),
-    ARGUMENT_ERROR(100000, "请求参数错误");
+    ARGUMENT_ERROR(100000, "请求参数错误"),
+    //用户模块错误码“01”
+    USER_NOT_LOGIN(100101,"用户未登录,请先登录"),
+    USER_NOT_PERMISSION(100102,"权限不足"),
+    USER_LOGIN_ERROR(100103,"验证未通过，用户不存在"),
+    USER_LOCK_ERROR(100104,"验证未通过,账户已锁定"),
+    USER_LOGIN_ERROR_SIZE(1000105,"验证未通过,错误次数过多"),
+    LOGIN_ERROR(100106,"验证不通过,密码错误");
 
 
 

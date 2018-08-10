@@ -1,16 +1,30 @@
 package cn.yuchen.bigdate.rs.sysmanage.dao;
 
 import cn.yuchen.bigdate.rs.sysmanage.pojo.po.SysRolePowerPo;
+import cn.yuchen.bigdate.rs.sysmanage.pojo.vo.SysRolePowerVo;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 @Mapper
 public interface SysRolePowerDao {
 
     int insert(SysRolePowerPo record);
 
-    int delete(Long id);
+    /**
+     * 逻辑删除角色下所有权限关系
+     * @param id
+     * @return
+     */
+    int deleteByRoleId(Long id);
 
-    int update(SysRolePowerPo record);
+    /**
+     * 查询角色下所有权限关系
+     * @param id
+     * @return
+     */
+    List<SysRolePowerVo> selectByRoleId(Long id);
+
 
     SysRolePowerPo selectByPrimaryKey(Long id);
 

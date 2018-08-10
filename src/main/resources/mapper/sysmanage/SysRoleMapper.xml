@@ -6,6 +6,7 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="role_name" jdbcType="VARCHAR" property="roleName" />
     <result column="role_script" jdbcType="VARCHAR" property="roleScript" />
+    <result column="role_code" jdbcType="VARCHAR" property="roleCode" />
     <result column="deleted" jdbcType="INTEGER" property="deleted" />
     <result column="operator" jdbcType="VARCHAR" property="operator" />
     <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
@@ -16,6 +17,7 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="role_name" jdbcType="VARCHAR" property="roleName" />
     <result column="role_script" jdbcType="VARCHAR" property="roleScript" />
+    <result column="role_code" jdbcType="VARCHAR" property="roleCode" />
     <result column="deleted" jdbcType="INTEGER" property="deleted" />
     <result column="operator" jdbcType="VARCHAR" property="operator" />
     <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
@@ -23,7 +25,7 @@
   </resultMap>
 
   <sql id="Base_Column_List">
-    id, role_name, role_script, deleted, operator, insert_time, update_time
+    id, role_name, role_script, role_code, deleted, operator, insert_time, update_time
   </sql>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="PageResultMap">
@@ -76,6 +78,9 @@
       <if test="roleScript != null">
         role_script,
       </if>
+      <if test="roleCode != null">
+        role_code,
+      </if>
       <if test="deleted != null">
         deleted,
       </if>
@@ -99,6 +104,9 @@
       <if test="roleScript != null">
         #{roleScript,jdbcType=VARCHAR},
       </if>
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=VARCHAR},
+      </if>
       <if test="deleted != null">
         #{deleted,jdbcType=INTEGER},
       </if>
@@ -113,6 +121,7 @@
       </if>
     </trim>
   </insert>
+
   <update id="update" parameterType="cn.yuchen.bigdate.rs.sysmanage.pojo.po.SysRolePo">
     update sys_role
     <set>
@@ -121,6 +130,9 @@
       </if>
       <if test="roleScript != null">
         role_script = #{roleScript,jdbcType=VARCHAR},
+      </if>
+      <if test="roleCode != null">
+        role_code = #{roleScript,jdbcType=VARCHAR},
       </if>
       <if test="deleted != null">
         deleted = #{deleted,jdbcType=INTEGER},

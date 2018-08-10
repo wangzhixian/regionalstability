@@ -5,6 +5,8 @@ import cn.yuchen.bigdate.rs.sysmanage.pojo.webvo.SysPageVo;
 import cn.yuchen.bigdate.rs.sysmanage.service.SysUserService;
 import cn.yuchen.bigdate.rs.utility.ResponseResult;
 import com.github.pagehelper.PageInfo;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -64,4 +66,6 @@ public class SysUserController {
         List<SysUserVo> sysUserVos =  sysUserService.findByPage(sysPageVo);
         return new ResponseResult<>(new PageInfo<>(sysUserVos));
     }
+
+
 }
