@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.yuchen.bigdate.rs.sysmanage.dao.SysRolePowerDao">
+<mapper namespace="cn.yuchen.bigdate.rs.service.sysmanage.dao.SysRolePowerDao">
 
-  <resultMap id="BaseResultMap" type="cn.yuchen.bigdate.rs.sysmanage.pojo.po.SysRolePowerPo">
+  <resultMap id="BaseResultMap" type="cn.yuchen.bigdate.rs.service.sysmanage.pojo.po.SysRolePowerPo">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="role_id" jdbcType="BIGINT" property="roleId" />
     <result column="power_id" jdbcType="BIGINT" property="powerId" />
@@ -12,7 +12,7 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
 
-  <resultMap id="VoResultMap" type="cn.yuchen.bigdate.rs.sysmanage.pojo.po.SysRolePowerPo">
+  <resultMap id="VoResultMap" type="cn.yuchen.bigdate.rs.service.sysmanage.pojo.vo.SysRolePowerVo">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="role_id" jdbcType="BIGINT" property="roleId" />
     <result column="power_id" jdbcType="BIGINT" property="powerId" />
@@ -52,7 +52,7 @@
   </delete>
 
 
-  <insert id="insert" parameterType="cn.yuchen.bigdate.rs.sysmanage.pojo.po.SysRolePowerPo">
+  <insert id="insert" parameterType="cn.yuchen.bigdate.rs.service.sysmanage.pojo.po.SysRolePowerPo">
     insert into sys_role_power
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -102,7 +102,7 @@
     </trim>
   </insert>
 
-  <update id="update" parameterType="cn.yuchen.bigdate.rs.sysmanage.pojo.po.SysRolePowerPo">
+  <update id="update" parameterType="cn.yuchen.bigdate.rs.service.sysmanage.pojo.po.SysRolePowerPo">
     update sys_role_power
     <set>
       <if test="roleId != null">

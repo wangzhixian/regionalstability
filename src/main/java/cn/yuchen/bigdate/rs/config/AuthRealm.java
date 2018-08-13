@@ -1,14 +1,14 @@
 package cn.yuchen.bigdate.rs.config;
 
-import cn.yuchen.bigdate.rs.sysmanage.controller.SysUserController;
-import cn.yuchen.bigdate.rs.sysmanage.pojo.vo.SysPowerVo;
-import cn.yuchen.bigdate.rs.sysmanage.pojo.vo.SysRoleVo;
-import cn.yuchen.bigdate.rs.sysmanage.pojo.vo.SysUserRoleVo;
-import cn.yuchen.bigdate.rs.sysmanage.pojo.vo.SysUserVo;
-import cn.yuchen.bigdate.rs.sysmanage.service.SysPowerService;
-import cn.yuchen.bigdate.rs.sysmanage.service.SysRoleService;
-import cn.yuchen.bigdate.rs.sysmanage.service.SysUserRoleService;
-import cn.yuchen.bigdate.rs.sysmanage.service.SysUserService;
+import cn.yuchen.bigdate.rs.service.sysmanage.controller.SysUserController;
+import cn.yuchen.bigdate.rs.service.sysmanage.pojo.vo.SysPowerVo;
+import cn.yuchen.bigdate.rs.service.sysmanage.pojo.vo.SysRoleVo;
+import cn.yuchen.bigdate.rs.service.sysmanage.pojo.vo.SysUserRoleVo;
+import cn.yuchen.bigdate.rs.service.sysmanage.pojo.vo.SysUserVo;
+import cn.yuchen.bigdate.rs.service.sysmanage.service.SysPowerService;
+import cn.yuchen.bigdate.rs.service.sysmanage.service.SysRoleService;
+import cn.yuchen.bigdate.rs.service.sysmanage.service.SysUserRoleService;
+import cn.yuchen.bigdate.rs.service.sysmanage.service.SysUserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;

@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.yuchen.bigdate.rs.sysmanage.dao.SysPowerDao">
+<mapper namespace="cn.yuchen.bigdate.rs.service.sysmanage.dao.SysPowerDao">
 
-  <resultMap id="BaseResultMap" type="cn.yuchen.bigdate.rs.sysmanage.pojo.po.SysPowerPo">
+  <resultMap id="BaseResultMap" type="cn.yuchen.bigdate.rs.service.sysmanage.pojo.po.SysPowerPo">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="power_name" jdbcType="VARCHAR" property="powerName" />
     <result column="power_script" jdbcType="VARCHAR" property="powerScript" />
     <result column="power_code" jdbcType="VARCHAR" property="powerCode" />
     <result column="parent_id" jdbcType="BIGINT" property="parentId" />
+    <result column="power_status" jdbcType="INTEGER" property="powerStatus" />
     <result column="deleted" jdbcType="INTEGER" property="deleted" />
     <result column="operator" jdbcType="VARCHAR" property="operator" />
     <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
 
-  <resultMap id="PageResultMap" type="cn.yuchen.bigdate.rs.sysmanage.pojo.vo.SysPowerVo">
+  <resultMap id="PageResultMap" type="cn.yuchen.bigdate.rs.service.sysmanage.pojo.vo.SysPowerVo">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="power_name" jdbcType="VARCHAR" property="powerName" />
     <result column="power_script" jdbcType="VARCHAR" property="powerScript" />
     <result column="power_code" jdbcType="VARCHAR" property="powerCode" />
     <result column="parent_id" jdbcType="BIGINT" property="parentId" />
+    <result column="power_status" jdbcType="INTEGER" property="powerStatus" />
     <result column="deleted" jdbcType="INTEGER" property="deleted" />
     <result column="operator" jdbcType="VARCHAR" property="operator" />
     <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
@@ -27,7 +29,7 @@
   </resultMap>
 
   <sql id="Base_Column_List">
-    id, power_name, power_script, power_code, parent_id, deleted, operator, insert_time, 
+    id, power_name, power_script, power_code, parent_id,power_status, deleted, operator, insert_time,
     update_time
   </sql>
 
@@ -38,7 +40,7 @@
     where id = #{id,jdbcType=BIGINT}
   </select>
 
-  <select id="selectByPage" parameterType="cn.yuchen.bigdate.rs.sysmanage.pojo.webvo.SysPageVo" resultMap="PageResultMap">
+  <select id="selectByPage" parameterType="cn.yuchen.bigdate.rs.service.sysmanage.pojo.webvo.SysPageVo" resultMap="PageResultMap">
     select
     <include refid="Base_Column_List" />
     from sys_power
@@ -56,7 +58,7 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
 
-  <insert id="insert" parameterType="cn.yuchen.bigdate.rs.sysmanage.pojo.po.SysPowerPo">
+  <insert id="insert" parameterType="cn.yuchen.bigdate.rs.service.sysmanage.pojo.po.SysPowerPo">
     insert into sys_power
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -73,6 +75,9 @@
       </if>
       <if test="parentId != null">
         parent_id,
+      </if>
+      <if test="powerStatus != null">
+        power_status,
       </if>
       <if test="deleted != null">
         deleted,
@@ -103,6 +108,9 @@
       <if test="parentId != null">
         #{parentId,jdbcType=BIGINT},
       </if>
+      <if test="powerStatus != null">
+        #{powerStatus,jdbcType=INTEGER},
+      </if>
       <if test="deleted != null">
         #{deleted,jdbcType=INTEGER},
       </if>
@@ -118,7 +126,7 @@
     </trim>
   </insert>
 
-  <update id="update" parameterType="cn.yuchen.bigdate.rs.sysmanage.pojo.po.SysPowerPo">
+  <update id="update" parameterType="cn.yuchen.bigdate.rs.service.sysmanage.pojo.po.SysPowerPo">
     update sys_power
     <set>
       <if test="powerName != null">
@@ -132,6 +140,9 @@
       </if>
       <if test="parentId != null">
         parent_id = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="powerStatus != null">
+        power_status = #{powerStatus,jdbcType=INTEGER},
       </if>
       <if test="operator != null">
         operator = #{operator,jdbcType=VARCHAR},

@@ -2,7 +2,7 @@
 java.lang.IndexOutOfBoundsException: Index: 1, Size: 1
 	at java.util.ArrayList.rangeCheck(ArrayList.java:657)
 	at java.util.ArrayList.get(ArrayList.java:433)
-	at cn.yuchen.bigdate.rs.model.controller.ModelMethodController.findModelMethodParameterVoByMethodId(ModelMethodController.java:81)
+	at cn.yuchen.bigdate.rs.service.model.controller.ModelMethodController.findModelMethodParameterVoByMethodId(ModelMethodController.java:81)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

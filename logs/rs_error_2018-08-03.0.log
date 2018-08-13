@@ -1,7 +1,7 @@
 2018-08-03 16:45:44.262 [http-nio-8080-exec-4] ERROR c.y.bigdate.rs.exception.GlobalExceptionHandler - 未知异常,请通知管理员。Exception：{}
 org.springframework.dao.DataIntegrityViolationException: 
 ### Error updating database.  Cause: java.sql.SQLException: Field 'operator' doesn't have a default value
-### The error may involve cn.yuchen.bigdate.rs.model.dao.ModelParameterDao.insert-Inline
+### The error may involve cn.yuchen.bigdate.rs.service.model.dao.ModelParameterDao.insert-Inline
 ### The error occurred while setting parameters
 ### SQL: insert into model_parameter      ( method_id,                              `name`,                       script,                       category,                       owerid )       values ( ?,                              ?,                       ?,                       ?,                       ? )
 ### Cause: java.sql.SQLException: Field 'operator' doesn't have a default value
@@ -15,8 +15,8 @@ org.springframework.dao.DataIntegrityViolationException:
 	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:58)
 	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:59)
 	at com.sun.proxy.$Proxy81.insert(Unknown Source)
-	at cn.yuchen.bigdate.rs.model.service.impl.ModelParameterServiceImpl.add(ModelParameterServiceImpl.java:27)
-	at cn.yuchen.bigdate.rs.model.controller.ModelParameterController.add(ModelParameterController.java:24)
+	at cn.yuchen.bigdate.rs.service.model.service.impl.ModelParameterServiceImpl.add(ModelParameterServiceImpl.java:27)
+	at cn.yuchen.bigdate.rs.service.model.controller.ModelParameterController.add(ModelParameterController.java:24)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -116,8 +116,8 @@ org.springframework.dao.TransientDataAccessResourceException: Error attempting t
 	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:76)
 	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:59)
 	at com.sun.proxy.$Proxy79.selectMethodParameter(Unknown Source)
-	at cn.yuchen.bigdate.rs.model.service.impl.ModelMethodServiceImpl.findAll(ModelMethodServiceImpl.java:90)
-	at cn.yuchen.bigdate.rs.model.controller.ModelMethodController.findAll(ModelMethodController.java:69)
+	at cn.yuchen.bigdate.rs.service.model.service.impl.ModelMethodServiceImpl.findAll(ModelMethodServiceImpl.java:90)
+	at cn.yuchen.bigdate.rs.service.model.controller.ModelMethodController.findAll(ModelMethodController.java:69)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -223,8 +223,8 @@ org.springframework.dao.TransientDataAccessResourceException: Error attempting t
 	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:76)
 	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:59)
 	at com.sun.proxy.$Proxy79.selectMethodParameter(Unknown Source)
-	at cn.yuchen.bigdate.rs.model.service.impl.ModelMethodServiceImpl.findAll(ModelMethodServiceImpl.java:90)
-	at cn.yuchen.bigdate.rs.model.controller.ModelMethodController.findAll(ModelMethodController.java:69)
+	at cn.yuchen.bigdate.rs.service.model.service.impl.ModelMethodServiceImpl.findAll(ModelMethodServiceImpl.java:90)
+	at cn.yuchen.bigdate.rs.service.model.controller.ModelMethodController.findAll(ModelMethodController.java:69)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

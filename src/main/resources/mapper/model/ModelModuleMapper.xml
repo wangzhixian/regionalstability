@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.yuchen.bigdate.rs.model.dao.ModelModuleDao">
-  <resultMap id="BaseResultMap" type="cn.yuchen.bigdate.rs.model.pojo.po.ModelModulePo">
+<mapper namespace="cn.yuchen.bigdate.rs.service.model.dao.ModelModuleDao">
+  <resultMap id="BaseResultMap" type="cn.yuchen.bigdate.rs.service.model.pojo.po.ModelModulePo">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="script" jdbcType="VARCHAR" property="script" />
@@ -11,7 +11,7 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
 
-  <resultMap id="PageResultMap" type="cn.yuchen.bigdate.rs.model.pojo.vo.ModelModuleVo">
+  <resultMap id="PageResultMap" type="cn.yuchen.bigdate.rs.service.model.pojo.vo.ModelModuleVo">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="script" jdbcType="VARCHAR" property="script" />
@@ -24,7 +24,7 @@
     id, `name`, script, deleted, operator, insert_time, update_time
   </sql>
 
-  <select id="selectByPage" parameterType="cn.yuchen.bigdate.rs.model.pojo.webvo.ModelPageVo" resultMap="PageResultMap">
+  <select id="selectByPage" parameterType="cn.yuchen.bigdate.rs.service.model.pojo.webvo.ModelPageVo" resultMap="PageResultMap">
     select 
     <include refid="Base_Column_List" />
     from model_module
@@ -54,7 +54,7 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
 
-  <insert id="insert" parameterType="cn.yuchen.bigdate.rs.model.pojo.po.ModelModulePo">
+  <insert id="insert" parameterType="cn.yuchen.bigdate.rs.service.model.pojo.po.ModelModulePo">
     insert into model_module
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -103,7 +103,7 @@
       </if>
     </trim>
   </insert>
-  <update id="update" parameterType="cn.yuchen.bigdate.rs.model.pojo.po.ModelModulePo">
+  <update id="update" parameterType="cn.yuchen.bigdate.rs.service.model.pojo.po.ModelModulePo">
     update model_module
     <set>
       <if test="name != null">

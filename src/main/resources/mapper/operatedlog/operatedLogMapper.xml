@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.yuchen.bigdate.rs.operatedlog.dao.OperatedLogDao">
+<mapper namespace="cn.yuchen.bigdate.rs.service.operatedlog.dao.OperatedLogDao">
 
-    <resultMap id="BaseResultMap" type="cn.yuchen.bigdate.rs.operatedlog.pojo.po.OperatedLogPo">
+    <resultMap id="BaseResultMap" type="cn.yuchen.bigdate.rs.service.operatedlog.pojo.po.OperatedLogPo">
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="operated_by" jdbcType="VARCHAR" property="operatedBy"/>
         <result column="records" jdbcType="VARCHAR" property="records"/>
@@ -12,7 +12,7 @@
         <result column="created_time" jdbcType="TIMESTAMP" property="createdTime"/>
     </resultMap>
 
-    <resultMap id="queryOperatedLogVosResultMap" type="cn.yuchen.bigdate.rs.operatedlog.pojo.vo.OperatedLogVo">
+    <resultMap id="queryOperatedLogVosResultMap" type="cn.yuchen.bigdate.rs.service.operatedlog.pojo.vo.OperatedLogVo">
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="operated_by" jdbcType="VARCHAR" property="operatedBy"/>
         <result column="records" jdbcType="VARCHAR" property="records"/>
@@ -27,7 +27,7 @@
       id, operated_by, records, properties,operated_type,created_time
     </sql>
 
-    <insert id="insert" parameterType="cn.yuchen.bigdate.rs.operatedlog.pojo.po.OperatedLogPo">
+    <insert id="insert" parameterType="cn.yuchen.bigdate.rs.service.operatedlog.pojo.po.OperatedLogPo">
         insert into `log_operated`
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -65,7 +65,7 @@
         </trim>
     </insert>
 
-    <select id="selectByPage" parameterType="cn.yuchen.bigdate.rs.operatedlog.pojo.vo.OperatedLogVo" resultMap="queryOperatedLogVosResultMap">
+    <select id="selectByPage" parameterType="cn.yuchen.bigdate.rs.service.operatedlog.pojo.vo.OperatedLogVo" resultMap="queryOperatedLogVosResultMap">
         SELECT
         <include refid="Base_Column_List" />
         FROM

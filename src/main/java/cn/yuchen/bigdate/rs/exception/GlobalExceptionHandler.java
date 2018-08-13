@@ -4,6 +4,8 @@ import cn.yuchen.bigdate.rs.utility.ResponseResult;
 import cn.yuchen.bigdate.rs.utility.RestResultEnum;
 import com.mongodb.MongoCommandException;
 import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authz.UnauthenticatedException;
+import org.apache.shiro.authz.UnauthorizedException;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -71,5 +73,18 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseResult<String> handleMongoDBException(MongoCommandException mogoc,UncategorizedMongoDbException mogou){
         log.error("操作mongo异常，出现这个一般是mongodb操作权限的问题：MongoCommandException:{},UncategorizedMongoDbException:{}",mogoc,mogou);
         return new ResponseResult<>(RestResultEnum.ERROR,"操作mongo异常，通知开发者。");
+    }
+
+
+    @ExceptionHandler(UnauthorizedException.class)
+    public ResponseResult<String> handleUnauthorizedException(UnauthorizedException unauthorized){
+        log.info("权限不足,抛出UnauthorizedException:{}",unauthorized);
+        return new ResponseResult<>(RestResultEnum.USER_NOT_PERMISSION);
+    }
+
+    @ExceptionHandler(UnauthenticatedException.class)
+    public ResponseResult<String> handleUnauthorizedException(UnauthenticatedException unauthenticated){
+        log.info("用户未登录异常,抛出UnauthenticatedException:{}",unauthenticated);
+        return new ResponseResult<>(RestResultEnum.USER_NOT_LOGIN);
     }
 }

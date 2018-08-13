@@ -6,12 +6,12 @@ APPLICATION FAILED TO START
 
 Description:
 
-Field modelModuleService in cn.yuchen.bigdate.rs.model.controller.ModelModuleController required a bean of type 'cn.yuchen.bigdate.rs.model.service.ModelModuleService' that could not be found.
+Field modelModuleService in cn.yuchen.bigdate.rs.service.model.controller.ModelModuleController required a bean of type 'cn.yuchen.bigdate.rs.service.model.service.ModelModuleService' that could not be found.
 
 
 Action:
 
-Consider defining a bean of type 'cn.yuchen.bigdate.rs.model.service.ModelModuleService' in your configuration.
+Consider defining a bean of type 'cn.yuchen.bigdate.rs.service.model.service.ModelModuleService' in your configuration.
 
 2018-07-30 11:11:47.155 [main] ERROR o.s.b.diagnostics.LoggingFailureAnalysisReporter - 
 
@@ -21,17 +21,17 @@ APPLICATION FAILED TO START
 
 Description:
 
-Field modelModuleService in cn.yuchen.bigdate.rs.model.controller.ModelModuleController required a bean of type 'cn.yuchen.bigdate.rs.model.service.ModelModuleService' that could not be found.
+Field modelModuleService in cn.yuchen.bigdate.rs.service.model.controller.ModelModuleController required a bean of type 'cn.yuchen.bigdate.rs.service.model.service.ModelModuleService' that could not be found.
 
 
 Action:
 
-Consider defining a bean of type 'cn.yuchen.bigdate.rs.model.service.ModelModuleService' in your configuration.
+Consider defining a bean of type 'cn.yuchen.bigdate.rs.service.model.service.ModelModuleService' in your configuration.
 
 2018-07-30 15:37:41.174 [http-nio-8080-exec-1] ERROR c.y.bigdate.rs.exception.GlobalExceptionHandler - 未知异常,请通知管理员。Exception：{}
 org.springframework.dao.DataIntegrityViolationException: 
 ### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'deleted' cannot be null
-### The error may involve cn.yuchen.bigdate.rs.model.dao.ModelMethodDao.insert-Inline
+### The error may involve cn.yuchen.bigdate.rs.service.model.dao.ModelMethodDao.insert-Inline
 ### The error occurred while setting parameters
 ### SQL: insert into model_method (id, model_id, `name`,       script, deleted, operator,        insert_time, update_time)     values (?, ?, ?,        ?, ?, ?,        ?, ?)
 ### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'deleted' cannot be null
@@ -46,8 +46,8 @@ org.springframework.dao.DataIntegrityViolationException:
 	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:58)
 	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:59)
 	at com.sun.proxy.$Proxy78.insert(Unknown Source)
-	at cn.yuchen.bigdate.rs.model.service.impl.ModelMethodServiceImpl.add(ModelMethodServiceImpl.java:34)
-	at cn.yuchen.bigdate.rs.model.controller.ModelMethodController.add(ModelMethodController.java:27)
+	at cn.yuchen.bigdate.rs.service.model.service.impl.ModelMethodServiceImpl.add(ModelMethodServiceImpl.java:34)
+	at cn.yuchen.bigdate.rs.service.model.controller.ModelMethodController.add(ModelMethodController.java:27)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

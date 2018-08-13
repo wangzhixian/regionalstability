@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.yuchen.bigdate.rs.model.dao.ModelMethodDao">
-  <resultMap id="BaseResultMap" type="cn.yuchen.bigdate.rs.model.pojo.po.ModelMethodPo">
+<mapper namespace="cn.yuchen.bigdate.rs.service.model.dao.ModelMethodDao">
+  <resultMap id="BaseResultMap" type="cn.yuchen.bigdate.rs.service.model.pojo.po.ModelMethodPo">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="model_id" jdbcType="BIGINT" property="modelId" />
     <result column="name" jdbcType="VARCHAR" property="name" />
@@ -13,7 +13,7 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
 
-  <resultMap id="PageResultMap" type="cn.yuchen.bigdate.rs.model.pojo.vo.ModelMethodVo">
+  <resultMap id="PageResultMap" type="cn.yuchen.bigdate.rs.service.model.pojo.vo.ModelMethodVo">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="model_id" jdbcType="BIGINT" property="modelId" />
     <result column="name" jdbcType="VARCHAR" property="name" />
@@ -25,7 +25,7 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
 
-  <resultMap id="MPResultMap" type="cn.yuchen.bigdate.rs.model.pojo.webvo.ModelMethodParameterVo">
+  <resultMap id="MPResultMap" type="cn.yuchen.bigdate.rs.service.model.pojo.webvo.ModelMethodParameterVo">
     <result column="method_id" jdbcType="BIGINT" property="methodId" />
     <result column="model_id" jdbcType="BIGINT" property="modelId" />
     <result column="method_name" jdbcType="VARCHAR" property="methodName" />
@@ -44,7 +44,7 @@
     id, model_id, `name`, script,display, deleted, operator, insert_time, update_time
   </sql>
 
-  <select id="selectByPage" parameterType="cn.yuchen.bigdate.rs.model.pojo.webvo.ModelPageVo" resultMap="PageResultMap">
+  <select id="selectByPage" parameterType="cn.yuchen.bigdate.rs.service.model.pojo.webvo.ModelPageVo" resultMap="PageResultMap">
     select 
     <include refid="Base_Column_List" />
     from model_method
@@ -77,7 +77,7 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
 
-  <insert id="insert" parameterType="cn.yuchen.bigdate.rs.model.pojo.po.ModelMethodPo">
+  <insert id="insert" parameterType="cn.yuchen.bigdate.rs.service.model.pojo.po.ModelMethodPo">
     <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -90,7 +90,7 @@
     )
   </insert>
 
-  <update id="update" parameterType="cn.yuchen.bigdate.rs.model.pojo.po.ModelMethodPo">
+  <update id="update" parameterType="cn.yuchen.bigdate.rs.service.model.pojo.po.ModelMethodPo">
     update model_method
     <set>
       <if test="modelId != null">
@@ -115,7 +115,7 @@
     deleted = 0
   </update>
 
-  <select id="selectMethodParameter" parameterType="cn.yuchen.bigdate.rs.model.pojo.webvo.ModelPageVo" resultMap="MPResultMap">
+  <select id="selectMethodParameter" parameterType="cn.yuchen.bigdate.rs.service.model.pojo.webvo.ModelPageVo" resultMap="MPResultMap">
     select
     m.id as method_id , m.model_id as model_id, m.`name` as method_name ,m.script as method_script , m.display as display ,
     p.id as parameter_id ,p.x_id as x_id,p.name as parameter_name ,p.script as parameter_script ,p.category as parameter_category ,p.owerid as owerid

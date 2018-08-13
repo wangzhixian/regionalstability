@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.yuchen.bigdate.rs.sysmanage.dao.SysRoleDao">
+<mapper namespace="cn.yuchen.bigdate.rs.service.sysmanage.dao.SysRoleDao">
 
-  <resultMap id="BaseResultMap" type="cn.yuchen.bigdate.rs.sysmanage.pojo.po.SysRolePo">
+  <resultMap id="BaseResultMap" type="cn.yuchen.bigdate.rs.service.sysmanage.pojo.po.SysRolePo">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="role_name" jdbcType="VARCHAR" property="roleName" />
     <result column="role_script" jdbcType="VARCHAR" property="roleScript" />
@@ -13,7 +13,7 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
 
-  <resultMap id="PageResultMap" type="cn.yuchen.bigdate.rs.sysmanage.pojo.vo.SysRoleVo">
+  <resultMap id="PageResultMap" type="cn.yuchen.bigdate.rs.service.sysmanage.pojo.vo.SysRoleVo">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="role_name" jdbcType="VARCHAR" property="roleName" />
     <result column="role_script" jdbcType="VARCHAR" property="roleScript" />
@@ -36,7 +36,7 @@
   </select>
 
 
-  <select id="selectByPage" parameterType="cn.yuchen.bigdate.rs.sysmanage.pojo.webvo.SysPageVo" resultMap="PageResultMap">
+  <select id="selectByPage" parameterType="cn.yuchen.bigdate.rs.service.sysmanage.pojo.webvo.SysPageVo" resultMap="PageResultMap">
     select
     <include refid="Base_Column_List" />
     from sys_role
@@ -66,7 +66,7 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
 
-  <insert id="insert" parameterType="cn.yuchen.bigdate.rs.sysmanage.pojo.po.SysRolePo">
+  <insert id="insert" parameterType="cn.yuchen.bigdate.rs.service.sysmanage.pojo.po.SysRolePo">
     insert into sys_role
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -122,7 +122,7 @@
     </trim>
   </insert>
 
-  <update id="update" parameterType="cn.yuchen.bigdate.rs.sysmanage.pojo.po.SysRolePo">
+  <update id="update" parameterType="cn.yuchen.bigdate.rs.service.sysmanage.pojo.po.SysRolePo">
     update sys_role
     <set>
       <if test="roleName != null">

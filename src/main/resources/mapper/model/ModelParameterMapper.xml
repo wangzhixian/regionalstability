@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.yuchen.bigdate.rs.model.dao.ModelParameterDao">
+<mapper namespace="cn.yuchen.bigdate.rs.service.model.dao.ModelParameterDao">
 
-  <resultMap id="BaseResultMap" type="cn.yuchen.bigdate.rs.model.pojo.po.ModelParameterPo">
+  <resultMap id="BaseResultMap" type="cn.yuchen.bigdate.rs.service.model.pojo.po.ModelParameterPo">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="method_id" jdbcType="BIGINT" property="methodId" />
     <result column="x_id" jdbcType="BIGINT" property="xId" />
@@ -36,7 +36,7 @@
   </delete>
 
 
-  <insert id="insert" parameterType="cn.yuchen.bigdate.rs.model.pojo.po.ModelParameterPo">
+  <insert id="insert" parameterType="cn.yuchen.bigdate.rs.service.model.pojo.po.ModelParameterPo">
     insert into model_parameter
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -110,7 +110,7 @@
     </trim>
   </insert>
 
-  <update id="update" parameterType="cn.yuchen.bigdate.rs.model.pojo.po.ModelParameterPo">
+  <update id="update" parameterType="cn.yuchen.bigdate.rs.service.model.pojo.po.ModelParameterPo">
     update model_parameter
     <set>
       <if test="methodId != null">

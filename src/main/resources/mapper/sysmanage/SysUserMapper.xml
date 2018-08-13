@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.yuchen.bigdate.rs.sysmanage.dao.SysUserDao">
+<mapper namespace="cn.yuchen.bigdate.rs.service.sysmanage.dao.SysUserDao">
 
-  <resultMap id="BaseResultMap" type="cn.yuchen.bigdate.rs.sysmanage.pojo.po.SysUserPo">
+  <resultMap id="BaseResultMap" type="cn.yuchen.bigdate.rs.service.sysmanage.pojo.po.SysUserPo">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="nickname" jdbcType="VARCHAR" property="nickname" />
@@ -14,7 +14,7 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
 
-  <resultMap id="PageResultMap" type="cn.yuchen.bigdate.rs.sysmanage.pojo.vo.SysUserVo">
+  <resultMap id="PageResultMap" type="cn.yuchen.bigdate.rs.service.sysmanage.pojo.vo.SysUserVo">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="nickname" jdbcType="VARCHAR" property="nickname" />
@@ -38,7 +38,7 @@
   </select>
 
 
-  <select id="selectByPage" parameterType="cn.yuchen.bigdate.rs.sysmanage.pojo.webvo.SysPageVo" resultMap="PageResultMap">
+  <select id="selectByPage" parameterType="cn.yuchen.bigdate.rs.service.sysmanage.pojo.webvo.SysPageVo" resultMap="PageResultMap">
     select
     <include refid="Base_Column_List" />
     from sys_user
@@ -74,7 +74,7 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
 
-  <insert id="insert" parameterType="cn.yuchen.bigdate.rs.sysmanage.pojo.po.SysUserPo">
+  <insert id="insert" parameterType="cn.yuchen.bigdate.rs.service.sysmanage.pojo.po.SysUserPo">
     insert into sys_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -136,7 +136,7 @@
     </trim>
   </insert>
 
-  <update id="update" parameterType="cn.yuchen.bigdate.rs.sysmanage.pojo.po.SysUserPo">
+  <update id="update" parameterType="cn.yuchen.bigdate.rs.service.sysmanage.pojo.po.SysUserPo">
     update sys_user
     <set>
       <if test="username != null">
