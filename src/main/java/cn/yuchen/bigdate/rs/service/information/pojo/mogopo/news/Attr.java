@@ -3,26 +3,18 @@ package cn.yuchen.bigdate.rs.service.information.pojo.mogopo.news;
 import org.bson.types.ObjectId;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by wzx on 2018/8/14.
  */
 public class Attr implements Serializable {
-    public Attr() {
-    }
-
-    public Attr(ObjectId id, String region, String title, String content) {
-        this.id = id;
-        this.region = region;
-        this.title = title;
-        this.content = content;
-    }
 
     private static final long serialVersionUID = 7351427448054645331L;
     /**
      * id
      */
-    private ObjectId id;
+    private String id;
 
     /**
      * 原新闻语言
@@ -32,7 +24,7 @@ public class Attr implements Serializable {
     /**
      * 原新闻标题
      */
-    private String title;
+    private String news_name;
 
     /**
      * 原新闻内容
@@ -63,11 +55,11 @@ public class Attr implements Serializable {
      */
     private Integer deleted;
 
-    public ObjectId getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -79,12 +71,12 @@ public class Attr implements Serializable {
         this.region = region;
     }
 
-    public String getTitle() {
-        return title;
+    public String getNews_name() {
+        return news_name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setNews_name(String news_name) {
+        this.news_name = news_name;
     }
 
     public String getContent() {
@@ -138,9 +130,9 @@ public class Attr implements Serializable {
     @Override
     public String toString() {
         return "Attr{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", region='" + region + '\'' +
-                ", title='" + title + '\'' +
+                ", news_name='" + news_name + '\'' +
                 ", content='" + content + '\'' +
                 ", publicDateTime='" + publicDateTime + '\'' +
                 ", area='" + area + '\'' +

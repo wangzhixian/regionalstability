@@ -1,27 +1,27 @@
-package cn.yuchen.bigdate.rs.service.information.service;
+package cn.yuchen.bigdate.rs.service.information.dao;
 
 import cn.yuchen.bigdate.rs.service.information.pojo.mogopo.news.Tagdata;
 import cn.yuchen.bigdate.rs.service.information.pojo.webpo.NewsWeb;
 import com.mongodb.client.result.UpdateResult;
 import org.bson.types.ObjectId;
-import org.springframework.data.domain.Page;
 
+import java.util.Date;
 import java.util.List;
 
 /**
- * Created by wzx on 2018/8/16.
+ * Created by wzx on 2018/8/17.
  */
-public interface NewsInformationService {
+public interface NewsRepositoryDao {
 
     /**
-     * 通过国家,时间范围  分页查询新闻
+     * 根据国家、时间范围 分页查询新闻
      * @param newsWeb
      * @return
      */
     List<Tagdata> findByNewsWebPage(NewsWeb newsWeb);
 
     /**
-     * 根据ObjectId  查询对象
+     * 根据ObjectId查询
      * @param id
      * @return
      */
@@ -33,4 +33,6 @@ public interface NewsInformationService {
      * @return
      */
     UpdateResult update(Tagdata tagdata);
+
+
 }
