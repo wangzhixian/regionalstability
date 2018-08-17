@@ -50,4 +50,6 @@ public class ResponseResult<T> implements Serializable {
         this.retcode = RestResultEnum.SUCCESS.getKey();
         this.data = data;
     }
+
+
 }

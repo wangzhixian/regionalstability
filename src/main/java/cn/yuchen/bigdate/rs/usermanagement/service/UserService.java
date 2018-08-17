@@ -1,10 +1,11 @@
 package cn.yuchen.bigdate.rs.usermanagement.service;
 
+import cn.yuchen.bigdate.rs.usermanagement.pojo.mogopo.Tagdata;
+import cn.yuchen.bigdate.rs.usermanagement.pojo.po.UserPo;
 import cn.yuchen.bigdate.rs.usermanagement.pojo.vo.UserVo;
-import org.apache.catalina.User;
-import org.springframework.beans.BeansException;
+import org.springframework.data.domain.Page;
 
-import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
 public interface UserService {
     /**
@@ -31,5 +32,11 @@ public interface UserService {
      * 从MongoDB中取对象
      * @return
      */
-    UserVo fundUserVoForDB();
+    List<UserPo> fundUserVoForDB();
+
+    /**
+     * 获取db测试
+     * @return
+     */
+    Page<Tagdata> findDB();
 }

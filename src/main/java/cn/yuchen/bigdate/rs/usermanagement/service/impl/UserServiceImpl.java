@@ -1,27 +1,22 @@
 package cn.yuchen.bigdate.rs.usermanagement.service.impl;
 
 import cn.yuchen.bigdate.rs.usermanagement.dao.UserDao;
+import cn.yuchen.bigdate.rs.usermanagement.pojo.mogopo.Tagdata;
 import cn.yuchen.bigdate.rs.usermanagement.pojo.po.UserPo;
 import cn.yuchen.bigdate.rs.usermanagement.pojo.vo.UserVo;
-import cn.yuchen.bigdate.rs.usermanagement.repository.UserRep;
+import cn.yuchen.bigdate.rs.usermanagement.repository.TestRepository;
 import cn.yuchen.bigdate.rs.usermanagement.repository.UserRepository;
 import cn.yuchen.bigdate.rs.usermanagement.service.UserService;
-
-
 import cn.yuchen.bigdate.rs.utility.AssertUtils;
-import cn.yuchen.bigdate.rs.utility.HttpRequest;
 import cn.yuchen.bigdate.rs.utility.LogUtils;
-import org.apache.ibatis.mapping.BoundSql;
-import org.apache.ibatis.mapping.MappedStatement;
-import org.apache.ibatis.mapping.SqlSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 
 @Service
@@ -32,6 +27,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private TestRepository testRepository;
 
     @Autowired
     private SqlSessionFactory sqlSessionFactory;
@@ -78,11 +76,23 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserVo fundUserVoForDB() {
-        UserPo userPo = userRepository.findByUserName("测试");    // 只写MongoDB接口的方式   实现交于Springboot实现
+    public  List<UserPo> fundUserVoForDB() {
+//        UserPo userPo = userRepository.findByUserName("测试");    // 只写MongoDB接口的方式   实现交于Springboot实现
 //        UserPo userPo = userRep.getUserPo();    自己写MongoDB接口与实现类的方式
-        UserVo vo = new UserVo();
-        BeanUtils.copyProperties(userPo,vo);
-        return vo;
+//        UserVo vo = new UserVo();
+//        BeanUtils.copyProperties(userPo,vo);
+        List<UserPo> all = userRepository.findAll();
+        return all;
     }
+
+    @Override
+    public  Page<Tagdata> findDB() {
+        PageRequest pageRequest = PageRequest.of( 0, 10);
+        Page<Tagdata> all = testRepository.findAll(pageRequest);
+        long count = testRepository.count();
+        System.out.println(count);
+        return all;
+    }
+
+
 }

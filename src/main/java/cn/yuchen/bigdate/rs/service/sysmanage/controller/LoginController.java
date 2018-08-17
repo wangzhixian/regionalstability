@@ -9,6 +9,7 @@ import cn.yuchen.bigdate.rs.service.sysmanage.service.SysRoleService;
 import cn.yuchen.bigdate.rs.service.sysmanage.service.SysUserService;
 import cn.yuchen.bigdate.rs.utility.ResponseResult;
 import cn.yuchen.bigdate.rs.utility.RestResultEnum;
+import com.alibaba.fastjson.JSON;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -94,7 +95,7 @@ public class LoginController {
         }
         //登陆成功后查菜单
         Map<String, List<String>> powers = getMenus(sysUserVo);
-        return new ResponseResult<>(powers.toString());
+        return new ResponseResult<>(JSON.toJSONString(powers));
     }
 
     /**

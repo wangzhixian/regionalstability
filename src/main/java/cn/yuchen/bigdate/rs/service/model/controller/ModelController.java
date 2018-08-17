@@ -68,7 +68,6 @@ public class ModelController {
      * @param id
      * @return
      */
-    //TODO 这里查询的时候需要查出ids、函数对象、参数对象，所以这里需要一个对象：包含函数与参数的字段对象
     @PostMapping("/find/{id}")
     public ResponseResult<ModelVo> findById(@PathVariable("id") Long id){
         ModelVo modelVo = modelService.findById(id);

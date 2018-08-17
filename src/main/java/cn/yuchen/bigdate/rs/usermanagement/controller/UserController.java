@@ -1,29 +1,25 @@
 package cn.yuchen.bigdate.rs.usermanagement.controller;
 
+import cn.yuchen.bigdate.rs.usermanagement.pojo.mogopo.Tagdata;
+import cn.yuchen.bigdate.rs.usermanagement.pojo.po.UserPo;
 import cn.yuchen.bigdate.rs.usermanagement.pojo.vo.UserVo;
 import cn.yuchen.bigdate.rs.usermanagement.service.UserService;
-import cn.yuchen.bigdate.rs.utility.AssertUtils;
 import cn.yuchen.bigdate.rs.utility.ResponseResult;
-import cn.yuchen.bigdate.rs.utility.RestResultEnum;
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.response.QueryResponse;
-import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrInputDocument;
 import org.apache.solr.common.params.ModifiableSolrParams;
-import org.apache.solr.common.params.SolrParams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 import java.io.IOException;
 import java.io.Serializable;
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Objects;
 
@@ -106,10 +102,11 @@ public class UserController {
     }
 
     @PostMapping("/findDB")
-    public ResponseResult<UserVo> findUserForDB(){
-        UserVo userVo = userService.fundUserVoForDB();
-        return new ResponseResult<>(userVo);
+    public ResponseResult<List<UserPo>> findUserForDB(){
+        List<UserPo> userPos = userService.fundUserVoForDB();
+        return new ResponseResult<>(userPos);
     }
+
 
     @PostMapping("/hello/{s}")
     public ResponseResult<String> sayHello(@PathVariable("s") String s){
@@ -117,6 +114,13 @@ public class UserController {
         System.out.println(s);
         String result = "我是测试接口,接受了参数："+ s;
         return new ResponseResult<>(result);
+    }
+
+    @PostMapping("/findalldb")
+    public ResponseResult<Page<Tagdata>> findAllDB(){
+        log.info("我被访问了");
+        Page<Tagdata> db = userService.findDB();
+        return new ResponseResult<>(db);
     }
 
 }

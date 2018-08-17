@@ -29,7 +29,7 @@
   </resultMap>
 
   <sql id="Base_Column_List">
-    id, power_name, power_script, power_code, parent_id,power_status, deleted, operator, insert_time,
+    id, power_name, power_script, power_code, parent_id, power_status, deleted, operator, insert_time,
     update_time
   </sql>
 
