@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.text.ParseException;
 
 /**
  * 全局异常处理类
@@ -27,6 +28,12 @@ import java.lang.reflect.InvocationTargetException;
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+
+    @ExceptionHandler(ParseException.class)
+    public ResponseResult<String> handleException(ParseException pe){
+        log.error("字符串转换异常,请通知管理员。ParseException：{}",pe);
+        return new ResponseResult<>(RestResultEnum.INFORMATION_TODATE_ERROR.getKey(),RestResultEnum.INFORMATION_TODATE_ERROR.getMessage());
+    }
 
     @ExceptionHandler(Exception.class)
     public ResponseResult<String> handleException(Exception e){

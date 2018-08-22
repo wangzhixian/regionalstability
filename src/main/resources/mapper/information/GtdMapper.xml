@@ -1,0 +1,1394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yuchen.bigdate.rs.service.information.dao.GtdDao">
+  <resultMap id="BaseResultMap" type="cn.yuchen.bigdate.rs.service.information.pojo.po.GtdPo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="eventid" jdbcType="VARCHAR" property="eventid" />
+    <result column="event_time" jdbcType="TIMESTAMP" property="eventTime" />
+    <result column="extended" jdbcType="VARCHAR" property="extended" />
+    <result column="resolution" jdbcType="VARCHAR" property="resolution" />
+    <result column="country" jdbcType="VARCHAR" property="country" />
+    <result column="country_txt" jdbcType="VARCHAR" property="countryTxt" />
+    <result column="region" jdbcType="VARCHAR" property="region" />
+    <result column="region_txt" jdbcType="VARCHAR" property="regionTxt" />
+    <result column="provstate" jdbcType="VARCHAR" property="provstate" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="latitude" jdbcType="VARCHAR" property="latitude" />
+    <result column="longitude" jdbcType="VARCHAR" property="longitude" />
+    <result column="specificity" jdbcType="VARCHAR" property="specificity" />
+    <result column="vicinity" jdbcType="VARCHAR" property="vicinity" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
+    <result column="summary" jdbcType="VARCHAR" property="summary" />
+    <result column="crit1" jdbcType="VARCHAR" property="crit1" />
+    <result column="crit2" jdbcType="VARCHAR" property="crit2" />
+    <result column="crit3" jdbcType="VARCHAR" property="crit3" />
+    <result column="doubtterr" jdbcType="VARCHAR" property="doubtterr" />
+    <result column="alternative" jdbcType="VARCHAR" property="alternative" />
+    <result column="alternative_txt" jdbcType="VARCHAR" property="alternativeTxt" />
+    <result column="multiple" jdbcType="VARCHAR" property="multiple" />
+    <result column="success" jdbcType="VARCHAR" property="success" />
+    <result column="suicide" jdbcType="VARCHAR" property="suicide" />
+    <result column="attacktype1" jdbcType="VARCHAR" property="attacktype1" />
+    <result column="attacktype1_txt" jdbcType="VARCHAR" property="attacktype1Txt" />
+    <result column="attacktype2" jdbcType="VARCHAR" property="attacktype2" />
+    <result column="attacktype2_txt" jdbcType="VARCHAR" property="attacktype2Txt" />
+    <result column="attacktype3" jdbcType="VARCHAR" property="attacktype3" />
+    <result column="attacktype3_txt" jdbcType="VARCHAR" property="attacktype3Txt" />
+    <result column="targtype1" jdbcType="VARCHAR" property="targtype1" />
+    <result column="targtype1_txt" jdbcType="VARCHAR" property="targtype1Txt" />
+    <result column="targsubtype1" jdbcType="VARCHAR" property="targsubtype1" />
+    <result column="targsubtype1_txt" jdbcType="VARCHAR" property="targsubtype1Txt" />
+    <result column="corp1" jdbcType="VARCHAR" property="corp1" />
+    <result column="target1" jdbcType="VARCHAR" property="target1" />
+    <result column="natlty1" jdbcType="VARCHAR" property="natlty1" />
+    <result column="natlty1_txt" jdbcType="VARCHAR" property="natlty1Txt" />
+    <result column="targtype2" jdbcType="VARCHAR" property="targtype2" />
+    <result column="targtype2_txt" jdbcType="VARCHAR" property="targtype2Txt" />
+    <result column="targsubtype2" jdbcType="VARCHAR" property="targsubtype2" />
+    <result column="targsubtype2_txt" jdbcType="VARCHAR" property="targsubtype2Txt" />
+    <result column="corp2" jdbcType="VARCHAR" property="corp2" />
+    <result column="target2" jdbcType="VARCHAR" property="target2" />
+    <result column="natlty2" jdbcType="VARCHAR" property="natlty2" />
+    <result column="natlty2_txt" jdbcType="VARCHAR" property="natlty2Txt" />
+    <result column="targtype3" jdbcType="VARCHAR" property="targtype3" />
+    <result column="targtype3_txt" jdbcType="VARCHAR" property="targtype3Txt" />
+    <result column="targsubtype3" jdbcType="VARCHAR" property="targsubtype3" />
+    <result column="targsubtype3_txt" jdbcType="VARCHAR" property="targsubtype3Txt" />
+    <result column="corp3" jdbcType="VARCHAR" property="corp3" />
+    <result column="target3" jdbcType="VARCHAR" property="target3" />
+    <result column="natlty3" jdbcType="VARCHAR" property="natlty3" />
+    <result column="natlty3_txt" jdbcType="VARCHAR" property="natlty3Txt" />
+    <result column="gname" jdbcType="VARCHAR" property="gname" />
+    <result column="gsubname" jdbcType="VARCHAR" property="gsubname" />
+    <result column="gname2" jdbcType="VARCHAR" property="gname2" />
+    <result column="gsubname2" jdbcType="VARCHAR" property="gsubname2" />
+    <result column="gname3" jdbcType="VARCHAR" property="gname3" />
+    <result column="gsubname3" jdbcType="VARCHAR" property="gsubname3" />
+    <result column="motive" jdbcType="VARCHAR" property="motive" />
+    <result column="guncertain1" jdbcType="VARCHAR" property="guncertain1" />
+    <result column="guncertain2" jdbcType="VARCHAR" property="guncertain2" />
+    <result column="guncertain3" jdbcType="VARCHAR" property="guncertain3" />
+    <result column="nperps" jdbcType="VARCHAR" property="nperps" />
+    <result column="nperpcap" jdbcType="VARCHAR" property="nperpcap" />
+    <result column="claimed" jdbcType="VARCHAR" property="claimed" />
+    <result column="claimmode" jdbcType="VARCHAR" property="claimmode" />
+    <result column="claimmode_txt" jdbcType="VARCHAR" property="claimmodeTxt" />
+    <result column="claim2" jdbcType="VARCHAR" property="claim2" />
+    <result column="claimmode2" jdbcType="VARCHAR" property="claimmode2" />
+    <result column="claimmode2_txt" jdbcType="VARCHAR" property="claimmode2Txt" />
+    <result column="claim3" jdbcType="VARCHAR" property="claim3" />
+    <result column="claimmode3" jdbcType="VARCHAR" property="claimmode3" />
+    <result column="claimmode3_txt" jdbcType="VARCHAR" property="claimmode3Txt" />
+    <result column="compclaim" jdbcType="VARCHAR" property="compclaim" />
+    <result column="weaptype1" jdbcType="VARCHAR" property="weaptype1" />
+    <result column="weaptype1_txt" jdbcType="VARCHAR" property="weaptype1Txt" />
+    <result column="weapsubtype1" jdbcType="VARCHAR" property="weapsubtype1" />
+    <result column="weapsubtype1_txt" jdbcType="VARCHAR" property="weapsubtype1Txt" />
+    <result column="weaptype2" jdbcType="VARCHAR" property="weaptype2" />
+    <result column="weaptype2_txt" jdbcType="VARCHAR" property="weaptype2Txt" />
+    <result column="weapsubtype2" jdbcType="VARCHAR" property="weapsubtype2" />
+    <result column="weapsubtype2_txt" jdbcType="VARCHAR" property="weapsubtype2Txt" />
+    <result column="weaptype3" jdbcType="VARCHAR" property="weaptype3" />
+    <result column="weaptype3_txt" jdbcType="VARCHAR" property="weaptype3Txt" />
+    <result column="weapsubtype3" jdbcType="VARCHAR" property="weapsubtype3" />
+    <result column="weapsubtype3_txt" jdbcType="VARCHAR" property="weapsubtype3Txt" />
+    <result column="weaptype4" jdbcType="VARCHAR" property="weaptype4" />
+    <result column="weaptype4_txt" jdbcType="VARCHAR" property="weaptype4Txt" />
+    <result column="weapsubtype4" jdbcType="VARCHAR" property="weapsubtype4" />
+    <result column="weapsubtype4_txt" jdbcType="VARCHAR" property="weapsubtype4Txt" />
+    <result column="weapdetail" jdbcType="VARCHAR" property="weapdetail" />
+    <result column="nkill" jdbcType="VARCHAR" property="nkill" />
+    <result column="nkillus" jdbcType="VARCHAR" property="nkillus" />
+    <result column="nkillter" jdbcType="VARCHAR" property="nkillter" />
+    <result column="nwound" jdbcType="VARCHAR" property="nwound" />
+    <result column="nwoundus" jdbcType="VARCHAR" property="nwoundus" />
+    <result column="nwoundte" jdbcType="VARCHAR" property="nwoundte" />
+    <result column="property" jdbcType="VARCHAR" property="property" />
+    <result column="propextent" jdbcType="VARCHAR" property="propextent" />
+    <result column="propextent_txt" jdbcType="VARCHAR" property="propextentTxt" />
+    <result column="propvalue" jdbcType="VARCHAR" property="propvalue" />
+    <result column="propcomment" jdbcType="VARCHAR" property="propcomment" />
+    <result column="ishostkid" jdbcType="VARCHAR" property="ishostkid" />
+    <result column="nhostkid" jdbcType="VARCHAR" property="nhostkid" />
+    <result column="nhours" jdbcType="VARCHAR" property="nhours" />
+    <result column="ndays" jdbcType="VARCHAR" property="ndays" />
+    <result column="ransom" jdbcType="VARCHAR" property="ransom" />
+    <result column="ransomamt" jdbcType="VARCHAR" property="ransomamt" />
+    <result column="ransompaid" jdbcType="VARCHAR" property="ransompaid" />
+    <result column="ransomnote" jdbcType="VARCHAR" property="ransomnote" />
+    <result column="hostkidoutcome" jdbcType="VARCHAR" property="hostkidoutcome" />
+    <result column="hostkidoutcome_txt" jdbcType="VARCHAR" property="hostkidoutcomeTxt" />
+    <result column="nreleased" jdbcType="VARCHAR" property="nreleased" />
+    <result column="deleted" jdbcType="INTEGER" property="deleted" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, eventid, event_time, extended, resolution, country, country_txt, region, region_txt, 
+    provstate, city, latitude, longitude, specificity, vicinity, location, summary, crit1, 
+    crit2, crit3, doubtterr, alternative, alternative_txt, multiple, success, suicide, 
+    attacktype1, attacktype1_txt, attacktype2, attacktype2_txt, attacktype3, attacktype3_txt, 
+    targtype1, targtype1_txt, targsubtype1, targsubtype1_txt, corp1, target1, natlty1, 
+    natlty1_txt, targtype2, targtype2_txt, targsubtype2, targsubtype2_txt, corp2, target2, 
+    natlty2, natlty2_txt, targtype3, targtype3_txt, targsubtype3, targsubtype3_txt, corp3, 
+    target3, natlty3, natlty3_txt, gname, gsubname, gname2, gsubname2, gname3, gsubname3, 
+    motive, guncertain1, guncertain2, guncertain3, nperps, nperpcap, claimed, claimmode, 
+    claimmode_txt, claim2, claimmode2, claimmode2_txt, claim3, claimmode3, claimmode3_txt, 
+    compclaim, weaptype1, weaptype1_txt, weapsubtype1, weapsubtype1_txt, weaptype2, weaptype2_txt, 
+    weapsubtype2, weapsubtype2_txt, weaptype3, weaptype3_txt, weapsubtype3, weapsubtype3_txt, 
+    weaptype4, weaptype4_txt, weapsubtype4, weapsubtype4_txt, weapdetail, nkill, nkillus, 
+    nkillter, nwound, nwoundus, nwoundte, property, propextent, propextent_txt, propvalue, 
+    propcomment, ishostkid, nhostkid, nhours, ndays, ransom, ransomamt, ransompaid, ransomnote, 
+    hostkidoutcome, hostkidoutcome_txt, nreleased, deleted, insert_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from information_gtd
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <select id="selectByEventId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from information_gtd
+    where eventid = #{id}
+  </select>
+
+  <select id="selectByPage" parameterType="cn.yuchen.bigdate.rs.service.information.pojo.webpo.GtdPage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from information_gtd
+    <where>
+      deleted = 0
+      <if test="nation != null and nation !='' ">
+        AND `country_txt` LIKE CONCAT('%',#{nation},'%')
+      </if>
+      <if test="startTime != null">
+        AND event_time  <![CDATA[>=]]>  #{startTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="endTime !=null">
+        AND event_time  <![CDATA[<=]]> #{endTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from information_gtd
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+
+  <insert id="insert" parameterType="cn.yuchen.bigdate.rs.service.information.pojo.po.GtdPo">
+    insert into information_gtd
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="eventid != null">
+        eventid,
+      </if>
+      <if test="eventTime != null">
+        event_time,
+      </if>
+      <if test="extended != null">
+        extended,
+      </if>
+      <if test="resolution != null">
+        resolution,
+      </if>
+      <if test="country != null">
+        country,
+      </if>
+      <if test="countryTxt != null">
+        country_txt,
+      </if>
+      <if test="region != null">
+        region,
+      </if>
+      <if test="regionTxt != null">
+        region_txt,
+      </if>
+      <if test="provstate != null">
+        provstate,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="latitude != null">
+        latitude,
+      </if>
+      <if test="longitude != null">
+        longitude,
+      </if>
+      <if test="specificity != null">
+        specificity,
+      </if>
+      <if test="vicinity != null">
+        vicinity,
+      </if>
+      <if test="location != null">
+        location,
+      </if>
+      <if test="summary != null">
+        summary,
+      </if>
+      <if test="crit1 != null">
+        crit1,
+      </if>
+      <if test="crit2 != null">
+        crit2,
+      </if>
+      <if test="crit3 != null">
+        crit3,
+      </if>
+      <if test="doubtterr != null">
+        doubtterr,
+      </if>
+      <if test="alternative != null">
+        alternative,
+      </if>
+      <if test="alternativeTxt != null">
+        alternative_txt,
+      </if>
+      <if test="multiple != null">
+        multiple,
+      </if>
+      <if test="success != null">
+        success,
+      </if>
+      <if test="suicide != null">
+        suicide,
+      </if>
+      <if test="attacktype1 != null">
+        attacktype1,
+      </if>
+      <if test="attacktype1Txt != null">
+        attacktype1_txt,
+      </if>
+      <if test="attacktype2 != null">
+        attacktype2,
+      </if>
+      <if test="attacktype2Txt != null">
+        attacktype2_txt,
+      </if>
+      <if test="attacktype3 != null">
+        attacktype3,
+      </if>
+      <if test="attacktype3Txt != null">
+        attacktype3_txt,
+      </if>
+      <if test="targtype1 != null">
+        targtype1,
+      </if>
+      <if test="targtype1Txt != null">
+        targtype1_txt,
+      </if>
+      <if test="targsubtype1 != null">
+        targsubtype1,
+      </if>
+      <if test="targsubtype1Txt != null">
+        targsubtype1_txt,
+      </if>
+      <if test="corp1 != null">
+        corp1,
+      </if>
+      <if test="target1 != null">
+        target1,
+      </if>
+      <if test="natlty1 != null">
+        natlty1,
+      </if>
+      <if test="natlty1Txt != null">
+        natlty1_txt,
+      </if>
+      <if test="targtype2 != null">
+        targtype2,
+      </if>
+      <if test="targtype2Txt != null">
+        targtype2_txt,
+      </if>
+      <if test="targsubtype2 != null">
+        targsubtype2,
+      </if>
+      <if test="targsubtype2Txt != null">
+        targsubtype2_txt,
+      </if>
+      <if test="corp2 != null">
+        corp2,
+      </if>
+      <if test="target2 != null">
+        target2,
+      </if>
+      <if test="natlty2 != null">
+        natlty2,
+      </if>
+      <if test="natlty2Txt != null">
+        natlty2_txt,
+      </if>
+      <if test="targtype3 != null">
+        targtype3,
+      </if>
+      <if test="targtype3Txt != null">
+        targtype3_txt,
+      </if>
+      <if test="targsubtype3 != null">
+        targsubtype3,
+      </if>
+      <if test="targsubtype3Txt != null">
+        targsubtype3_txt,
+      </if>
+      <if test="corp3 != null">
+        corp3,
+      </if>
+      <if test="target3 != null">
+        target3,
+      </if>
+      <if test="natlty3 != null">
+        natlty3,
+      </if>
+      <if test="natlty3Txt != null">
+        natlty3_txt,
+      </if>
+      <if test="gname != null">
+        gname,
+      </if>
+      <if test="gsubname != null">
+        gsubname,
+      </if>
+      <if test="gname2 != null">
+        gname2,
+      </if>
+      <if test="gsubname2 != null">
+        gsubname2,
+      </if>
+      <if test="gname3 != null">
+        gname3,
+      </if>
+      <if test="gsubname3 != null">
+        gsubname3,
+      </if>
+      <if test="motive != null">
+        motive,
+      </if>
+      <if test="guncertain1 != null">
+        guncertain1,
+      </if>
+      <if test="guncertain2 != null">
+        guncertain2,
+      </if>
+      <if test="guncertain3 != null">
+        guncertain3,
+      </if>
+      <if test="nperps != null">
+        nperps,
+      </if>
+      <if test="nperpcap != null">
+        nperpcap,
+      </if>
+      <if test="claimed != null">
+        claimed,
+      </if>
+      <if test="claimmode != null">
+        claimmode,
+      </if>
+      <if test="claimmodeTxt != null">
+        claimmode_txt,
+      </if>
+      <if test="claim2 != null">
+        claim2,
+      </if>
+      <if test="claimmode2 != null">
+        claimmode2,
+      </if>
+      <if test="claimmode2Txt != null">
+        claimmode2_txt,
+      </if>
+      <if test="claim3 != null">
+        claim3,
+      </if>
+      <if test="claimmode3 != null">
+        claimmode3,
+      </if>
+      <if test="claimmode3Txt != null">
+        claimmode3_txt,
+      </if>
+      <if test="compclaim != null">
+        compclaim,
+      </if>
+      <if test="weaptype1 != null">
+        weaptype1,
+      </if>
+      <if test="weaptype1Txt != null">
+        weaptype1_txt,
+      </if>
+      <if test="weapsubtype1 != null">
+        weapsubtype1,
+      </if>
+      <if test="weapsubtype1Txt != null">
+        weapsubtype1_txt,
+      </if>
+      <if test="weaptype2 != null">
+        weaptype2,
+      </if>
+      <if test="weaptype2Txt != null">
+        weaptype2_txt,
+      </if>
+      <if test="weapsubtype2 != null">
+        weapsubtype2,
+      </if>
+      <if test="weapsubtype2Txt != null">
+        weapsubtype2_txt,
+      </if>
+      <if test="weaptype3 != null">
+        weaptype3,
+      </if>
+      <if test="weaptype3Txt != null">
+        weaptype3_txt,
+      </if>
+      <if test="weapsubtype3 != null">
+        weapsubtype3,
+      </if>
+      <if test="weapsubtype3Txt != null">
+        weapsubtype3_txt,
+      </if>
+      <if test="weaptype4 != null">
+        weaptype4,
+      </if>
+      <if test="weaptype4Txt != null">
+        weaptype4_txt,
+      </if>
+      <if test="weapsubtype4 != null">
+        weapsubtype4,
+      </if>
+      <if test="weapsubtype4Txt != null">
+        weapsubtype4_txt,
+      </if>
+      <if test="weapdetail != null">
+        weapdetail,
+      </if>
+      <if test="nkill != null">
+        nkill,
+      </if>
+      <if test="nkillus != null">
+        nkillus,
+      </if>
+      <if test="nkillter != null">
+        nkillter,
+      </if>
+      <if test="nwound != null">
+        nwound,
+      </if>
+      <if test="nwoundus != null">
+        nwoundus,
+      </if>
+      <if test="nwoundte != null">
+        nwoundte,
+      </if>
+      <if test="property != null">
+        property,
+      </if>
+      <if test="propextent != null">
+        propextent,
+      </if>
+      <if test="propextentTxt != null">
+        propextent_txt,
+      </if>
+      <if test="propvalue != null">
+        propvalue,
+      </if>
+      <if test="propcomment != null">
+        propcomment,
+      </if>
+      <if test="ishostkid != null">
+        ishostkid,
+      </if>
+      <if test="nhostkid != null">
+        nhostkid,
+      </if>
+      <if test="nhours != null">
+        nhours,
+      </if>
+      <if test="ndays != null">
+        ndays,
+      </if>
+      <if test="ransom != null">
+        ransom,
+      </if>
+      <if test="ransomamt != null">
+        ransomamt,
+      </if>
+      <if test="ransompaid != null">
+        ransompaid,
+      </if>
+      <if test="ransomnote != null">
+        ransomnote,
+      </if>
+      <if test="hostkidoutcome != null">
+        hostkidoutcome,
+      </if>
+      <if test="hostkidoutcomeTxt != null">
+        hostkidoutcome_txt,
+      </if>
+      <if test="nreleased != null">
+        nreleased,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+      <if test="insertTime != null">
+        insert_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="eventid != null">
+        #{eventid,jdbcType=VARCHAR},
+      </if>
+      <if test="eventTime != null">
+        #{eventTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extended != null">
+        #{extended,jdbcType=VARCHAR},
+      </if>
+      <if test="resolution != null">
+        #{resolution,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null">
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="countryTxt != null">
+        #{countryTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="region != null">
+        #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="regionTxt != null">
+        #{regionTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="provstate != null">
+        #{provstate,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null">
+        #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null">
+        #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="specificity != null">
+        #{specificity,jdbcType=VARCHAR},
+      </if>
+      <if test="vicinity != null">
+        #{vicinity,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null">
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="crit1 != null">
+        #{crit1,jdbcType=VARCHAR},
+      </if>
+      <if test="crit2 != null">
+        #{crit2,jdbcType=VARCHAR},
+      </if>
+      <if test="crit3 != null">
+        #{crit3,jdbcType=VARCHAR},
+      </if>
+      <if test="doubtterr != null">
+        #{doubtterr,jdbcType=VARCHAR},
+      </if>
+      <if test="alternative != null">
+        #{alternative,jdbcType=VARCHAR},
+      </if>
+      <if test="alternativeTxt != null">
+        #{alternativeTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="multiple != null">
+        #{multiple,jdbcType=VARCHAR},
+      </if>
+      <if test="success != null">
+        #{success,jdbcType=VARCHAR},
+      </if>
+      <if test="suicide != null">
+        #{suicide,jdbcType=VARCHAR},
+      </if>
+      <if test="attacktype1 != null">
+        #{attacktype1,jdbcType=VARCHAR},
+      </if>
+      <if test="attacktype1Txt != null">
+        #{attacktype1Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="attacktype2 != null">
+        #{attacktype2,jdbcType=VARCHAR},
+      </if>
+      <if test="attacktype2Txt != null">
+        #{attacktype2Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="attacktype3 != null">
+        #{attacktype3,jdbcType=VARCHAR},
+      </if>
+      <if test="attacktype3Txt != null">
+        #{attacktype3Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="targtype1 != null">
+        #{targtype1,jdbcType=VARCHAR},
+      </if>
+      <if test="targtype1Txt != null">
+        #{targtype1Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="targsubtype1 != null">
+        #{targsubtype1,jdbcType=VARCHAR},
+      </if>
+      <if test="targsubtype1Txt != null">
+        #{targsubtype1Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="corp1 != null">
+        #{corp1,jdbcType=VARCHAR},
+      </if>
+      <if test="target1 != null">
+        #{target1,jdbcType=VARCHAR},
+      </if>
+      <if test="natlty1 != null">
+        #{natlty1,jdbcType=VARCHAR},
+      </if>
+      <if test="natlty1Txt != null">
+        #{natlty1Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="targtype2 != null">
+        #{targtype2,jdbcType=VARCHAR},
+      </if>
+      <if test="targtype2Txt != null">
+        #{targtype2Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="targsubtype2 != null">
+        #{targsubtype2,jdbcType=VARCHAR},
+      </if>
+      <if test="targsubtype2Txt != null">
+        #{targsubtype2Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="corp2 != null">
+        #{corp2,jdbcType=VARCHAR},
+      </if>
+      <if test="target2 != null">
+        #{target2,jdbcType=VARCHAR},
+      </if>
+      <if test="natlty2 != null">
+        #{natlty2,jdbcType=VARCHAR},
+      </if>
+      <if test="natlty2Txt != null">
+        #{natlty2Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="targtype3 != null">
+        #{targtype3,jdbcType=VARCHAR},
+      </if>
+      <if test="targtype3Txt != null">
+        #{targtype3Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="targsubtype3 != null">
+        #{targsubtype3,jdbcType=VARCHAR},
+      </if>
+      <if test="targsubtype3Txt != null">
+        #{targsubtype3Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="corp3 != null">
+        #{corp3,jdbcType=VARCHAR},
+      </if>
+      <if test="target3 != null">
+        #{target3,jdbcType=VARCHAR},
+      </if>
+      <if test="natlty3 != null">
+        #{natlty3,jdbcType=VARCHAR},
+      </if>
+      <if test="natlty3Txt != null">
+        #{natlty3Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="gname != null">
+        #{gname,jdbcType=VARCHAR},
+      </if>
+      <if test="gsubname != null">
+        #{gsubname,jdbcType=VARCHAR},
+      </if>
+      <if test="gname2 != null">
+        #{gname2,jdbcType=VARCHAR},
+      </if>
+      <if test="gsubname2 != null">
+        #{gsubname2,jdbcType=VARCHAR},
+      </if>
+      <if test="gname3 != null">
+        #{gname3,jdbcType=VARCHAR},
+      </if>
+      <if test="gsubname3 != null">
+        #{gsubname3,jdbcType=VARCHAR},
+      </if>
+      <if test="motive != null">
+        #{motive,jdbcType=VARCHAR},
+      </if>
+      <if test="guncertain1 != null">
+        #{guncertain1,jdbcType=VARCHAR},
+      </if>
+      <if test="guncertain2 != null">
+        #{guncertain2,jdbcType=VARCHAR},
+      </if>
+      <if test="guncertain3 != null">
+        #{guncertain3,jdbcType=VARCHAR},
+      </if>
+      <if test="nperps != null">
+        #{nperps,jdbcType=VARCHAR},
+      </if>
+      <if test="nperpcap != null">
+        #{nperpcap,jdbcType=VARCHAR},
+      </if>
+      <if test="claimed != null">
+        #{claimed,jdbcType=VARCHAR},
+      </if>
+      <if test="claimmode != null">
+        #{claimmode,jdbcType=VARCHAR},
+      </if>
+      <if test="claimmodeTxt != null">
+        #{claimmodeTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="claim2 != null">
+        #{claim2,jdbcType=VARCHAR},
+      </if>
+      <if test="claimmode2 != null">
+        #{claimmode2,jdbcType=VARCHAR},
+      </if>
+      <if test="claimmode2Txt != null">
+        #{claimmode2Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="claim3 != null">
+        #{claim3,jdbcType=VARCHAR},
+      </if>
+      <if test="claimmode3 != null">
+        #{claimmode3,jdbcType=VARCHAR},
+      </if>
+      <if test="claimmode3Txt != null">
+        #{claimmode3Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="compclaim != null">
+        #{compclaim,jdbcType=VARCHAR},
+      </if>
+      <if test="weaptype1 != null">
+        #{weaptype1,jdbcType=VARCHAR},
+      </if>
+      <if test="weaptype1Txt != null">
+        #{weaptype1Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="weapsubtype1 != null">
+        #{weapsubtype1,jdbcType=VARCHAR},
+      </if>
+      <if test="weapsubtype1Txt != null">
+        #{weapsubtype1Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="weaptype2 != null">
+        #{weaptype2,jdbcType=VARCHAR},
+      </if>
+      <if test="weaptype2Txt != null">
+        #{weaptype2Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="weapsubtype2 != null">
+        #{weapsubtype2,jdbcType=VARCHAR},
+      </if>
+      <if test="weapsubtype2Txt != null">
+        #{weapsubtype2Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="weaptype3 != null">
+        #{weaptype3,jdbcType=VARCHAR},
+      </if>
+      <if test="weaptype3Txt != null">
+        #{weaptype3Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="weapsubtype3 != null">
+        #{weapsubtype3,jdbcType=VARCHAR},
+      </if>
+      <if test="weapsubtype3Txt != null">
+        #{weapsubtype3Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="weaptype4 != null">
+        #{weaptype4,jdbcType=VARCHAR},
+      </if>
+      <if test="weaptype4Txt != null">
+        #{weaptype4Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="weapsubtype4 != null">
+        #{weapsubtype4,jdbcType=VARCHAR},
+      </if>
+      <if test="weapsubtype4Txt != null">
+        #{weapsubtype4Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="weapdetail != null">
+        #{weapdetail,jdbcType=VARCHAR},
+      </if>
+      <if test="nkill != null">
+        #{nkill,jdbcType=VARCHAR},
+      </if>
+      <if test="nkillus != null">
+        #{nkillus,jdbcType=VARCHAR},
+      </if>
+      <if test="nkillter != null">
+        #{nkillter,jdbcType=VARCHAR},
+      </if>
+      <if test="nwound != null">
+        #{nwound,jdbcType=VARCHAR},
+      </if>
+      <if test="nwoundus != null">
+        #{nwoundus,jdbcType=VARCHAR},
+      </if>
+      <if test="nwoundte != null">
+        #{nwoundte,jdbcType=VARCHAR},
+      </if>
+      <if test="property != null">
+        #{property,jdbcType=VARCHAR},
+      </if>
+      <if test="propextent != null">
+        #{propextent,jdbcType=VARCHAR},
+      </if>
+      <if test="propextentTxt != null">
+        #{propextentTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="propvalue != null">
+        #{propvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="propcomment != null">
+        #{propcomment,jdbcType=VARCHAR},
+      </if>
+      <if test="ishostkid != null">
+        #{ishostkid,jdbcType=VARCHAR},
+      </if>
+      <if test="nhostkid != null">
+        #{nhostkid,jdbcType=VARCHAR},
+      </if>
+      <if test="nhours != null">
+        #{nhours,jdbcType=VARCHAR},
+      </if>
+      <if test="ndays != null">
+        #{ndays,jdbcType=VARCHAR},
+      </if>
+      <if test="ransom != null">
+        #{ransom,jdbcType=VARCHAR},
+      </if>
+      <if test="ransomamt != null">
+        #{ransomamt,jdbcType=VARCHAR},
+      </if>
+      <if test="ransompaid != null">
+        #{ransompaid,jdbcType=VARCHAR},
+      </if>
+      <if test="ransomnote != null">
+        #{ransomnote,jdbcType=VARCHAR},
+      </if>
+      <if test="hostkidoutcome != null">
+        #{hostkidoutcome,jdbcType=VARCHAR},
+      </if>
+      <if test="hostkidoutcomeTxt != null">
+        #{hostkidoutcomeTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="nreleased != null">
+        #{nreleased,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="insertTime != null">
+        #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yuchen.bigdate.rs.service.information.pojo.po.GtdPo">
+    update information_gtd
+    <set>
+      <if test="eventid != null">
+        eventid = #{eventid,jdbcType=VARCHAR},
+      </if>
+      <if test="eventTime != null">
+        event_time = #{eventTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extended != null">
+        extended = #{extended,jdbcType=VARCHAR},
+      </if>
+      <if test="resolution != null">
+        resolution = #{resolution,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null">
+        country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="countryTxt != null">
+        country_txt = #{countryTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="region != null">
+        region = #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="regionTxt != null">
+        region_txt = #{regionTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="provstate != null">
+        provstate = #{provstate,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null">
+        latitude = #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null">
+        longitude = #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="specificity != null">
+        specificity = #{specificity,jdbcType=VARCHAR},
+      </if>
+      <if test="vicinity != null">
+        vicinity = #{vicinity,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null">
+        summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="crit1 != null">
+        crit1 = #{crit1,jdbcType=VARCHAR},
+      </if>
+      <if test="crit2 != null">
+        crit2 = #{crit2,jdbcType=VARCHAR},
+      </if>
+      <if test="crit3 != null">
+        crit3 = #{crit3,jdbcType=VARCHAR},
+      </if>
+      <if test="doubtterr != null">
+        doubtterr = #{doubtterr,jdbcType=VARCHAR},
+      </if>
+      <if test="alternative != null">
+        alternative = #{alternative,jdbcType=VARCHAR},
+      </if>
+      <if test="alternativeTxt != null">
+        alternative_txt = #{alternativeTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="multiple != null">
+        multiple = #{multiple,jdbcType=VARCHAR},
+      </if>
+      <if test="success != null">
+        success = #{success,jdbcType=VARCHAR},
+      </if>
+      <if test="suicide != null">
+        suicide = #{suicide,jdbcType=VARCHAR},
+      </if>
+      <if test="attacktype1 != null">
+        attacktype1 = #{attacktype1,jdbcType=VARCHAR},
+      </if>
+      <if test="attacktype1Txt != null">
+        attacktype1_txt = #{attacktype1Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="attacktype2 != null">
+        attacktype2 = #{attacktype2,jdbcType=VARCHAR},
+      </if>
+      <if test="attacktype2Txt != null">
+        attacktype2_txt = #{attacktype2Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="attacktype3 != null">
+        attacktype3 = #{attacktype3,jdbcType=VARCHAR},
+      </if>
+      <if test="attacktype3Txt != null">
+        attacktype3_txt = #{attacktype3Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="targtype1 != null">
+        targtype1 = #{targtype1,jdbcType=VARCHAR},
+      </if>
+      <if test="targtype1Txt != null">
+        targtype1_txt = #{targtype1Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="targsubtype1 != null">
+        targsubtype1 = #{targsubtype1,jdbcType=VARCHAR},
+      </if>
+      <if test="targsubtype1Txt != null">
+        targsubtype1_txt = #{targsubtype1Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="corp1 != null">
+        corp1 = #{corp1,jdbcType=VARCHAR},
+      </if>
+      <if test="target1 != null">
+        target1 = #{target1,jdbcType=VARCHAR},
+      </if>
+      <if test="natlty1 != null">
+        natlty1 = #{natlty1,jdbcType=VARCHAR},
+      </if>
+      <if test="natlty1Txt != null">
+        natlty1_txt = #{natlty1Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="targtype2 != null">
+        targtype2 = #{targtype2,jdbcType=VARCHAR},
+      </if>
+      <if test="targtype2Txt != null">
+        targtype2_txt = #{targtype2Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="targsubtype2 != null">
+        targsubtype2 = #{targsubtype2,jdbcType=VARCHAR},
+      </if>
+      <if test="targsubtype2Txt != null">
+        targsubtype2_txt = #{targsubtype2Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="corp2 != null">
+        corp2 = #{corp2,jdbcType=VARCHAR},
+      </if>
+      <if test="target2 != null">
+        target2 = #{target2,jdbcType=VARCHAR},
+      </if>
+      <if test="natlty2 != null">
+        natlty2 = #{natlty2,jdbcType=VARCHAR},
+      </if>
+      <if test="natlty2Txt != null">
+        natlty2_txt = #{natlty2Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="targtype3 != null">
+        targtype3 = #{targtype3,jdbcType=VARCHAR},
+      </if>
+      <if test="targtype3Txt != null">
+        targtype3_txt = #{targtype3Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="targsubtype3 != null">
+        targsubtype3 = #{targsubtype3,jdbcType=VARCHAR},
+      </if>
+      <if test="targsubtype3Txt != null">
+        targsubtype3_txt = #{targsubtype3Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="corp3 != null">
+        corp3 = #{corp3,jdbcType=VARCHAR},
+      </if>
+      <if test="target3 != null">
+        target3 = #{target3,jdbcType=VARCHAR},
+      </if>
+      <if test="natlty3 != null">
+        natlty3 = #{natlty3,jdbcType=VARCHAR},
+      </if>
+      <if test="natlty3Txt != null">
+        natlty3_txt = #{natlty3Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="gname != null">
+        gname = #{gname,jdbcType=VARCHAR},
+      </if>
+      <if test="gsubname != null">
+        gsubname = #{gsubname,jdbcType=VARCHAR},
+      </if>
+      <if test="gname2 != null">
+        gname2 = #{gname2,jdbcType=VARCHAR},
+      </if>
+      <if test="gsubname2 != null">
+        gsubname2 = #{gsubname2,jdbcType=VARCHAR},
+      </if>
+      <if test="gname3 != null">
+        gname3 = #{gname3,jdbcType=VARCHAR},
+      </if>
+      <if test="gsubname3 != null">
+        gsubname3 = #{gsubname3,jdbcType=VARCHAR},
+      </if>
+      <if test="motive != null">
+        motive = #{motive,jdbcType=VARCHAR},
+      </if>
+      <if test="guncertain1 != null">
+        guncertain1 = #{guncertain1,jdbcType=VARCHAR},
+      </if>
+      <if test="guncertain2 != null">
+        guncertain2 = #{guncertain2,jdbcType=VARCHAR},
+      </if>
+      <if test="guncertain3 != null">
+        guncertain3 = #{guncertain3,jdbcType=VARCHAR},
+      </if>
+      <if test="nperps != null">
+        nperps = #{nperps,jdbcType=VARCHAR},
+      </if>
+      <if test="nperpcap != null">
+        nperpcap = #{nperpcap,jdbcType=VARCHAR},
+      </if>
+      <if test="claimed != null">
+        claimed = #{claimed,jdbcType=VARCHAR},
+      </if>
+      <if test="claimmode != null">
+        claimmode = #{claimmode,jdbcType=VARCHAR},
+      </if>
+      <if test="claimmodeTxt != null">
+        claimmode_txt = #{claimmodeTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="claim2 != null">
+        claim2 = #{claim2,jdbcType=VARCHAR},
+      </if>
+      <if test="claimmode2 != null">
+        claimmode2 = #{claimmode2,jdbcType=VARCHAR},
+      </if>
+      <if test="claimmode2Txt != null">
+        claimmode2_txt = #{claimmode2Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="claim3 != null">
+        claim3 = #{claim3,jdbcType=VARCHAR},
+      </if>
+      <if test="claimmode3 != null">
+        claimmode3 = #{claimmode3,jdbcType=VARCHAR},
+      </if>
+      <if test="claimmode3Txt != null">
+        claimmode3_txt = #{claimmode3Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="compclaim != null">
+        compclaim = #{compclaim,jdbcType=VARCHAR},
+      </if>
+      <if test="weaptype1 != null">
+        weaptype1 = #{weaptype1,jdbcType=VARCHAR},
+      </if>
+      <if test="weaptype1Txt != null">
+        weaptype1_txt = #{weaptype1Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="weapsubtype1 != null">
+        weapsubtype1 = #{weapsubtype1,jdbcType=VARCHAR},
+      </if>
+      <if test="weapsubtype1Txt != null">
+        weapsubtype1_txt = #{weapsubtype1Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="weaptype2 != null">
+        weaptype2 = #{weaptype2,jdbcType=VARCHAR},
+      </if>
+      <if test="weaptype2Txt != null">
+        weaptype2_txt = #{weaptype2Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="weapsubtype2 != null">
+        weapsubtype2 = #{weapsubtype2,jdbcType=VARCHAR},
+      </if>
+      <if test="weapsubtype2Txt != null">
+        weapsubtype2_txt = #{weapsubtype2Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="weaptype3 != null">
+        weaptype3 = #{weaptype3,jdbcType=VARCHAR},
+      </if>
+      <if test="weaptype3Txt != null">
+        weaptype3_txt = #{weaptype3Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="weapsubtype3 != null">
+        weapsubtype3 = #{weapsubtype3,jdbcType=VARCHAR},
+      </if>
+      <if test="weapsubtype3Txt != null">
+        weapsubtype3_txt = #{weapsubtype3Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="weaptype4 != null">
+        weaptype4 = #{weaptype4,jdbcType=VARCHAR},
+      </if>
+      <if test="weaptype4Txt != null">
+        weaptype4_txt = #{weaptype4Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="weapsubtype4 != null">
+        weapsubtype4 = #{weapsubtype4,jdbcType=VARCHAR},
+      </if>
+      <if test="weapsubtype4Txt != null">
+        weapsubtype4_txt = #{weapsubtype4Txt,jdbcType=VARCHAR},
+      </if>
+      <if test="weapdetail != null">
+        weapdetail = #{weapdetail,jdbcType=VARCHAR},
+      </if>
+      <if test="nkill != null">
+        nkill = #{nkill,jdbcType=VARCHAR},
+      </if>
+      <if test="nkillus != null">
+        nkillus = #{nkillus,jdbcType=VARCHAR},
+      </if>
+      <if test="nkillter != null">
+        nkillter = #{nkillter,jdbcType=VARCHAR},
+      </if>
+      <if test="nwound != null">
+        nwound = #{nwound,jdbcType=VARCHAR},
+      </if>
+      <if test="nwoundus != null">
+        nwoundus = #{nwoundus,jdbcType=VARCHAR},
+      </if>
+      <if test="nwoundte != null">
+        nwoundte = #{nwoundte,jdbcType=VARCHAR},
+      </if>
+      <if test="property != null">
+        property = #{property,jdbcType=VARCHAR},
+      </if>
+      <if test="propextent != null">
+        propextent = #{propextent,jdbcType=VARCHAR},
+      </if>
+      <if test="propextentTxt != null">
+        propextent_txt = #{propextentTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="propvalue != null">
+        propvalue = #{propvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="propcomment != null">
+        propcomment = #{propcomment,jdbcType=VARCHAR},
+      </if>
+      <if test="ishostkid != null">
+        ishostkid = #{ishostkid,jdbcType=VARCHAR},
+      </if>
+      <if test="nhostkid != null">
+        nhostkid = #{nhostkid,jdbcType=VARCHAR},
+      </if>
+      <if test="nhours != null">
+        nhours = #{nhours,jdbcType=VARCHAR},
+      </if>
+      <if test="ndays != null">
+        ndays = #{ndays,jdbcType=VARCHAR},
+      </if>
+      <if test="ransom != null">
+        ransom = #{ransom,jdbcType=VARCHAR},
+      </if>
+      <if test="ransomamt != null">
+        ransomamt = #{ransomamt,jdbcType=VARCHAR},
+      </if>
+      <if test="ransompaid != null">
+        ransompaid = #{ransompaid,jdbcType=VARCHAR},
+      </if>
+      <if test="ransomnote != null">
+        ransomnote = #{ransomnote,jdbcType=VARCHAR},
+      </if>
+      <if test="hostkidoutcome != null">
+        hostkidoutcome = #{hostkidoutcome,jdbcType=VARCHAR},
+      </if>
+      <if test="hostkidoutcomeTxt != null">
+        hostkidoutcome_txt = #{hostkidoutcomeTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="nreleased != null">
+        nreleased = #{nreleased,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="insertTime != null">
+        insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yuchen.bigdate.rs.service.information.pojo.po.GtdPo">
+    update information_gtd
+    set eventid = #{eventid,jdbcType=VARCHAR},
+      event_time = #{eventTime,jdbcType=TIMESTAMP},
+      extended = #{extended,jdbcType=VARCHAR},
+      resolution = #{resolution,jdbcType=VARCHAR},
+      country = #{country,jdbcType=VARCHAR},
+      country_txt = #{countryTxt,jdbcType=VARCHAR},
+      region = #{region,jdbcType=VARCHAR},
+      region_txt = #{regionTxt,jdbcType=VARCHAR},
+      provstate = #{provstate,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      latitude = #{latitude,jdbcType=VARCHAR},
+      longitude = #{longitude,jdbcType=VARCHAR},
+      specificity = #{specificity,jdbcType=VARCHAR},
+      vicinity = #{vicinity,jdbcType=VARCHAR},
+      location = #{location,jdbcType=VARCHAR},
+      summary = #{summary,jdbcType=VARCHAR},
+      crit1 = #{crit1,jdbcType=VARCHAR},
+      crit2 = #{crit2,jdbcType=VARCHAR},
+      crit3 = #{crit3,jdbcType=VARCHAR},
+      doubtterr = #{doubtterr,jdbcType=VARCHAR},
+      alternative = #{alternative,jdbcType=VARCHAR},
+      alternative_txt = #{alternativeTxt,jdbcType=VARCHAR},
+      multiple = #{multiple,jdbcType=VARCHAR},
+      success = #{success,jdbcType=VARCHAR},
+      suicide = #{suicide,jdbcType=VARCHAR},
+      attacktype1 = #{attacktype1,jdbcType=VARCHAR},
+      attacktype1_txt = #{attacktype1Txt,jdbcType=VARCHAR},
+      attacktype2 = #{attacktype2,jdbcType=VARCHAR},
+      attacktype2_txt = #{attacktype2Txt,jdbcType=VARCHAR},
+      attacktype3 = #{attacktype3,jdbcType=VARCHAR},
+      attacktype3_txt = #{attacktype3Txt,jdbcType=VARCHAR},
+      targtype1 = #{targtype1,jdbcType=VARCHAR},
+      targtype1_txt = #{targtype1Txt,jdbcType=VARCHAR},
+      targsubtype1 = #{targsubtype1,jdbcType=VARCHAR},
+      targsubtype1_txt = #{targsubtype1Txt,jdbcType=VARCHAR},
+      corp1 = #{corp1,jdbcType=VARCHAR},
+      target1 = #{target1,jdbcType=VARCHAR},
+      natlty1 = #{natlty1,jdbcType=VARCHAR},
+      natlty1_txt = #{natlty1Txt,jdbcType=VARCHAR},
+      targtype2 = #{targtype2,jdbcType=VARCHAR},
+      targtype2_txt = #{targtype2Txt,jdbcType=VARCHAR},
+      targsubtype2 = #{targsubtype2,jdbcType=VARCHAR},
+      targsubtype2_txt = #{targsubtype2Txt,jdbcType=VARCHAR},
+      corp2 = #{corp2,jdbcType=VARCHAR},
+      target2 = #{target2,jdbcType=VARCHAR},
+      natlty2 = #{natlty2,jdbcType=VARCHAR},
+      natlty2_txt = #{natlty2Txt,jdbcType=VARCHAR},
+      targtype3 = #{targtype3,jdbcType=VARCHAR},
+      targtype3_txt = #{targtype3Txt,jdbcType=VARCHAR},
+      targsubtype3 = #{targsubtype3,jdbcType=VARCHAR},
+      targsubtype3_txt = #{targsubtype3Txt,jdbcType=VARCHAR},
+      corp3 = #{corp3,jdbcType=VARCHAR},
+      target3 = #{target3,jdbcType=VARCHAR},
+      natlty3 = #{natlty3,jdbcType=VARCHAR},
+      natlty3_txt = #{natlty3Txt,jdbcType=VARCHAR},
+      gname = #{gname,jdbcType=VARCHAR},
+      gsubname = #{gsubname,jdbcType=VARCHAR},
+      gname2 = #{gname2,jdbcType=VARCHAR},
+      gsubname2 = #{gsubname2,jdbcType=VARCHAR},
+      gname3 = #{gname3,jdbcType=VARCHAR},
+      gsubname3 = #{gsubname3,jdbcType=VARCHAR},
+      motive = #{motive,jdbcType=VARCHAR},
+      guncertain1 = #{guncertain1,jdbcType=VARCHAR},
+      guncertain2 = #{guncertain2,jdbcType=VARCHAR},
+      guncertain3 = #{guncertain3,jdbcType=VARCHAR},
+      nperps = #{nperps,jdbcType=VARCHAR},
+      nperpcap = #{nperpcap,jdbcType=VARCHAR},
+      claimed = #{claimed,jdbcType=VARCHAR},
+      claimmode = #{claimmode,jdbcType=VARCHAR},
+      claimmode_txt = #{claimmodeTxt,jdbcType=VARCHAR},
+      claim2 = #{claim2,jdbcType=VARCHAR},
+      claimmode2 = #{claimmode2,jdbcType=VARCHAR},
+      claimmode2_txt = #{claimmode2Txt,jdbcType=VARCHAR},
+      claim3 = #{claim3,jdbcType=VARCHAR},
+      claimmode3 = #{claimmode3,jdbcType=VARCHAR},
+      claimmode3_txt = #{claimmode3Txt,jdbcType=VARCHAR},
+      compclaim = #{compclaim,jdbcType=VARCHAR},
+      weaptype1 = #{weaptype1,jdbcType=VARCHAR},
+      weaptype1_txt = #{weaptype1Txt,jdbcType=VARCHAR},
+      weapsubtype1 = #{weapsubtype1,jdbcType=VARCHAR},
+      weapsubtype1_txt = #{weapsubtype1Txt,jdbcType=VARCHAR},
+      weaptype2 = #{weaptype2,jdbcType=VARCHAR},
+      weaptype2_txt = #{weaptype2Txt,jdbcType=VARCHAR},
+      weapsubtype2 = #{weapsubtype2,jdbcType=VARCHAR},
+      weapsubtype2_txt = #{weapsubtype2Txt,jdbcType=VARCHAR},
+      weaptype3 = #{weaptype3,jdbcType=VARCHAR},
+      weaptype3_txt = #{weaptype3Txt,jdbcType=VARCHAR},
+      weapsubtype3 = #{weapsubtype3,jdbcType=VARCHAR},
+      weapsubtype3_txt = #{weapsubtype3Txt,jdbcType=VARCHAR},
+      weaptype4 = #{weaptype4,jdbcType=VARCHAR},
+      weaptype4_txt = #{weaptype4Txt,jdbcType=VARCHAR},
+      weapsubtype4 = #{weapsubtype4,jdbcType=VARCHAR},
+      weapsubtype4_txt = #{weapsubtype4Txt,jdbcType=VARCHAR},
+      weapdetail = #{weapdetail,jdbcType=VARCHAR},
+      nkill = #{nkill,jdbcType=VARCHAR},
+      nkillus = #{nkillus,jdbcType=VARCHAR},
+      nkillter = #{nkillter,jdbcType=VARCHAR},
+      nwound = #{nwound,jdbcType=VARCHAR},
+      nwoundus = #{nwoundus,jdbcType=VARCHAR},
+      nwoundte = #{nwoundte,jdbcType=VARCHAR},
+      property = #{property,jdbcType=VARCHAR},
+      propextent = #{propextent,jdbcType=VARCHAR},
+      propextent_txt = #{propextentTxt,jdbcType=VARCHAR},
+      propvalue = #{propvalue,jdbcType=VARCHAR},
+      propcomment = #{propcomment,jdbcType=VARCHAR},
+      ishostkid = #{ishostkid,jdbcType=VARCHAR},
+      nhostkid = #{nhostkid,jdbcType=VARCHAR},
+      nhours = #{nhours,jdbcType=VARCHAR},
+      ndays = #{ndays,jdbcType=VARCHAR},
+      ransom = #{ransom,jdbcType=VARCHAR},
+      ransomamt = #{ransomamt,jdbcType=VARCHAR},
+      ransompaid = #{ransompaid,jdbcType=VARCHAR},
+      ransomnote = #{ransomnote,jdbcType=VARCHAR},
+      hostkidoutcome = #{hostkidoutcome,jdbcType=VARCHAR},
+      hostkidoutcome_txt = #{hostkidoutcomeTxt,jdbcType=VARCHAR},
+      nreleased = #{nreleased,jdbcType=VARCHAR},
+      deleted = #{deleted,jdbcType=INTEGER},
+      insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

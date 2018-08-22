@@ -16,7 +16,9 @@ public enum RestResultEnum {
     USER_LOGIN_ERROR(100103,"验证未通过，用户不存在"),
     USER_LOCK_ERROR(100104,"验证未通过,账户已锁定"),
     USER_LOGIN_ERROR_SIZE(1000105,"验证未通过,错误次数过多"),
-    LOGIN_ERROR(100106,"验证不通过");
+    LOGIN_ERROR(100106,"验证不通过"),
+    //
+    INFORMATION_TODATE_ERROR(100201,"字符串转时间异常");
 
 
 
