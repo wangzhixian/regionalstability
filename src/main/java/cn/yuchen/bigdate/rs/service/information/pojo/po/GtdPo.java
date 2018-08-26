@@ -142,6 +142,12 @@ public class GtdPo implements Serializable {
     private Long id;
 
     private String eventid;
+
+    /**
+     * 新闻名称(预留字段)
+     */
+    private String eventName;
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date eventTime;
 
@@ -1339,11 +1345,20 @@ public class GtdPo implements Serializable {
         this.updateTime = updateTime;
     }
 
+    public String getEventName() {
+        return eventName;
+    }
+
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
+    }
+
     @Override
     public String toString() {
         return "GtdPo{" +
                 "id=" + id +
                 ", eventid='" + eventid + '\'' +
+                ", eventName='" + eventName + '\'' +
                 ", eventTime=" + eventTime +
                 ", extended='" + extended + '\'' +
                 ", resolution='" + resolution + '\'' +

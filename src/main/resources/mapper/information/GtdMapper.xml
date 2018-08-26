@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="cn.yuchen.bigdate.rs.service.information.pojo.po.GtdPo">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="eventid" jdbcType="VARCHAR" property="eventid" />
+    <result column="event_name" jdbcType="VARCHAR" property="eventName" />
     <result column="event_time" jdbcType="TIMESTAMP" property="eventTime" />
     <result column="extended" jdbcType="VARCHAR" property="extended" />
     <result column="resolution" jdbcType="VARCHAR" property="resolution" />
@@ -124,7 +125,7 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, eventid, event_time, extended, resolution, country, country_txt, region, region_txt, 
+    id, eventid,event_name, event_time, extended, resolution, country, country_txt, region, region_txt,
     provstate, city, latitude, longitude, specificity, vicinity, location, summary, crit1, 
     crit2, crit3, doubtterr, alternative, alternative_txt, multiple, success, suicide, 
     attacktype1, attacktype1_txt, attacktype2, attacktype2_txt, attacktype3, attacktype3_txt, 
@@ -186,6 +187,9 @@
       </if>
       <if test="eventid != null">
         eventid,
+      </if>
+      <if test="eventName != null">
+        event_name,
       </if>
       <if test="eventTime != null">
         event_time,
@@ -549,6 +553,9 @@
       <if test="eventid != null">
         #{eventid,jdbcType=VARCHAR},
       </if>
+      <if test="eventName != null">
+        #{eventName,jdbcType=VARCHAR},
+      </if>
       <if test="eventTime != null">
         #{eventTime,jdbcType=TIMESTAMP},
       </if>
@@ -592,7 +599,7 @@
         #{location,jdbcType=VARCHAR},
       </if>
       <if test="summary != null">
-        #{summary,jdbcType=VARCHAR},
+        #{summary,jdbcType=LONGVARCHAR},
       </if>
       <if test="crit1 != null">
         #{crit1,jdbcType=VARCHAR},
@@ -910,6 +917,9 @@
     <set>
       <if test="eventid != null">
         eventid = #{eventid,jdbcType=VARCHAR},
+      </if>
+      <if test="eventName != null">
+        event_name = #{eventName,jdbcType=VARCHAR},
       </if>
       <if test="eventTime != null">
         event_time = #{eventTime,jdbcType=TIMESTAMP},

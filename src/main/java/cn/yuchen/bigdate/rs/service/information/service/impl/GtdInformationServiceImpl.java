@@ -53,7 +53,7 @@ public class GtdInformationServiceImpl implements GtdInformationService {
             //获得当前sheet的结束行
             int lastRowNum = sheet.getLastRowNum();
             //遍历所有行
-            y:for (int rowNum = 2; rowNum < lastRowNum; rowNum++) {
+            y:for (int rowNum = 1; rowNum <= lastRowNum; rowNum++) {
                 //获得当前行
                 Row row = sheet.getRow(rowNum);
                 if(row == null){
@@ -103,9 +103,10 @@ public class GtdInformationServiceImpl implements GtdInformationService {
                         split[74],split[75],split[76],split[77],split[78],split[79],split[80],split[81],split[82],split[83],
                         split[84],split[85],split[86],split[87],split[88],split[89],split[90],split[91],split[92],split[93],
                         split[94],split[95],split[96],split[97],split[98],split[99],split[100],split[101],split[102],split[103],
-                        split[104],split[105],split[106],split[108],split[109],split[112],split[113],split[115],split[118],split[119],
-                        split[120],split[121]);
+                        split[104],split[105],split[106],split[108],split[109],split[112],split[113],split[115],split[117],split[118],
+                        split[119],split[120]);
                 po.setEventTime(eventTime);
+                po.setEventName("***");//预留字段暂时设置成***表示空
                 //向数据库中添加
                 gtdDao.insert(po);
             }
