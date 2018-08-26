@@ -36,13 +36,12 @@ public class NewsInformationController {
     }
 
     /**
-     * 根据ObjectId  查询对象
-     * @param objectId
+     * 根据Id  查询对象
      * @return
      */
-    @PostMapping("/findbyid")
-    public ResponseResult<Tagdata> findById(@RequestBody ObjectId objectId){
-        Tagdata tagdata = newsInformationService.findByObjectId(objectId);
+    @PostMapping("/findbyid/{id}")
+    public ResponseResult<Tagdata> findById(@PathVariable("id") String id){
+        Tagdata tagdata = newsInformationService.findById(id);
         return new ResponseResult<>(tagdata);
     }
 
@@ -57,4 +56,22 @@ public class NewsInformationController {
         return new ResponseResult<>(update);
     }
     //文章
+
+    /**
+     * 通过news_id 修改状态为1
+     */
+    @PostMapping("/updateone/{id}")
+    public ResponseResult<UpdateResult> updateOneById(@PathVariable("id") String id){
+        UpdateResult updateResult = newsInformationService.updateOneById(id);
+        return new ResponseResult<>(updateResult);
+    }
+
+    /**
+     * 通过news_id 修改状态为2
+     */
+    @PostMapping("/updatetwo/{id}")
+    public ResponseResult<UpdateResult> updatetwoById(@PathVariable("id") String id){
+        UpdateResult updateResult = newsInformationService.updateTwoById(id);
+        return new ResponseResult<>(updateResult);
+    }
 }

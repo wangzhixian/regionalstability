@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yuchen.bigdate.rs.service.information.dao.EventBaseDao">
+  <resultMap id="BaseResultMap" type="cn.yuchen.bigdate.rs.service.information.pojo.po.EventBasePo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="nid" jdbcType="VARCHAR" property="nid" />
+    <result column="event_name" jdbcType="VARCHAR" property="eventName" />
+    <result column="country_id" jdbcType="INTEGER" property="countryId" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="event_time" jdbcType="TIMESTAMP" property="eventTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="longitude" jdbcType="VARCHAR" property="longitude" />
+    <result column="latitude" jdbcType="VARCHAR" property="latitude" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="deleted" jdbcType="INTEGER" property="deleted" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.yuchen.bigdate.rs.service.information.pojo.po.EventBasePoWithBLOBs">
+    <result column="orginizations" jdbcType="LONGVARCHAR" property="orginizations" />
+    <result column="sites" jdbcType="LONGVARCHAR" property="sites" />
+    <result column="relevants" jdbcType="LONGVARCHAR" property="relevants" />
+    <result column="people" jdbcType="LONGVARCHAR" property="people" />
+    <result column="bound" jdbcType="LONGVARCHAR" property="bound" />
+    <result column="infrastructure" jdbcType="LONGVARCHAR" property="infrastructure" />
+    <result column="militaryfacor" jdbcType="LONGVARCHAR" property="militaryfacor" />
+    <result column="naturefactor" jdbcType="LONGVARCHAR" property="naturefactor" />
+    <result column="keywords" jdbcType="LONGVARCHAR" property="keywords" />
+    <result column="parent" jdbcType="LONGVARCHAR" property="parent" />
+    <result column="weapons" jdbcType="LONGVARCHAR" property="weapons" />
+    <result column="casualties" jdbcType="LONGVARCHAR" property="casualties" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, nid, event_name, country_id, `type`, event_time, end_time, longitude, latitude,
+    status, deleted, operator, insert_time, update_time
+  </sql>
+  <sql id="Blob_Column_List">
+    orginizations, sites, relevants, people, bound, infrastructure, militaryfacor, naturefactor, 
+    keywords, parent, weapons, casualties
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from information_event_base
+    where
+    deleted = 0
+    and
+    id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <select id="selectByNid" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from information_event_base
+    where
+    deleted = 0
+    and
+    nid = #{id,jdbcType=VARCHAR}
+  </select>
+
+
+  <update id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    update information_event_base
+    set deleted = 1
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <insert id="insert" parameterType="cn.yuchen.bigdate.rs.service.information.pojo.po.EventBasePoWithBLOBs">
+    insert into information_event_base
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="nid != null">
+        nid,
+      </if>
+      <if test="eventName != null">
+        event_name,
+      </if>
+      <if test="countryId != null">
+        country_id,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="eventTime != null">
+        event_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="longitude != null">
+        longitude,
+      </if>
+      <if test="latitude != null">
+        latitude,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+      <if test="operator != null">
+        operator,
+      </if>
+      <if test="insertTime != null">
+        insert_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="orginizations != null">
+        orginizations,
+      </if>
+      <if test="sites != null">
+        sites,
+      </if>
+      <if test="relevants != null">
+        relevants,
+      </if>
+      <if test="people != null">
+        people,
+      </if>
+      <if test="bound != null">
+        bound,
+      </if>
+      <if test="infrastructure != null">
+        infrastructure,
+      </if>
+      <if test="militaryfacor != null">
+        militaryfacor,
+      </if>
+      <if test="naturefactor != null">
+        naturefactor,
+      </if>
+      <if test="keywords != null">
+        keywords,
+      </if>
+      <if test="parent != null">
+        parent,
+      </if>
+      <if test="weapons != null">
+        weapons,
+      </if>
+      <if test="casualties != null">
+        casualties,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="nid != null">
+        #{nid,jdbcType=VARCHAR},
+      </if>
+      <if test="eventName != null">
+        #{eventName,jdbcType=VARCHAR},
+      </if>
+      <if test="countryId != null">
+        #{countryId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="eventTime != null">
+        #{eventTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="longitude != null">
+        #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null">
+        #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null">
+        #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orginizations != null">
+        #{orginizations,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="sites != null">
+        #{sites,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="relevants != null">
+        #{relevants,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="people != null">
+        #{people,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="bound != null">
+        #{bound,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="infrastructure != null">
+        #{infrastructure,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="militaryfacor != null">
+        #{militaryfacor,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="naturefactor != null">
+        #{naturefactor,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="keywords != null">
+        #{keywords,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="parent != null">
+        #{parent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="weapons != null">
+        #{weapons,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="casualties != null">
+        #{casualties,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yuchen.bigdate.rs.service.information.pojo.po.EventBasePoWithBLOBs">
+    update information_event_base
+    <set>
+      <if test="nid != null">
+        nid = #{nid,jdbcType=VARCHAR},
+      </if>
+      <if test="eventName != null">
+        event_name = #{eventName,jdbcType=VARCHAR},
+      </if>
+      <if test="countryId != null">
+        country_id = #{countryId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="eventTime != null">
+        event_time = #{eventTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="longitude != null">
+        longitude = #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null">
+        latitude = #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="operator != null">
+        operator = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null">
+        insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orginizations != null">
+        orginizations = #{orginizations,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="sites != null">
+        sites = #{sites,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="relevants != null">
+        relevants = #{relevants,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="people != null">
+        people = #{people,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="bound != null">
+        bound = #{bound,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="infrastructure != null">
+        infrastructure = #{infrastructure,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="militaryfacor != null">
+        militaryfacor = #{militaryfacor,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="naturefactor != null">
+        naturefactor = #{naturefactor,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="keywords != null">
+        keywords = #{keywords,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="parent != null">
+        parent = #{parent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="weapons != null">
+        weapons = #{weapons,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="casualties != null">
+        casualties = #{casualties,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where
+    deleted = 0
+    and
+    id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+</mapper>

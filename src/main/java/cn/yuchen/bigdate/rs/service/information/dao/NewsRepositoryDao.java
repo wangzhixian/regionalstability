@@ -3,9 +3,7 @@ package cn.yuchen.bigdate.rs.service.information.dao;
 import cn.yuchen.bigdate.rs.service.information.pojo.mogopo.news.Tagdata;
 import cn.yuchen.bigdate.rs.service.information.pojo.webpo.NewsWeb;
 import com.mongodb.client.result.UpdateResult;
-import org.bson.types.ObjectId;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,11 +19,11 @@ public interface NewsRepositoryDao {
     List<Tagdata> findByNewsWebPage(NewsWeb newsWeb);
 
     /**
-     * 根据ObjectId查询
+     * 根据Id查询
      * @param id
      * @return
      */
-    Tagdata findByObjectId(ObjectId id);
+    Tagdata findById(String id);
 
     /**
      * 修改
@@ -33,6 +31,12 @@ public interface NewsRepositoryDao {
      * @return
      */
     UpdateResult update(Tagdata tagdata);
+
+    /**
+     * 根据nues_id修改状态
+     * @param id
+     */
+    UpdateResult updateById(String id, Integer status);
 
 
 }

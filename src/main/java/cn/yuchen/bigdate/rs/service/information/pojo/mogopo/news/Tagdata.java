@@ -10,17 +10,6 @@ import java.io.Serializable;
 public class Tagdata implements Serializable {
 
     private static final long serialVersionUID = -4690657246900789092L;
-
-    public Tagdata() {
-    }
-
-    public Tagdata(ObjectId id, Entity entity, Tagging tagging, Attr attr) {
-        this.id = id;
-        this.entity = entity;
-        this.tagging = tagging;
-        this.attr = attr;
-    }
-
     /**
      * id
      */

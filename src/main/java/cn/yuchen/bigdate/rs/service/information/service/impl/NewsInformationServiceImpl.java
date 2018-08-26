@@ -34,9 +34,9 @@ public class NewsInformationServiceImpl implements NewsInformationService {
     }
 
     @Override
-    public Tagdata findByObjectId(ObjectId id) {
-        AssertUtils.notNull(id,"查询id对象不能为空");
-        return newsRepositoryDao.findByObjectId(id);
+    public Tagdata findById(String id) {
+        AssertUtils.hasText(id,"查询id不能为空");
+        return newsRepositoryDao.findById(id);
     }
 
     @Override
@@ -47,5 +47,17 @@ public class NewsInformationServiceImpl implements NewsInformationService {
         AssertUtils.notNull(tagdata.getTagging(),"修改对象不能为空");
         tagdata.getAttr().setStatus(1);
         return newsRepositoryDao.update(tagdata);
+    }
+
+    @Override
+    public UpdateResult updateOneById(String id) {
+        AssertUtils.hasText(id,"修改对象ID不能为空");
+        return newsRepositoryDao.updateById(id,1);
+    }
+
+    @Override
+    public UpdateResult updateTwoById(String id) {
+        AssertUtils.hasText(id,"修改对象ID不能为空");
+        return newsRepositoryDao.updateById(id,2);
     }
 }

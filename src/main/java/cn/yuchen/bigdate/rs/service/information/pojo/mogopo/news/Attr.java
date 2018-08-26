@@ -3,6 +3,7 @@ package cn.yuchen.bigdate.rs.service.information.pojo.mogopo.news;
 import org.bson.types.ObjectId;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -11,10 +12,12 @@ import java.util.Date;
 public class Attr implements Serializable {
 
     private static final long serialVersionUID = 7351427448054645331L;
+
+
     /**
      * id
      */
-    private String id;
+    private String news_id;
 
     /**
      * 原新闻语言
@@ -32,6 +35,11 @@ public class Attr implements Serializable {
     private String content;
 
     /**
+     * 新闻报道时间
+     */
+    private Date reportTime;
+
+    /**
      * 发生时间
      */
     private String publicDateTime;
@@ -39,12 +47,12 @@ public class Attr implements Serializable {
     /**
      * 地点(国家)
      */
-    private String area;
+    private ArrayList<String> area;
 
     /**
      * 人物
      */
-    private String persons;
+    private ArrayList<String> persons;
 
     /**
      * 状态：0 未处理，1 已处理
@@ -54,13 +62,18 @@ public class Attr implements Serializable {
      * 逻辑删除：0 未删除，1 已删除
      */
     private Integer deleted;
+    /**
+     * 原新闻网站
+     */
+    private String source;
 
-    public String getId() {
-        return id;
+
+    public String getNews_id() {
+        return news_id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setNews_id(String news_id) {
+        this.news_id = news_id;
     }
 
     public String getRegion() {
@@ -95,19 +108,19 @@ public class Attr implements Serializable {
         this.publicDateTime = publicDateTime;
     }
 
-    public String getArea() {
+    public ArrayList<String> getArea() {
         return area;
     }
 
-    public void setArea(String area) {
+    public void setArea(ArrayList<String> area) {
         this.area = area;
     }
 
-    public String getPersons() {
+    public ArrayList<String> getPersons() {
         return persons;
     }
 
-    public void setPersons(String persons) {
+    public void setPersons(ArrayList<String> persons) {
         this.persons = persons;
     }
 
@@ -127,18 +140,36 @@ public class Attr implements Serializable {
         this.deleted = deleted;
     }
 
+    public Date getReportTime() {
+        return reportTime;
+    }
+
+    public void setReportTime(Date reportTime) {
+        this.reportTime = reportTime;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
     @Override
     public String toString() {
         return "Attr{" +
-                "id='" + id + '\'' +
+                "news_id='" + news_id + '\'' +
                 ", region='" + region + '\'' +
                 ", news_name='" + news_name + '\'' +
                 ", content='" + content + '\'' +
+                ", reportTime=" + reportTime +
                 ", publicDateTime='" + publicDateTime + '\'' +
-                ", area='" + area + '\'' +
-                ", persons='" + persons + '\'' +
+                ", area=" + area +
+                ", persons=" + persons +
                 ", status=" + status +
                 ", deleted=" + deleted +
+                ", source='" + source + '\'' +
                 '}';
     }
 }

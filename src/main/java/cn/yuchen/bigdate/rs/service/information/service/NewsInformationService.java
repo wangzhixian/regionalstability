@@ -5,6 +5,7 @@ import cn.yuchen.bigdate.rs.service.information.pojo.webpo.NewsWeb;
 import com.mongodb.client.result.UpdateResult;
 import org.bson.types.ObjectId;
 import org.springframework.data.domain.Page;
+import org.springframework.data.mongodb.core.aggregation.ArrayOperators;
 
 import java.util.List;
 
@@ -21,11 +22,11 @@ public interface NewsInformationService {
     List<Tagdata> findByNewsWebPage(NewsWeb newsWeb);
 
     /**
-     * 根据ObjectId  查询对象
+     * 根据id  查询对象
      * @param id
      * @return
      */
-    Tagdata findByObjectId(ObjectId id);
+    Tagdata findById(String id);
 
     /**
      * 修改
@@ -33,4 +34,16 @@ public interface NewsInformationService {
      * @return
      */
     UpdateResult update(Tagdata tagdata);
+
+    /**
+     * 通过news_id修改状态为1
+     * @param id
+     */
+    UpdateResult updateOneById(String id);
+
+    /**
+     * 通过news_id修改状态为2
+     * @param id
+     */
+    UpdateResult updateTwoById(String id);
 }

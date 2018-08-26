@@ -3,9 +3,7 @@ package cn.yuchen.bigdate.rs.service.information.dao.Impl;
 import cn.yuchen.bigdate.rs.service.information.dao.NewsRepositoryDao;
 import cn.yuchen.bigdate.rs.service.information.pojo.mogopo.news.Tagdata;
 import cn.yuchen.bigdate.rs.service.information.pojo.webpo.NewsWeb;
-import cn.yuchen.bigdate.rs.usermanagement.pojo.po.UserPo;
 import com.mongodb.client.result.UpdateResult;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -15,7 +13,6 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -37,6 +34,7 @@ public class NewsRepostioryDaoImpl implements NewsRepositoryDao {
         Criteria criteria = new Criteria();
         Pageable pageable =PageRequest.of(newsWeb.getPageNum()-1,newsWeb.getPageSize());
         Criteria gteAndLte =null;
+
         if(Objects.nonNull(newsWeb.getStartTime())&&Objects.nonNull(newsWeb.getEndTime())){
             gteAndLte = Criteria.where("attr.publicDateTime").gte(newsWeb.getStartTime()).lte(newsWeb.getEndTime());
             criteria.andOperator(
@@ -55,14 +53,21 @@ public class NewsRepostioryDaoImpl implements NewsRepositoryDao {
         }else{
             criteria = Criteria.where("attr.area").regex(newsWeb.getArea());
         }
+        if(Objects.nonNull(newsWeb.getStatus())){
+            criteria.andOperator(
+                    Criteria.where("attr.status").is(newsWeb.getStatus()));
+        }
         query.addCriteria(criteria);
         query.with(pageable);
         return  mongoTemplate.find(query, Tagdata.class);
     }
 
     @Override
-    public Tagdata findByObjectId(ObjectId id) {
-        return mongoTemplate.findById(id,Tagdata.class);
+    public Tagdata findById(String id) {
+        Query query = new Query();
+        Criteria criteria = Criteria.where("attr.news_id").is(id);
+        query.addCriteria(criteria);
+        return  mongoTemplate.findOne(query,Tagdata.class);
     }
 
     @Override
@@ -74,6 +79,13 @@ public class NewsRepostioryDaoImpl implements NewsRepositoryDao {
         update.set("tagging",tagdata.getTagging());
         update.set("attr",tagdata.getAttr());
         return mongoTemplate.updateMulti(query, update, Tagdata.class);
+    }
+
+    @Override
+    public UpdateResult updateById(String id, Integer status) {
+        Query query = Query.query(Criteria.where("attr.news_id").is(id));
+        Update update = Update.update("attr.status",status);
+        return mongoTemplate.updateFirst(query, update, Tagdata.class);
     }
 
 
