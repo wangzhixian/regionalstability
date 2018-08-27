@@ -54,6 +54,20 @@ public class AssertUtils {
         }
     }
 
+
+
+    /**
+     * 断言为null，否则抛出异常
+     *
+     * @param obj     object
+     * @param message 异常message
+     */
+    public static void isNull(Object obj, String message) {
+        if (Objects.nonNull(obj)) {
+            throw new ArgumentException(message);
+        }
+    }
+
     /**
      * 必须为1
      *

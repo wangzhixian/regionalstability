@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 /**
  * Created by wzx on 2018/8/24.
  */
@@ -26,6 +28,8 @@ public class EventBaseInformationServiceImpl implements EventBaseInformationServ
         AssertUtils.notNull(eventBasePoWithBLOBs.getType(),"事件类型不能为空");
         AssertUtils.hasText(eventBasePoWithBLOBs.getLongitude(),"经度不能为空");
         AssertUtils.hasText(eventBasePoWithBLOBs.getLatitude(),"纬度不能为空");
+        EventBasePoWithBLOBs flag = eventBaseDao.selectByNid(eventBasePoWithBLOBs.getNid());
+        AssertUtils.isNull(flag,"该数据已存在");
         return eventBaseDao.insert(eventBasePoWithBLOBs);
     }
 

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yuchen.bigdate.rs.service.hs.dao.CountryDao">
+  <resultMap id="BaseResultMap" type="cn.yuchen.bigdate.rs.service.hs.pojo.po.CountryPo">
+    <result column="countryId" jdbcType="VARCHAR" property="countryid" />
+    <result column="countryName" jdbcType="VARCHAR" property="countryname" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+    <result column="internetName" jdbcType="VARCHAR" property="internetname" />
+    <result column="countryFullName" jdbcType="VARCHAR" property="countryfullname" />
+    <result column="countryKeys" jdbcType="VARCHAR" property="countrykeys" />
+    <result column="region" jdbcType="CHAR" property="region" />
+    <result column="initials" jdbcType="CHAR" property="initials" />
+    <result column="spellFull" jdbcType="VARCHAR" property="spellfull" />
+    <result column="spellFirst" jdbcType="VARCHAR" property="spellfirst" />
+    <result column="litude" jdbcType="VARCHAR" property="litude" />
+    <result column="hotSort" jdbcType="INTEGER" property="hotsort" />
+    <result column="isDelete" jdbcType="CHAR" property="isdelete" />
+    <result column="bak1" jdbcType="VARCHAR" property="bak1" />
+    <result column="country" jdbcType="VARCHAR" property="country" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+      countryId,countryName,`number`, internetName, countryFullName, countryKeys,
+      region, initials, spellFull,
+      spellFirst, litude, hotSort,
+      isDelete, bak1, country
+  </sql>
+
+  <select id="selectAll"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from hs_country_new
+    where isDelete = 0
+  </select>
+
+</mapper>

@@ -16,7 +16,6 @@ import java.util.List;
  * Created by wzx on 2018/8/16.
  */
 @RestController
-
 @RequestMapping("/news")
 @CrossOrigin
 public class NewsInformationController {
