@@ -1,7 +1,6 @@
-package cn.yuchen.bigdate.rs.service.information.pojo.webpo;
+package cn.yuchen.bigdate.rs.service.information.pojo.webpage;
 
 import cn.yuchen.bigdate.rs.utility.PageUtils;
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.io.Serializable;
 import java.util.Date;

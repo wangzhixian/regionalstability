@@ -1,7 +1,7 @@
 package cn.yuchen.bigdate.rs.service.information.service;
 
 import cn.yuchen.bigdate.rs.service.information.pojo.po.GtdPo;
-import cn.yuchen.bigdate.rs.service.information.pojo.webpo.GtdPage;
+import cn.yuchen.bigdate.rs.service.information.pojo.webpage.GtdPage;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.text.ParseException;

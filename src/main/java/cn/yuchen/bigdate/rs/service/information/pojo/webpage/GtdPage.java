@@ -1,4 +1,4 @@
-package cn.yuchen.bigdate.rs.service.information.pojo.webpo;
+package cn.yuchen.bigdate.rs.service.information.pojo.webpage;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;

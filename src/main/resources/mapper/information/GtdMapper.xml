@@ -156,7 +156,7 @@
     where eventid = #{id}
   </select>
 
-  <select id="selectByPage" parameterType="cn.yuchen.bigdate.rs.service.information.pojo.webpo.GtdPage" resultMap="BaseResultMap">
+  <select id="selectByPage" parameterType="cn.yuchen.bigdate.rs.service.information.pojo.webpage.GtdPage" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from information_gtd
@@ -166,10 +166,10 @@
         AND `country_txt` LIKE CONCAT('%',#{nation},'%')
       </if>
       <if test="startTime != null">
-        AND event_time  <![CDATA[>=]]>  #{startTime,jdbcType=TIMESTAMP}
+        AND   <![CDATA[ event_time >=  #{startTime,jdbcType=TIMESTAMP} ]]>
       </if>
       <if test="endTime !=null">
-        AND event_time  <![CDATA[<=]]> #{endTime,jdbcType=TIMESTAMP}
+        AND  <![CDATA[ event_time  <= #{endTime,jdbcType=TIMESTAMP} ]]>
       </if>
     </where>
   </select>

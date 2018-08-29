@@ -1,7 +1,7 @@
 package cn.yuchen.bigdate.rs.service.information.dao;
 
 import cn.yuchen.bigdate.rs.service.information.pojo.po.GtdPo;
-import cn.yuchen.bigdate.rs.service.information.pojo.webpo.GtdPage;
+import cn.yuchen.bigdate.rs.service.information.pojo.webpage.GtdPage;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

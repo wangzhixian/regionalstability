@@ -1,13 +1,9 @@
 package cn.yuchen.bigdate.rs.service.information.service;
 
 import cn.yuchen.bigdate.rs.service.information.pojo.mogopo.news.Tagdata;
-import cn.yuchen.bigdate.rs.service.information.pojo.webpo.NewsWeb;
+import cn.yuchen.bigdate.rs.service.information.pojo.vo.NewsPageVo;
+import cn.yuchen.bigdate.rs.service.information.pojo.webpage.NewsWeb;
 import com.mongodb.client.result.UpdateResult;
-import org.bson.types.ObjectId;
-import org.springframework.data.domain.Page;
-import org.springframework.data.mongodb.core.aggregation.ArrayOperators;
-
-import java.util.List;
 
 /**
  * Created by wzx on 2018/8/16.
@@ -19,7 +15,7 @@ public interface NewsInformationService {
      * @param newsWeb
      * @return
      */
-    List<Tagdata> findByNewsWebPage(NewsWeb newsWeb);
+    NewsPageVo findByNewsWebPage(NewsWeb newsWeb);
 
     /**
      * 根据id  查询对象

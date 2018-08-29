@@ -1,10 +1,8 @@
 package cn.yuchen.bigdate.rs.service.information.controller;
 
 import cn.yuchen.bigdate.rs.service.information.pojo.po.GtdPo;
-import cn.yuchen.bigdate.rs.service.information.pojo.webpo.GtdPage;
+import cn.yuchen.bigdate.rs.service.information.pojo.webpage.GtdPage;
 import cn.yuchen.bigdate.rs.service.information.service.GtdInformationService;
-import cn.yuchen.bigdate.rs.service.model.pojo.vo.ModelVo;
-import cn.yuchen.bigdate.rs.service.model.pojo.webvo.ModelPageVo;
 import cn.yuchen.bigdate.rs.utility.ResponseResult;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;

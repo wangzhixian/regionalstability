@@ -1,7 +1,7 @@
 package cn.yuchen.bigdate.rs.service.information.dao;
 
 import cn.yuchen.bigdate.rs.service.information.pojo.mogopo.news.Tagdata;
-import cn.yuchen.bigdate.rs.service.information.pojo.webpo.NewsWeb;
+import cn.yuchen.bigdate.rs.service.information.pojo.webpage.NewsWeb;
 import com.mongodb.client.result.UpdateResult;
 
 import java.util.List;
@@ -37,6 +37,12 @@ public interface NewsRepositoryDao {
      * @param id
      */
     UpdateResult updateById(String id, Integer status);
+
+    /**
+     * 查询总数
+     * @return
+     */
+    Long findAll(NewsWeb newsWeb);
 
 
 }

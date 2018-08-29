@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
+ * 国家基础字典表
  * Created by wzx on 2018/8/27.
  */
 @RestController

@@ -2,15 +2,12 @@ package cn.yuchen.bigdate.rs.service.information.service.impl;
 
 import cn.yuchen.bigdate.rs.service.information.dao.NewsRepositoryDao;
 import cn.yuchen.bigdate.rs.service.information.pojo.mogopo.news.Tagdata;
-import cn.yuchen.bigdate.rs.service.information.pojo.webpo.NewsWeb;
+import cn.yuchen.bigdate.rs.service.information.pojo.vo.NewsPageVo;
+import cn.yuchen.bigdate.rs.service.information.pojo.webpage.NewsWeb;
 import cn.yuchen.bigdate.rs.service.information.service.NewsInformationService;
 import cn.yuchen.bigdate.rs.utility.AssertUtils;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.mongodb.client.result.UpdateResult;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,10 +24,16 @@ public class NewsInformationServiceImpl implements NewsInformationService {
 
 
     @Override
-    public List<Tagdata> findByNewsWebPage(NewsWeb newsWeb) {
+    public NewsPageVo findByNewsWebPage(NewsWeb newsWeb) {
         AssertUtils.notNull(newsWeb,"查询对象不能为空");
         List<Tagdata> tagdata = newsRepositoryDao.findByNewsWebPage(newsWeb);
-        return tagdata;
+        Long total = newsRepositoryDao.findAll(newsWeb);
+        NewsPageVo vos = new NewsPageVo();
+        vos.setPageNum(newsWeb.getPageNum());
+        vos.setPageSize(newsWeb.getPageSize());
+        vos.setTagdatas(tagdata);
+        vos.setTotal(total);
+        return vos;
     }
 
     @Override

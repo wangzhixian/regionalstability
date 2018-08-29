@@ -1,16 +1,13 @@
 package cn.yuchen.bigdate.rs.service.information.controller;
 
 import cn.yuchen.bigdate.rs.service.information.pojo.mogopo.news.Tagdata;
-import cn.yuchen.bigdate.rs.service.information.pojo.webpo.NewsWeb;
+import cn.yuchen.bigdate.rs.service.information.pojo.vo.NewsPageVo;
+import cn.yuchen.bigdate.rs.service.information.pojo.webpage.NewsWeb;
 import cn.yuchen.bigdate.rs.service.information.service.NewsInformationService;
 import cn.yuchen.bigdate.rs.utility.ResponseResult;
 import com.mongodb.client.result.UpdateResult;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * Created by wzx on 2018/8/16.
@@ -29,9 +26,11 @@ public class NewsInformationController {
      * @return
      */
     @PostMapping("/findbypage")
-    public ResponseResult<List<Tagdata>> findByPage(@RequestBody NewsWeb newsWeb){
-        List<Tagdata> tagdatas = newsInformationService.findByNewsWebPage(newsWeb);
-        return new ResponseResult<>(tagdatas);
+    public ResponseResult<NewsPageVo> findByPage(@RequestBody NewsWeb newsWeb){
+
+        NewsPageVo byNewsWebPage = newsInformationService.findByNewsWebPage(newsWeb);
+
+        return new ResponseResult<>(byNewsWebPage);
     }
 
     /**
