@@ -1,11 +1,11 @@
-package cn.yuchen.bigdate.rs.service.event.pojo.po;
+package cn.yuchen.bigdate.rs.service.event.pojo.vo;
 
 import java.util.Date;
 
 /**
  * 政党对象
  */
-public class PoliticsPartyGroupPo {
+public class PoliticsPartyGroupVo {
     /**
      * 自增ID
      */

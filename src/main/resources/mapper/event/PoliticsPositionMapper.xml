@@ -13,6 +13,20 @@
     <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
+
+  <resultMap id="PageResultMap" type="cn.yuchen.bigdate.rs.service.event.pojo.vo.PoliticsPositionVo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="cn_name" jdbcType="VARCHAR" property="cnName" />
+    <result column="en_name" jdbcType="VARCHAR" property="enName" />
+    <result column="level_id" jdbcType="INTEGER" property="levelId" />
+    <result column="country_id" jdbcType="INTEGER" property="countryId" />
+    <result column="keyword" jdbcType="VARCHAR" property="keyword" />
+    <result column="deleted" jdbcType="INTEGER" property="deleted" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
   <sql id="Base_Column_List">
     id, cn_name, en_name, level_id, country_id, keyword, deleted, operator, insert_time, 
     update_time
@@ -23,6 +37,26 @@
     from politics_position
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="selectByPage" parameterType="cn.yuchen.bigdate.rs.service.event.pojo.webpage.PoliticsPositionPage" resultMap="PageResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from politics_department
+    <where>
+      deleted = 0
+      <if test="cnName !=null and cnName !='' ">
+        AND `cn_name` LIKE CONCAT('%',#{cnName},'%')
+      </if>
+      <if test="enName !=null and enName !='' ">
+        AND `en_name` LIKE CONCAT('%',#{enName},'%')
+      </if>
+      <if test="countryId != null">
+        AND country_id = #{countryId,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from politics_position
     where id = #{id,jdbcType=INTEGER}

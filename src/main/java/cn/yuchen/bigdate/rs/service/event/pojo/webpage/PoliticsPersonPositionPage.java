@@ -1,11 +1,14 @@
-package cn.yuchen.bigdate.rs.service.event.pojo.po;
+package cn.yuchen.bigdate.rs.service.event.pojo.webpage;
 
+import cn.yuchen.bigdate.rs.utility.PageUtils;
+
+import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 人物职位关系对象
+ * 人物职位关系表
  */
-public class PoliticsPersonPositionPo {
+public class PoliticsPersonPositionPage extends PageUtils implements Serializable {
     /**
      * 自增ID
      */

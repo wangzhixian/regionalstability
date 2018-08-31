@@ -1,42 +1,40 @@
-package cn.yuchen.bigdate.rs.service.event.pojo.po;
+package cn.yuchen.bigdate.rs.service.event.pojo.webpage;
 
+import cn.yuchen.bigdate.rs.utility.PageUtils;
+
+import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 政党对象
+ * 部门对象
  */
-public class PoliticsPartyGroupPo {
+
+public class PoliticsDepartmentPage extends PageUtils implements Serializable {
     /**
      * 自增ID
      */
     private Integer id;
-
     /**
-     * 政党中文名称
+     * 部门中文名称
      */
     private String cnName;
     /**
-     * 政党英文名称
+     * 部门英文名称
      */
 
     private String enName;
-    /**
-     * 政党英文首字母缩写
-     */
-
-    private String miniEnName;
     /**
      * 所属国家的ID
      */
 
     private Integer countryId;
     /**
-     * 等级ID,默认为0表示没有等级
+     * 部门等级ID
      */
 
     private Integer levelId;
     /**
-     * 关键词
+     *关键词
      */
 
     private String keyword;
@@ -50,13 +48,15 @@ public class PoliticsPartyGroupPo {
      */
 
     private String operator;
+
     /**
      * 创建时间
      */
 
     private Date insertTime;
+
     /**
-     * 最后更新时间
+     *最后更新时间
      */
 
     private Date updateTime;
@@ -83,14 +83,6 @@ public class PoliticsPartyGroupPo {
 
     public void setEnName(String enName) {
         this.enName = enName == null ? null : enName.trim();
-    }
-
-    public String getMiniEnName() {
-        return miniEnName;
-    }
-
-    public void setMiniEnName(String miniEnName) {
-        this.miniEnName = miniEnName == null ? null : miniEnName.trim();
     }
 
     public Integer getCountryId() {

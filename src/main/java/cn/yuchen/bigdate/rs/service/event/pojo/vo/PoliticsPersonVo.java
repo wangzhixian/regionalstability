@@ -1,19 +1,19 @@
-package cn.yuchen.bigdate.rs.service.event.pojo.po;
+package cn.yuchen.bigdate.rs.service.event.pojo.vo;
 
 import java.util.Date;
 
 /**
- * 政党对象
+ * 人物对象
  */
-public class PoliticsPartyGroupPo {
+public class PoliticsPersonVo {
     /**
      * 自增ID
      */
     private Integer id;
-
     /**
      * 政党中文名称
      */
+
     private String cnName;
     /**
      * 政党英文名称
@@ -21,7 +21,12 @@ public class PoliticsPartyGroupPo {
 
     private String enName;
     /**
-     * 政党英文首字母缩写
+     * 人物中文名称缩写
+     */
+
+    private String miniCnName;
+    /**
+     * 人物英文名称缩写
      */
 
     private String miniEnName;
@@ -35,6 +40,29 @@ public class PoliticsPartyGroupPo {
      */
 
     private Integer levelId;
+
+    /**
+     * 所属政党ID,默认为0表示没有政党
+     */
+
+    private Integer partygroupId;
+    /**
+     * 人物任职履历描述
+     */
+
+    private String resume;
+    /**
+     *人物所属一级行政区ID,默认为0表示没有一级行政区
+     */
+    private Integer area1;
+    /**
+     *人物所属二级行政区ID,默认为0表示没有二级行政区
+     */
+    private Integer area2;
+    /**
+     *人物所属三级地区ID（预留字段）,默认为0表示没有三级级行政区
+     */
+    private Integer area3;
     /**
      * 关键词
      */
@@ -53,12 +81,10 @@ public class PoliticsPartyGroupPo {
     /**
      * 创建时间
      */
-
     private Date insertTime;
     /**
-     * 最后更新时间
+     * 最后更新时间s
      */
-
     private Date updateTime;
 
     public Integer getId() {
@@ -85,6 +111,14 @@ public class PoliticsPartyGroupPo {
         this.enName = enName == null ? null : enName.trim();
     }
 
+    public String getMiniCnName() {
+        return miniCnName;
+    }
+
+    public void setMiniCnName(String miniCnName) {
+        this.miniCnName = miniCnName == null ? null : miniCnName.trim();
+    }
+
     public String getMiniEnName() {
         return miniEnName;
     }
@@ -107,6 +141,46 @@ public class PoliticsPartyGroupPo {
 
     public void setLevelId(Integer levelId) {
         this.levelId = levelId;
+    }
+
+    public Integer getPartygroupId() {
+        return partygroupId;
+    }
+
+    public void setPartygroupId(Integer partygroupId) {
+        this.partygroupId = partygroupId;
+    }
+
+    public String getResume() {
+        return resume;
+    }
+
+    public void setResume(String resume) {
+        this.resume = resume == null ? null : resume.trim();
+    }
+
+    public Integer getArea1() {
+        return area1;
+    }
+
+    public void setArea1(Integer area1) {
+        this.area1 = area1;
+    }
+
+    public Integer getArea2() {
+        return area2;
+    }
+
+    public void setArea2(Integer area2) {
+        this.area2 = area2;
+    }
+
+    public Integer getArea3() {
+        return area3;
+    }
+
+    public void setArea3(Integer area3) {
+        this.area3 = area3;
     }
 
     public String getKeyword() {

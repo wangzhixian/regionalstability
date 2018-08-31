@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.yuchen.bigdate.rs.service.event.dao.PoliticsReligionDao">
-  <resultMap id="BaseResultMap" type="cn.yuchen.bigdate.rs.service.event.pojo.po.PoliticsReligionPo">
+  <resultMap id="BaseResultMap" type="cn.yuchen.bigdate.rs.service.event.pojo.vo.PoliticsReligionVo">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="cn_name" jdbcType="VARCHAR" property="cnName" />
     <result column="en_name" jdbcType="VARCHAR" property="enName" />
@@ -23,6 +23,25 @@
     from politics_religion
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="selectByPage" parameterType="cn.yuchen.bigdate.rs.service.event.pojo.webpage.PoliticsReligionPage" resultMap="PageResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from politics_department
+    <where>
+      deleted = 0
+      <if test="cnName !=null and cnName !='' ">
+        AND `cn_name` LIKE CONCAT('%',#{cnName},'%')
+      </if>
+      <if test="enName !=null and enName !='' ">
+        AND `en_name` LIKE CONCAT('%',#{enName},'%')
+      </if>
+      <if test="countryId != null">
+        AND country_id = #{countryId,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from politics_religion
     where id = #{id,jdbcType=INTEGER}

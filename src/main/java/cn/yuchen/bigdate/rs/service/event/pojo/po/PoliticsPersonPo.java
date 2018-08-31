@@ -2,39 +2,89 @@ package cn.yuchen.bigdate.rs.service.event.pojo.po;
 
 import java.util.Date;
 
+/**
+ * 人物对象
+ */
 public class PoliticsPersonPo {
+    /**
+     * 自增ID
+     */
     private Integer id;
+    /**
+     * 政党中文名称
+     */
 
     private String cnName;
+    /**
+     * 政党英文名称
+     */
 
     private String enName;
+    /**
+     * 人物中文名称缩写
+     */
 
     private String miniCnName;
+    /**
+     * 人物英文名称缩写
+     */
 
     private String miniEnName;
+    /**
+     * 所属国家的ID
+     */
 
     private Integer countryId;
+    /**
+     * 等级ID,默认为0表示没有等级
+     */
 
     private Integer levelId;
 
+    /**
+     * 所属政党ID,默认为0表示没有政党
+     */
+
     private Integer partygroupId;
+    /**
+     * 人物任职履历描述
+     */
 
-    private String resum;
-
+    private String resume;
+    /**
+     *人物所属一级行政区ID,默认为0表示没有一级行政区
+     */
     private Integer area1;
-
+    /**
+     *人物所属二级行政区ID,默认为0表示没有二级行政区
+     */
     private Integer area2;
-
+    /**
+     *人物所属三级地区ID（预留字段）,默认为0表示没有三级级行政区
+     */
     private Integer area3;
+    /**
+     * 关键词
+     */
 
     private String keyword;
+    /**
+     * 是否逻辑删除 0 正常 1 删除
+     */
 
     private Integer deleted;
+    /**
+     * 操作人员
+     */
 
     private String operator;
-
+    /**
+     * 创建时间
+     */
     private Date insertTime;
-
+    /**
+     * 最后更新时间s
+     */
     private Date updateTime;
 
     public Integer getId() {
@@ -101,12 +151,12 @@ public class PoliticsPersonPo {
         this.partygroupId = partygroupId;
     }
 
-    public String getResum() {
-        return resum;
+    public String getResume() {
+        return resume;
     }
 
-    public void setResum(String resum) {
-        this.resum = resum == null ? null : resum.trim();
+    public void setResume(String resume) {
+        this.resume = resume == null ? null : resume.trim();
     }
 
     public Integer getArea1() {

@@ -6,9 +6,10 @@ import cn.yuchen.bigdate.rs.service.event.pojo.webpage.PoliticsAreaPage;
 import java.util.List;
 
 /**
- * Created by wzx on 2018/8/29.
+ * Created by lgd on 2018/8/30.
  */
 public interface PoliticsAreaService {
+
     int add(PoliticsAreaVo politicsAreaVo);
 
     int delete(Integer id);

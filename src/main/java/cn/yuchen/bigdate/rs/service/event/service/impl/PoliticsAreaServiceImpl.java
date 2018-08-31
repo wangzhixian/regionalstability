@@ -16,16 +16,18 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Created by wzx on 2018/8/29.
+ * Created by lgd on 2018/8/30.
  */
 @Service
 public class PoliticsAreaServiceImpl implements PoliticsAreaService {
+
     @Autowired
     private PoliticsAreaDao politicsAreaDao;
 
 
     @Override
     public int add(PoliticsAreaVo politicsAreaVo) {
+
         AssertUtils.notNull(politicsAreaVo,"添加地区对象不能为空");
         AssertUtils.greaterThanZero(politicsAreaVo.getCountryId(),"所属国家的ID不能为空");
         PoliticsAreaPo po = new PoliticsAreaPo();

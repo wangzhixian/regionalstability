@@ -1,11 +1,14 @@
-package cn.yuchen.bigdate.rs.service.event.pojo.po;
+package cn.yuchen.bigdate.rs.service.event.pojo.webpage;
 
+import cn.yuchen.bigdate.rs.utility.PageUtils;
+
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * 政党对象
  */
-public class PoliticsPartyGroupPo {
+public class PoliticsPartyGroupPage extends PageUtils implements Serializable {
     /**
      * 自增ID
      */
