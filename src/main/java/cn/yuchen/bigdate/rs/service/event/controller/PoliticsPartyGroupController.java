@@ -25,6 +25,11 @@ public class PoliticsPartyGroupController {
     @Autowired
     private PoliticsPartyGroupService politicsPartyGroupService;
 
+    /**
+     * 添加政党信息
+     * @param politicsPartyGroupVo
+     * @return
+     */
     @PostMapping("/add")
     public ResponseResult<Boolean> add(@RequestBody PoliticsPartyGroupVo politicsPartyGroupVo){
         Boolean result = false;
@@ -35,6 +40,11 @@ public class PoliticsPartyGroupController {
         return new ResponseResult<>(result);
     }
 
+    /**
+     * 根据id删除政党信息
+     * @param id
+     * @return
+     */
     @PostMapping("/delete/{id}")
     public ResponseResult<Boolean> delete(@PathVariable("id") Integer id){
         Boolean result = false;
@@ -45,7 +55,11 @@ public class PoliticsPartyGroupController {
         return new ResponseResult<>(result);
     }
 
-
+    /**
+     * 修改政党信息
+     * @param politicsPartyGroupVo
+     * @return
+     */
     @PostMapping("/update")
     public ResponseResult<Boolean> update(@RequestBody PoliticsPartyGroupVo politicsPartyGroupVo){
         Boolean result = false;
@@ -57,7 +71,7 @@ public class PoliticsPartyGroupController {
     }
 
     /**
-     * 根据ID查询部门详情
+     * 根据ID查询政党信息
      * @param id
      * @return
      */
@@ -70,7 +84,7 @@ public class PoliticsPartyGroupController {
     }
 
     /**
-     * 分页条件查询
+     * 分页条件查询政党信息
      * @return
      */
     @PostMapping("/findbypage")

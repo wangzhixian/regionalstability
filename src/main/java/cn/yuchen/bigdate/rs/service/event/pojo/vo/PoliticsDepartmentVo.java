@@ -23,8 +23,13 @@ public class PoliticsDepartmentVo {
     /**
      * 所属国家的ID
      */
-
     private Integer countryId;
+
+
+    /**
+     *所属国家的名称
+     */
+    private String countryfullname;
     /**
      * 部门等级ID
      */
@@ -92,6 +97,15 @@ public class PoliticsDepartmentVo {
 
     public Integer getLevelId() {
         return levelId;
+    }
+
+    public String getCountryfullname() {
+
+        return countryfullname;
+    }
+
+    public void setCountryfullname(String countryfullname) {
+        this.countryfullname = countryfullname;
     }
 
     public void setLevelId(Integer levelId) {

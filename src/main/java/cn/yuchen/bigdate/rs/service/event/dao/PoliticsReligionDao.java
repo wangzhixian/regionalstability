@@ -16,8 +16,6 @@ public interface PoliticsReligionDao {
 
     int insert(PoliticsReligionPo record);
 
-    int insertSelective(PoliticsReligionPo record);
-
     PoliticsReligionPo selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(PoliticsReligionPo record);

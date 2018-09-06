@@ -46,6 +46,11 @@ public class PoliticsAreaVo {
      * 所属国家的ID
      */
     private Integer countryId;
+
+     /**
+     * 国家全称
+     */
+    private String countryfullname;
     /**
      * 是否逻辑删除 0 正常 1 删除
      */
@@ -62,6 +67,14 @@ public class PoliticsAreaVo {
      * 最后更新时间
      */
     private Date updateTime;
+
+    public String getCountryfullname() {
+        return countryfullname;
+    }
+
+    public void setCountryfullname(String countryfullname) {
+        this.countryfullname = countryfullname;
+    }
 
     public Integer getId() {
         return id;
@@ -169,7 +182,7 @@ public class PoliticsAreaVo {
 
     @Override
     public String toString() {
-        return "PoliticsAreaPo{" +
+        return "PoliticsAreaVo{" +
                 "id=" + id +
                 ", cnName='" + cnName + '\'' +
                 ", enName='" + enName + '\'' +
@@ -179,6 +192,7 @@ public class PoliticsAreaVo {
                 ", levelId=" + levelId +
                 ", keyword='" + keyword + '\'' +
                 ", countryId=" + countryId +
+                ", countryfullname='" + countryfullname + '\'' +
                 ", deleted=" + deleted +
                 ", operator='" + operator + '\'' +
                 ", insertTime=" + insertTime +

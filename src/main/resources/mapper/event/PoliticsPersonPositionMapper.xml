@@ -16,27 +16,22 @@
     id, person_id, position_id, start_date, end_date, deleted, operator, insert_time, 
     update_time
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from politics_person_position
-    where id = #{id,jdbcType=INTEGER}
-  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from politics_person_position
+    update politics_person_position
+    set
+    deleted = 1
     where id = #{id,jdbcType=INTEGER}
   </delete>
+
+  <delete id="deletedByPersonId" parameterType="java.lang.Integer">
+    update politics_person_position
+    set
+    deleted = 1
+    where person_id = #{id,jdbcType=INTEGER}
+  </delete>
+
   <insert id="insert" parameterType="cn.yuchen.bigdate.rs.service.event.pojo.po.PoliticsPersonPositionPo">
-    insert into politics_person_position (id, person_id, position_id, 
-      start_date, end_date, deleted, 
-      operator, insert_time, update_time
-      )
-    values (#{id,jdbcType=INTEGER}, #{personId,jdbcType=INTEGER}, #{positionId,jdbcType=INTEGER}, 
-      #{startDate,jdbcType=DATE}, #{endDate,jdbcType=DATE}, #{deleted,jdbcType=INTEGER}, 
-      #{operator,jdbcType=VARCHAR}, #{insertTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="cn.yuchen.bigdate.rs.service.event.pojo.po.PoliticsPersonPositionPo">
     insert into politics_person_position
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -97,46 +92,15 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.yuchen.bigdate.rs.service.event.pojo.po.PoliticsPersonPositionPo">
-    update politics_person_position
-    <set>
-      <if test="personId != null">
-        person_id = #{personId,jdbcType=INTEGER},
-      </if>
-      <if test="positionId != null">
-        position_id = #{positionId,jdbcType=INTEGER},
-      </if>
-      <if test="startDate != null">
-        start_date = #{startDate,jdbcType=DATE},
-      </if>
-      <if test="endDate != null">
-        end_date = #{endDate,jdbcType=DATE},
-      </if>
-      <if test="deleted != null">
-        deleted = #{deleted,jdbcType=INTEGER},
-      </if>
-      <if test="operator != null">
-        operator = #{operator,jdbcType=VARCHAR},
-      </if>
-      <if test="insertTime != null">
-        insert_time = #{insertTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="cn.yuchen.bigdate.rs.service.event.pojo.po.PoliticsPersonPositionPo">
-    update politics_person_position
-    set person_id = #{personId,jdbcType=INTEGER},
-      position_id = #{positionId,jdbcType=INTEGER},
-      start_date = #{startDate,jdbcType=DATE},
-      end_date = #{endDate,jdbcType=DATE},
-      deleted = #{deleted,jdbcType=INTEGER},
-      operator = #{operator,jdbcType=VARCHAR},
-      insert_time = #{insertTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+
+  <select id="selectPoByVo" parameterType="cn.yuchen.bigdate.rs.service.event.pojo.vo.PoliticsPersonPositionVo" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from politics_person_position
+    where
+    person_id = #{personId,jdbcType=VARCHAR}
+    and
+    position_id = #{positionId,jdbcType=VARCHAR}
+  </select>
+
 </mapper>

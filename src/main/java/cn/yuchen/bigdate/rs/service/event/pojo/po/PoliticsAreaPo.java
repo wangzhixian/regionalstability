@@ -15,6 +15,7 @@ public class PoliticsAreaPo {
      * 地区中文名称
      *
      */
+
     private String cnName;
     /**
      * 地区英文名称
@@ -46,6 +47,17 @@ public class PoliticsAreaPo {
      * 所属国家的ID
      */
     private Integer countryId;
+
+    private String countryFullName;
+
+    public String getCountryFullName() {
+        return countryFullName;
+    }
+
+    public void setCountryFullName(String countryFullName) {
+        this.countryFullName = countryFullName;
+    }
+
     /**
      * 是否逻辑删除 0 正常 1 删除
      */

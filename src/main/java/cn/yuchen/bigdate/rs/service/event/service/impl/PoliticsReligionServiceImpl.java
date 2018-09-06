@@ -4,12 +4,14 @@ import cn.yuchen.bigdate.rs.service.event.pojo.po.PoliticsPositionPo;
 import cn.yuchen.bigdate.rs.service.event.pojo.po.PoliticsReligionPo;
 import cn.yuchen.bigdate.rs.service.event.pojo.vo.PoliticsReligionVo;
 import cn.yuchen.bigdate.rs.service.event.pojo.webpage.PoliticsReligionPage;
+import cn.yuchen.bigdate.rs.service.event.pojo.webpage.PoliticsWeb;
 import cn.yuchen.bigdate.rs.service.event.service.PoliticsReligionService;
 import cn.yuchen.bigdate.rs.utility.AssertUtils;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +28,8 @@ public class PoliticsReligionServiceImpl implements PoliticsReligionService {
     @Override
     public int add(PoliticsReligionVo politicsReligionVo) {
 
-        AssertUtils.notNull(politicsReligionVo,"添加部门对象不能为空");
-        AssertUtils.greaterThanZero(politicsReligionVo.getId(),"所属部门的ID不能为空");
+        AssertUtils.notNull(politicsReligionVo,"添加宗教对象不能为空");
+        //AssertUtils.greaterThanZero(politicsReligionVo.getId(),"所属部门的ID不能为空");
         PoliticsReligionPo po = new PoliticsReligionPo();
         BeanUtils.copyProperties(politicsReligionVo,po);
         return politicsReligionDao.insert(po);
@@ -43,12 +45,12 @@ public class PoliticsReligionServiceImpl implements PoliticsReligionService {
     @Override
     public int update(PoliticsReligionVo politicsReligionVo) {
 
-        AssertUtils.notNull(politicsReligionVo,"修改政党对象不能为空");
+        AssertUtils.notNull(politicsReligionVo,"修改宗教对象不能为空");
         AssertUtils.greaterThanZero(politicsReligionVo.getId(),"要修改的ID不能为空");
         AssertUtils.greaterThanZero(politicsReligionVo.getCountryId(),"所属国家的ID不能为空");
         PoliticsReligionPo po = new PoliticsReligionPo();
         BeanUtils.copyProperties(politicsReligionVo,po);
-        return politicsReligionDao.updateByPrimaryKey(po);
+        return politicsReligionDao.updateByPrimaryKeySelective(po);
     }
 
     public PoliticsReligionVo findById(Integer id){
@@ -56,7 +58,7 @@ public class PoliticsReligionServiceImpl implements PoliticsReligionService {
         AssertUtils.greaterThanZero(id,"查询ID不能为空");
         PoliticsReligionPo politicsPositionPo = politicsReligionDao.selectByPrimaryKey(id);
         PoliticsReligionVo vo = new PoliticsReligionVo();
-        BeanUtils.copyProperties(vo,politicsPositionPo);
+        BeanUtils.copyProperties(politicsPositionPo,vo);
         return vo;
 
     }
@@ -71,6 +73,25 @@ public class PoliticsReligionServiceImpl implements PoliticsReligionService {
         PageHelper.startPage(politicsReligionPage.getPageNum(),politicsReligionPage.getPageSize());
         return politicsReligionDao.selectByPage(politicsReligionPage);
 
+    }
+
+    @Override
+    @Transactional
+    public boolean deleteByIds(List<Integer> ids) {
+        ids.forEach(id->{
+            delete(id);
+        });
+        return true;
+    }
+
+    @Override
+    @Transactional
+    public void updateReligionByIds(PoliticsWeb politicsWeb) {
+        politicsWeb.getIds().forEach(id->{
+            PoliticsReligionVo politicsReligionVo = findById(id);
+            politicsReligionVo.setLevelId(politicsWeb.getLevelId());
+            update(politicsReligionVo);
+        });
     }
 
 

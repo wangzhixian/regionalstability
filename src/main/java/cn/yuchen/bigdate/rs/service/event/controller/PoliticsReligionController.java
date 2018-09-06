@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * 人物控制类
+ * 宗教控制类
  * Created by lgd on 2018/8/30.
  */
 @RestController
@@ -25,6 +25,11 @@ public class PoliticsReligionController {
     @Autowired
     private PoliticsReligionService politicsReligionService;
 
+    /**
+     * 添加宗教信息
+     * @param politicsReligionVo
+     * @return
+     */
     @PostMapping("/add")
     public ResponseResult<Boolean> add(@RequestBody PoliticsReligionVo politicsReligionVo){
         Boolean result = false;
@@ -35,6 +40,11 @@ public class PoliticsReligionController {
         return new ResponseResult<>(result);
     }
 
+    /**
+     * 根据id删除宗教信息
+     * @param id
+     * @return
+     */
     @PostMapping("/delete/{id}")
     public ResponseResult<Boolean> delete(@PathVariable("id") Integer id){
         Boolean result = false;
@@ -45,7 +55,11 @@ public class PoliticsReligionController {
         return new ResponseResult<>(result);
     }
 
-
+    /**
+     * 修改宗教信息
+     * @param politicsReligionVo
+     * @return
+     */
     @PostMapping("/update")
     public ResponseResult<Boolean> update(@RequestBody PoliticsReligionVo politicsReligionVo){
         Boolean result = false;
@@ -58,7 +72,7 @@ public class PoliticsReligionController {
 
 
     /**
-     * 根据ID查询部门详情
+     * 根据ID宗教
      * @param id
      * @return
      */
@@ -71,7 +85,7 @@ public class PoliticsReligionController {
     }
 
     /**
-     * 分页条件查询
+     * 分页条件查询宗教信息
      * @return
      */
     @PostMapping("/findbypage")

@@ -30,7 +30,7 @@ public class PoliticsPositionServiceImpl implements PoliticsPositionService {
     public int add(PoliticsPositionVo politicsPositionVo) {
 
         AssertUtils.notNull(politicsPositionVo,"添加部门对象不能为空");
-        AssertUtils.greaterThanZero(politicsPositionVo.getId(),"所属部门的ID不能为空");
+       // AssertUtils.greaterThanZero(politicsPositionVo.getId(),"所属部门的ID不能为空");
         PoliticsPositionPo po = new PoliticsPositionPo();
         BeanUtils.copyProperties(politicsPositionVo,po);
         return politicsPositionDao.insert(po);
@@ -50,7 +50,7 @@ public class PoliticsPositionServiceImpl implements PoliticsPositionService {
         AssertUtils.greaterThanZero(politicsPositionVo.getCountryId(),"所属国家的ID不能为空");
         PoliticsPositionPo po = new PoliticsPositionPo();
         BeanUtils.copyProperties(politicsPositionVo,po);
-        return politicsPositionDao.updateByPrimaryKey(po);
+        return politicsPositionDao.updateByPrimaryKeySelective(po);
     }
 
     public PoliticsPositionVo findById(Integer id){

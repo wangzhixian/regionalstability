@@ -15,7 +15,7 @@ public interface PoliticsAreaDao {
 
     int update(PoliticsAreaPo record);
 
-    PoliticsAreaPo selectByPrimaryKey(Integer id);
+    PoliticsAreaVo selectByPrimaryKey(Integer id);
 
     List<PoliticsAreaVo> selectByPage(PoliticsAreaPage politicsAreaPage);
 

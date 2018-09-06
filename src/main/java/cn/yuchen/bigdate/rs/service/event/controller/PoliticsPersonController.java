@@ -27,6 +27,11 @@ public class PoliticsPersonController {
     @Autowired
     private PoliticsPersonService politicsPersonService;
 
+    /**
+     * 添加人物信息
+     * @param politicsPersonVo
+     * @return
+     */
     @PostMapping("/add")
     public ResponseResult<Boolean> add(@RequestBody PoliticsPersonVo politicsPersonVo){
         Boolean result = false;
@@ -37,6 +42,11 @@ public class PoliticsPersonController {
         return new ResponseResult<>(result);
     }
 
+    /**
+     * 根据id删除人物信息
+     * @param id
+     * @return
+     */
     @PostMapping("/delete/{id}")
     public ResponseResult<Boolean> delete(@PathVariable("id") Integer id){
         Boolean result = false;
@@ -47,7 +57,11 @@ public class PoliticsPersonController {
         return new ResponseResult<>(result);
     }
 
-
+    /**
+     * 修改人物信息
+     * @param politicsPersonVo
+     * @return
+     */
     @PostMapping("/update")
     public ResponseResult<Boolean> update(@RequestBody PoliticsPersonVo politicsPersonVo){
         Boolean result = false;
@@ -60,7 +74,7 @@ public class PoliticsPersonController {
 
 
     /**
-     * 根据ID查询部门详情
+     * 根据ID查询人物信息
      * @param id
      * @return
      */
@@ -73,7 +87,7 @@ public class PoliticsPersonController {
     }
 
     /**
-     * 分页条件查询
+     * 分页条件查询人物信息
      * @return
      */
     @PostMapping("/findbypage")

@@ -1,13 +1,22 @@
 package cn.yuchen.bigdate.rs.service.information.service.impl;
 
+import cn.yuchen.bigdate.rs.service.event.pojo.po.PoliticsAreaPo;
 import cn.yuchen.bigdate.rs.service.information.dao.EventBaseDao;
+import cn.yuchen.bigdate.rs.service.information.pojo.po.EventBasePo;
 import cn.yuchen.bigdate.rs.service.information.pojo.po.EventBasePoWithBLOBs;
+import cn.yuchen.bigdate.rs.service.information.pojo.vo.EventBaseVo;
+import cn.yuchen.bigdate.rs.service.information.pojo.webpage.EventBasePage;
 import cn.yuchen.bigdate.rs.service.information.service.EventBaseInformationService;
 import cn.yuchen.bigdate.rs.utility.AssertUtils;
+import cn.yuchen.bigdate.rs.web.analyze.pojo.EventWeb;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.github.pagehelper.PageHelper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -41,6 +50,7 @@ public class EventBaseInformationServiceImpl implements EventBaseInformationServ
 
 
     @Override
+
     public int update(EventBasePoWithBLOBs eventBasePoWithBLOBs) {
         AssertUtils.notNull(eventBasePoWithBLOBs,"添加原新闻对象不能为空");
         AssertUtils.greaterThanZero(eventBasePoWithBLOBs.getId(),"主键ID不能为空");
@@ -51,5 +61,21 @@ public class EventBaseInformationServiceImpl implements EventBaseInformationServ
         AssertUtils.hasText(eventBasePoWithBLOBs.getLongitude(),"经度不能为空");
         AssertUtils.hasText(eventBasePoWithBLOBs.getLatitude(),"纬度不能为空");
         return eventBaseDao.updateByPrimaryKeySelective(eventBasePoWithBLOBs);
+    }
+
+    @Override
+    public List<EventBaseVo> findByPage(EventBasePage eventBasePage) {
+        if(Objects.isNull(eventBasePage)){
+            return new ArrayList<>();
+        }
+        PageHelper.startPage(eventBasePage.getPageNum(),eventBasePage.getPageSize());
+        return eventBaseDao.selectByPage(eventBasePage);
+    }
+
+
+
+    @Override
+    public EventBasePoWithBLOBs findById(Long id) {
+        return eventBaseDao.selectByPrimaryKey(id);
     }
 }

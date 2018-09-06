@@ -8,6 +8,7 @@
     <result column="mini_cn_name" jdbcType="VARCHAR" property="miniCnName" />
     <result column="mini_en_name" jdbcType="VARCHAR" property="miniEnName" />
     <result column="country_id" jdbcType="INTEGER" property="countryId" />
+    <result column="countryFullName" jdbcType="VARCHAR" property="countryfullname" />
     <result column="level_id" jdbcType="INTEGER" property="levelId" />
     <result column="partygroup_id" jdbcType="INTEGER" property="partygroupId" />
     <result column="resume" jdbcType="VARCHAR" property="resume" />
@@ -21,13 +22,15 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
 
-  <resultMap id="PageResultMap" type="cn.yuchen.bigdate.rs.service.event.pojo.vo.PoliticsPersonVo">
+  <resultMap id="Page" type="cn.yuchen.bigdate.rs.service.event.pojo.vo.PoliticsPersonVo">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="cn_name" jdbcType="VARCHAR" property="cnName" />
     <result column="en_name" jdbcType="VARCHAR" property="enName" />
     <result column="mini_cn_name" jdbcType="VARCHAR" property="miniCnName" />
     <result column="mini_en_name" jdbcType="VARCHAR" property="miniEnName" />
     <result column="country_id" jdbcType="INTEGER" property="countryId" />
+    <result column="countryFullName" jdbcType="VARCHAR" property="countryfullname" />
+    <result column="position_name" jdbcType="VARCHAR" property="positionName" />
     <result column="level_id" jdbcType="INTEGER" property="levelId" />
     <result column="partygroup_id" jdbcType="INTEGER" property="partygroupId" />
     <result column="resume" jdbcType="VARCHAR" property="resume" />
@@ -45,27 +48,42 @@
     id, cn_name, en_name, mini_cn_name, mini_en_name, country_id, level_id, partygroup_id, 
     resume, area1, area2, area3, keyword, deleted, operator, insert_time, update_time
   </sql>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from politics_person
-    where id = #{id,jdbcType=INTEGER}
+    select
+    p.id, p.cn_name, p.en_name, p.mini_cn_name,p.mini_en_name, p.country_id, p.level_id,p.partygroup_id
+    p.resume,p.area1,p.area2,p.area3,p.keyword,  h.countryFullName,
+    p.deleted, p.operator, p.insert_time, p.update_time
+    from politics_person as p , hs_country_new as h
+    where
+    p.id = #{id,jdbcType=INTEGER}
+    and
+    p.deleted = 0
+    and
+    p.country_id = h.number
   </select>
 
-  <select id="selectByPage" parameterType="cn.yuchen.bigdate.rs.service.event.pojo.webpage.PoliticsPersonPage" resultMap="PageResultMap">
+  <select id="selectByPage" parameterType="cn.yuchen.bigdate.rs.service.event.pojo.webpage.PoliticsPersonPage" resultMap="Page">
     select
-    <include refid="Base_Column_List" />
-    from politics_person
+    p.id, p.cn_name, p.en_name, p.mini_cn_name,p.mini_en_name, p.country_id,
+    p.level_id,p.partygroup_id,p.resume, p.area1, p.area2, p.area3, p.keyword,
+    p.deleted, p.operator, p.insert_time, p.update_time,
+    h.countryFullName,
+    pp.cn_name as position_name
+    from politics_person as p , hs_country_new as h,politics_position as pp,politics_person_position as ppp
     <where>
-      deleted = 0
+      p.deleted = 0
+      AND p.country_id = h.number
+      AND p.id=ppp.person_id
+      AND pp.id = ppp.position_id
+      <if test="countryId !=null and countryId != 0 ">
+        AND p.country_id = #{countryId}
+      </if>
       <if test="cnName !=null and cnName !='' ">
-        AND `cn_name` LIKE CONCAT('%',#{cnName},'%')
+        AND p.cn_name LIKE CONCAT('%',#{cnName},'%')
       </if>
       <if test="enName !=null and enName !='' ">
-        AND `en_name` LIKE CONCAT('%',#{enName},'%')
-      </if>
-      <if test="countryId != null">
-        AND country_id = #{countryId,jdbcType=INTEGER}
+        AND p.en_name LIKE CONCAT('%',#{enName},'%')
       </if>
     </where>
   </select>
@@ -77,20 +95,6 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
 
-  <insert id="insert1" parameterType="cn.yuchen.bigdate.rs.service.event.pojo.po.PoliticsPersonPo">
-    insert into politics_person (id, cn_name, en_name, 
-      mini_cn_name, mini_en_name, country_id, 
-      level_id, partygroup_id, resume,
-      area1, area2, area3, 
-      keyword, deleted, operator, 
-      insert_time, update_time)
-    values (#{id,jdbcType=INTEGER}, #{cnName,jdbcType=VARCHAR}, #{enName,jdbcType=VARCHAR}, 
-      #{miniCnName,jdbcType=VARCHAR}, #{miniEnName,jdbcType=VARCHAR}, #{countryId,jdbcType=INTEGER}, 
-      #{levelId,jdbcType=INTEGER}, #{partygroupId,jdbcType=INTEGER}, #{resume,jdbcType=VARCHAR},
-      #{area1,jdbcType=INTEGER}, #{area2,jdbcType=INTEGER}, #{area3,jdbcType=INTEGER}, 
-      #{keyword,jdbcType=VARCHAR}, #{deleted,jdbcType=INTEGER}, #{operator,jdbcType=VARCHAR}, 
-      #{insertTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
-  </insert>
   <insert id="insert" parameterType="cn.yuchen.bigdate.rs.service.event.pojo.po.PoliticsPersonPo">
     insert into politics_person
     <trim prefix="(" suffix=")" suffixOverrides=",">

@@ -1,6 +1,7 @@
 package cn.yuchen.bigdate.rs.service.event.dao;
 
 import cn.yuchen.bigdate.rs.service.event.pojo.po.PoliticsPersonPositionPo;
+import cn.yuchen.bigdate.rs.service.event.pojo.vo.PoliticsPersonPositionVo;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
@@ -10,11 +11,7 @@ public interface PoliticsPersonPositionDao {
 
     int insert(PoliticsPersonPositionPo record);
 
-    int insertSelective(PoliticsPersonPositionPo record);
+    PoliticsPersonPositionPo selectPoByVo(PoliticsPersonPositionVo vo);
 
-    PoliticsPersonPositionPo selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(PoliticsPersonPositionPo record);
-
-    int updateByPrimaryKey(PoliticsPersonPositionPo record);
+    int deletedByPersonId(Integer id);
 }

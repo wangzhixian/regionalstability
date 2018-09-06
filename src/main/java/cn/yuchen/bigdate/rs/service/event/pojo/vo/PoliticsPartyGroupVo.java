@@ -31,6 +31,12 @@ public class PoliticsPartyGroupVo {
 
     private Integer countryId;
     /**
+     * 国家名称
+     */
+    private String countryfullname;
+
+
+    /**
      * 等级ID,默认为0表示没有等级
      */
 
@@ -99,6 +105,14 @@ public class PoliticsPartyGroupVo {
 
     public void setCountryId(Integer countryId) {
         this.countryId = countryId;
+    }
+
+    public String getCountryfullname() {
+        return countryfullname;
+    }
+
+    public void setCountryfullname(String countryfullname) {
+        this.countryfullname = countryfullname;
     }
 
     public Integer getLevelId() {

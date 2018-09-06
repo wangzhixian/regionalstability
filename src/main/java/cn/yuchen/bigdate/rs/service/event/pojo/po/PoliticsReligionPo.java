@@ -30,6 +30,16 @@ public class PoliticsReligionPo {
     /**
      * 关键词
      */
+    private String countryfullname;
+
+    public String getCountryfullname() {
+        return countryfullname;
+    }
+
+    public void setCountryfullname(String countryfullname) {
+        this.countryfullname = countryfullname;
+    }
+
     private String keyword;
     /**
      * 是否逻辑删除 0 正常 1 删除

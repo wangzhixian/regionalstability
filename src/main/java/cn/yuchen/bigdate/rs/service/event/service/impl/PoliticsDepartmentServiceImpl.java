@@ -28,7 +28,6 @@ public class PoliticsDepartmentServiceImpl implements PoliticsDepartmentService 
     @Override
     public int add(PoliticsDepartmentVo politicsDepartmentVo){
         AssertUtils.notNull(politicsDepartmentVo,"添加部门对象不能为空");
-        AssertUtils.greaterThanZero(politicsDepartmentVo.getId(),"所属部门的ID不能为空");
         AssertUtils.greaterThanZero(politicsDepartmentVo.getCountryId(),"所属国家的ID不能为空");
         PoliticsDepartmentPo po = new PoliticsDepartmentPo();
         BeanUtils.copyProperties(politicsDepartmentVo,po);

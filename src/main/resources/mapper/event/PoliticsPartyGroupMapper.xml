@@ -7,6 +7,7 @@
     <result column="en_name" jdbcType="VARCHAR" property="enName" />
     <result column="mini_en_name" jdbcType="VARCHAR" property="miniEnName" />
     <result column="country_id" jdbcType="INTEGER" property="countryId" />
+    <result column="countryFullName" jdbcType="VARCHAR" property="countryfullname" />
     <result column="level_id" jdbcType="INTEGER" property="levelId" />
     <result column="keyword" jdbcType="VARCHAR" property="keyword" />
     <result column="deleted" jdbcType="INTEGER" property="deleted" />
@@ -21,6 +22,7 @@
     <result column="en_name" jdbcType="VARCHAR" property="enName" />
     <result column="mini_en_name" jdbcType="VARCHAR" property="miniEnName" />
     <result column="country_id" jdbcType="INTEGER" property="countryId" />
+    <result column="countryFullName" jdbcType="VARCHAR" property="countryfullname" />
     <result column="level_id" jdbcType="INTEGER" property="levelId" />
     <result column="keyword" jdbcType="VARCHAR" property="keyword" />
     <result column="deleted" jdbcType="INTEGER" property="deleted" />
@@ -34,18 +36,28 @@
     insert_time, update_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from politics_party_group
-    where id = #{id,jdbcType=INTEGER}
+    select
+    p.id, p.cn_name, p.en_name, p.mini_en_name, p.country_id, p.level_id,
+    p.keyword,  h.countryFullName,
+    p.deleted, p.operator, p.insert_time, p.update_time
+    from politics_party_group as p , hs_country_new as h
+    where
+    p.id = #{id,jdbcType=INTEGER}
+    and
+    p.deleted = 0
+    and
+    p.country_id = h.number
   </select>
 
   <select id="selectByPage" parameterType="cn.yuchen.bigdate.rs.service.event.pojo.webpage.PoliticsPartyGroupPage" resultMap="PageResultMap">
     select
-    <include refid="Base_Column_List" />
-    from politics_party_group
+    p.id, p.cn_name, p.en_name, p.mini_en_name, p.country_id, p.level_id,
+    p.keyword,  h.countryFullName,
+    p.deleted, p.operator, p.insert_time, p.update_time
+    from politics_party_group as p , hs_country_new as h
     <where>
       deleted = 0
+      AND p.country_id = h.number
       <if test="cnName !=null and cnName !='' ">
         AND `cn_name` LIKE CONCAT('%',#{cnName},'%')
       </if>

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * 人物控制类
+ * 职位控制类
  * Created by lgd on 2018/8/30.
  */
 @RestController
@@ -27,6 +27,11 @@ public class PoliticsPositionController {
     @Autowired
     private PoliticsPositionService politicsPositionService;
 
+    /**
+     * 添加职位信息
+     * @param politicsPersonPositionVo
+     * @return
+     */
     @PostMapping("/add")
     public ResponseResult<Boolean> add(@RequestBody PoliticsPositionVo politicsPersonPositionVo){
         Boolean result = false;
@@ -37,6 +42,11 @@ public class PoliticsPositionController {
         return new ResponseResult<>(result);
     }
 
+    /**
+     * 根据id删除职位信息
+     * @param id
+     * @return
+     */
     @PostMapping("/delete/{id}")
     public ResponseResult<Boolean> delete(@PathVariable("id") Integer id){
         Boolean result = false;
@@ -47,7 +57,11 @@ public class PoliticsPositionController {
         return new ResponseResult<>(result);
     }
 
-
+    /**
+     * 修改职位信息
+     * @param positionVo
+     * @return
+     */
     @PostMapping("/update")
     public ResponseResult<Boolean> update(@RequestBody PoliticsPositionVo positionVo){
         Boolean result = false;
@@ -59,7 +73,7 @@ public class PoliticsPositionController {
     }
 
     /**
-     * 根据ID查询部门详情
+     * 根据ID查询职位信息
      * @param id
      * @return
      */
@@ -72,7 +86,7 @@ public class PoliticsPositionController {
     }
 
     /**
-     * 分页条件查询
+     * 分页条件查询职位信息
      * @return
      */
     @PostMapping("/findbypage")

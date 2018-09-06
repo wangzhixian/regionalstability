@@ -23,6 +23,11 @@ public class PoliticsDepartmenController {
     @Autowired
     private PoliticsDepartmentService politicsDepartmentService;
 
+    /**
+     * 添加部门信息
+     * @param politicsDepartmentVo
+     * @return
+     */
     @PostMapping("/add")
     public ResponseResult<Boolean> add(@RequestBody PoliticsDepartmentVo politicsDepartmentVo){
         Boolean result = false;
@@ -33,6 +38,11 @@ public class PoliticsDepartmenController {
         return new ResponseResult<>(result);
     }
 
+    /**
+     * 根据id删除部门信息
+     * @param id
+     * @return
+     */
     @PostMapping("/delete/{id}")
     public ResponseResult<Boolean> delete(@PathVariable("id") Integer id){
         Boolean result = false;
@@ -43,7 +53,11 @@ public class PoliticsDepartmenController {
         return new ResponseResult<>(result);
     }
 
-
+    /**
+     * 修改部门信息
+     * @param politicsDepartmentVo
+     * @return
+     */
     @PostMapping("/update")
     public ResponseResult<Boolean> update(@RequestBody PoliticsDepartmentVo politicsDepartmentVo){
         Boolean result = false;
@@ -68,8 +82,8 @@ public class PoliticsDepartmenController {
     }
 
     /**
-     * 分页条件查询
-     * @param politicsAreaPage
+     * 分页条件查询部门信息
+     * @param politicsDepartmentPage
      * @return
      */
     @PostMapping("/findbypage")

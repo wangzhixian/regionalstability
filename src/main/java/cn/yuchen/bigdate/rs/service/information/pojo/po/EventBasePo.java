@@ -3,6 +3,7 @@ package cn.yuchen.bigdate.rs.service.information.pojo.po;
 import java.util.Date;
 
 public class EventBasePo {
+
     private Long id;
 
     private String nid;
@@ -14,6 +15,10 @@ public class EventBasePo {
     private Byte type;
 
     private Date eventTime;
+
+    private String people;
+
+    private String sites;
 
     private Date endTime;
 
@@ -44,7 +49,7 @@ public class EventBasePo {
     }
 
     public void setNid(String nid) {
-        this.nid = nid == null ? null : nid.trim();
+        this.nid = nid;
     }
 
     public String getEventName() {
@@ -52,7 +57,7 @@ public class EventBasePo {
     }
 
     public void setEventName(String eventName) {
-        this.eventName = eventName == null ? null : eventName.trim();
+        this.eventName = eventName;
     }
 
     public Integer getCountryId() {
@@ -79,6 +84,22 @@ public class EventBasePo {
         this.eventTime = eventTime;
     }
 
+    public String getPeople() {
+        return people;
+    }
+
+    public void setPeople(String people) {
+        this.people = people;
+    }
+
+    public String getSites() {
+        return sites;
+    }
+
+    public void setSites(String sites) {
+        this.sites = sites;
+    }
+
     public Date getEndTime() {
         return endTime;
     }
@@ -92,7 +113,7 @@ public class EventBasePo {
     }
 
     public void setLongitude(String longitude) {
-        this.longitude = longitude == null ? null : longitude.trim();
+        this.longitude = longitude;
     }
 
     public String getLatitude() {
@@ -100,7 +121,7 @@ public class EventBasePo {
     }
 
     public void setLatitude(String latitude) {
-        this.latitude = latitude == null ? null : latitude.trim();
+        this.latitude = latitude;
     }
 
     public Integer getStatus() {
@@ -124,7 +145,7 @@ public class EventBasePo {
     }
 
     public void setOperator(String operator) {
-        this.operator = operator == null ? null : operator.trim();
+        this.operator = operator;
     }
 
     public Date getInsertTime() {

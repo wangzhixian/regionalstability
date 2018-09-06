@@ -9,7 +9,9 @@ import java.util.Objects;
  * Created by wzx on 2018/7/24.
  */
 public class PageUtils implements Serializable {
+
     private Integer pageNum = 1;
+
     private Integer pageSize = 10;
 
     public Integer getPageNum() {

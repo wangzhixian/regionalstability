@@ -10,10 +10,4 @@ public interface PoliticsPersonPositionService {
     int add(PoliticsPersonPositionVo politicsPersonPositionVo);
 
     int delete(Integer id);
-
-    int update(PoliticsPersonPositionVo politicsPersonPositionVo);
-
-    PoliticsPersonPositionVo findById(Integer id);
-
-    //List<PoliticsDepartmentVo> findByPage(PoliticsDepartmentVo politicsDepartmentVo);
 }

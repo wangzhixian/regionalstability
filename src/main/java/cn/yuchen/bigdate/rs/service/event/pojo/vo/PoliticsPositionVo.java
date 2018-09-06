@@ -28,6 +28,10 @@ public class PoliticsPositionVo extends PoliticsPersonVo {
 
     private Integer countryId;
     /**
+     * 国家名称
+     */
+    private String countryfullname;
+    /**
      * 关键词
      */
     private String keyword;
@@ -86,6 +90,16 @@ public class PoliticsPositionVo extends PoliticsPersonVo {
 
     public void setCountryId(Integer countryId) {
         this.countryId = countryId;
+    }
+
+    @Override
+    public String getCountryfullname() {
+        return countryfullname;
+    }
+
+    @Override
+    public void setCountryfullname(String countryfullname) {
+        this.countryfullname = countryfullname;
     }
 
     public String getKeyword() {

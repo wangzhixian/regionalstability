@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * 人物控制类
+ * 人物部门关系控制类
  * Created by lgd on 2018/8/30.
  */
 @RestController
@@ -19,6 +19,11 @@ public class PoliticsPersonPositionController {
     @Autowired
     private PoliticsPersonPositionService politicsPersonPositionService;
 
+    /**
+     * 添加人物部门关系
+     * @param politicsPersonPositionVo
+     * @return
+     */
     @PostMapping("/add")
     public ResponseResult<Boolean> add(@RequestBody PoliticsPersonPositionVo politicsPersonPositionVo){
         Boolean result = false;
@@ -29,6 +34,11 @@ public class PoliticsPersonPositionController {
         return new ResponseResult<>(result);
     }
 
+    /**
+     * 根据id删除人物部门关系
+     * @param id
+     * @return
+     */
     @PostMapping("/delete/{id}")
     public ResponseResult<Boolean> delete(@PathVariable("id") Integer id){
         Boolean result = false;
@@ -37,32 +47,6 @@ public class PoliticsPersonPositionController {
             result = true;
         }
         return new ResponseResult<>(result);
-    }
-
-
-    @PostMapping("/update")
-    public ResponseResult<Boolean> update(@RequestBody PoliticsPersonPositionVo politicsPersonPositionVo){
-        Boolean result = false;
-        int updateFlag = politicsPersonPositionService.update(politicsPersonPositionVo);
-        if(updateFlag == 1){
-            result = true;
-        }
-        return new ResponseResult<>(result);
-    }
-
-
-
-    /**
-     * 根据ID查询部门详情
-     * @param id
-     * @return
-     */
-    @PostMapping("/find/{id}")
-    public ResponseResult<PoliticsPersonPositionVo> findById(@PathVariable("id") Integer id){
-
-        PoliticsPersonPositionVo politicsPersonPositionVo = politicsPersonPositionService.findById(id);
-
-        return new ResponseResult<>(politicsPersonPositionVo);
     }
 
 }

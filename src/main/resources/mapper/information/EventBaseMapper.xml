@@ -31,6 +31,18 @@
     <result column="weapons" jdbcType="LONGVARCHAR" property="weapons" />
     <result column="casualties" jdbcType="LONGVARCHAR" property="casualties" />
   </resultMap>
+
+  <resultMap id="PageResultMap" type="cn.yuchen.bigdate.rs.service.information.pojo.vo.EventBaseVo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="event_name" jdbcType="VARCHAR" property="eventName" />
+
+    <result column="countryFullName" jdbcType="VARCHAR" property="countryfullname" />
+    <result column="event_time" jdbcType="TIMESTAMP" property="eventTime" />
+    <result column="relevants" jdbcType="VARCHAR" property="relevants" />
+    <result column="sites" jdbcType="VARCHAR" property="sites" />
+
+  </resultMap>
+
   <sql id="Base_Column_List">
     id, nid, event_name, country_id, `type`, event_time, end_time, longitude, latitude,
     status, deleted, operator, insert_time, update_time
@@ -317,5 +329,24 @@
     id = #{id,jdbcType=BIGINT}
   </update>
 
+  <select id="selectByPage" parameterType="cn.yuchen.bigdate.rs.service.information.pojo.webpage.EventBasePage" resultMap="PageResultMap"
+          resultType="cn.yuchen.bigdate.rs.service.information.pojo.vo.EventBaseVo">
+    select
+    ieb.id,ieb.event_name,ieb.country_id,ieb.event_time,ieb.relevants,ieb.sites,h.countryFullName
+    from information_event_base ieb , hs_country_new as h
+    <where>
+      deleted = 0
+      AND country_id = h.number
+      <if test="eventName !=null and eventName !='' ">
+        AND `event_name` LIKE CONCAT('%',#{eventName},'%')
+      </if>
+      <if test="eventTime !=null and eventTime !='' ">
+        AND `event_time` LIKE CONCAT('%',#{eventTime},'%')
+      </if>
+      <if test="endTime != null and endTime !='' ">
+        AND `end_time` LIKE CONCAT('%',#{endTime},'%')
+      </if>
+    </where>
+  </select>
 
 </mapper>

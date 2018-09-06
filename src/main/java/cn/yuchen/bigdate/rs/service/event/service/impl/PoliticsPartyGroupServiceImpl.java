@@ -7,12 +7,14 @@ import cn.yuchen.bigdate.rs.service.event.pojo.vo.PoliticsDepartmentVo;
 import cn.yuchen.bigdate.rs.service.event.pojo.vo.PoliticsPartyGroupVo;
 import cn.yuchen.bigdate.rs.service.event.pojo.webpage.PoliticsDepartmentPage;
 import cn.yuchen.bigdate.rs.service.event.pojo.webpage.PoliticsPartyGroupPage;
+import cn.yuchen.bigdate.rs.service.event.pojo.webpage.PoliticsWeb;
 import cn.yuchen.bigdate.rs.service.event.service.PoliticsPartyGroupService;
 import cn.yuchen.bigdate.rs.utility.AssertUtils;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,5 +85,24 @@ public class PoliticsPartyGroupServiceImpl implements PoliticsPartyGroupService 
         }
         PageHelper.startPage(politicsPartyGroupPage.getPageNum(),politicsPartyGroupPage.getPageSize());
         return politicsPartyGroupDao.selectByPage(politicsPartyGroupPage);
+    }
+
+    @Override
+    @Transactional
+    public boolean deleteByIds(List<Integer> ids) {
+        ids.forEach(id->{
+            delete(id);
+        });
+        return true;
+    }
+
+    @Override
+    @Transactional
+    public void updatePartyGroupByIds(PoliticsWeb politicsWeb) {
+        politicsWeb.getIds().forEach(id->{
+            PoliticsPartyGroupVo politicsPartyGroupVo = findById(id);
+            politicsPartyGroupVo.setLevelId(politicsWeb.getLevelId());
+            update(politicsPartyGroupVo);
+        });
     }
 }

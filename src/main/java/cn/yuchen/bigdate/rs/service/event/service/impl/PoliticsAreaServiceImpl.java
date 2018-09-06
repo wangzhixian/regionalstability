@@ -4,12 +4,14 @@ import cn.yuchen.bigdate.rs.service.event.dao.PoliticsAreaDao;
 import cn.yuchen.bigdate.rs.service.event.pojo.po.PoliticsAreaPo;
 import cn.yuchen.bigdate.rs.service.event.pojo.vo.PoliticsAreaVo;
 import cn.yuchen.bigdate.rs.service.event.pojo.webpage.PoliticsAreaPage;
+import cn.yuchen.bigdate.rs.service.event.pojo.webpage.PoliticsWeb;
 import cn.yuchen.bigdate.rs.service.event.service.PoliticsAreaService;
 import cn.yuchen.bigdate.rs.utility.AssertUtils;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,10 +56,8 @@ public class PoliticsAreaServiceImpl implements PoliticsAreaService {
     @Override
     public PoliticsAreaVo findById(Integer id) {
         AssertUtils.greaterThanZero(id,"查询ID不能为空");
-        PoliticsAreaPo politicsAreaPo = politicsAreaDao.selectByPrimaryKey(id);
-        PoliticsAreaVo vo = new PoliticsAreaVo();
-        BeanUtils.copyProperties(politicsAreaPo,vo);
-        return vo;
+        PoliticsAreaVo politicsAreaVo = politicsAreaDao.selectByPrimaryKey(id);
+        return politicsAreaVo;
     }
 
     @Override
@@ -67,6 +67,25 @@ public class PoliticsAreaServiceImpl implements PoliticsAreaService {
         }
         PageHelper.startPage(politicsAreaPage.getPageNum(),politicsAreaPage.getPageSize());
         return politicsAreaDao.selectByPage(politicsAreaPage);
+    }
+
+    @Override
+    @Transactional
+    public boolean deleteByIds(List<Integer> ids) {
+        ids.forEach(id->{
+            delete(id);
+        });
+        return true;
+    }
+
+    @Override
+    @Transactional
+    public void updateAreaByIds(PoliticsWeb politicsWeb) {
+        politicsWeb.getIds().forEach(id->{
+            PoliticsAreaVo politicsAreaVo = findById(id);
+            politicsAreaVo.setLevelId(politicsWeb.getLevelId());
+            update(politicsAreaVo);
+        });
     }
 
 

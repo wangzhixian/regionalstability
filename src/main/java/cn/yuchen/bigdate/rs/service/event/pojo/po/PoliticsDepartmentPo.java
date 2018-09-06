@@ -29,6 +29,16 @@ public class PoliticsDepartmentPo {
      * 部门等级ID
      */
 
+    private String countryfullname;
+
+    public String getCountryfullname() {
+        return countryfullname;
+    }
+
+    public void setCountryfullname(String countryfullname) {
+        this.countryfullname = countryfullname;
+    }
+
     private Integer levelId;
     /**
      *关键词

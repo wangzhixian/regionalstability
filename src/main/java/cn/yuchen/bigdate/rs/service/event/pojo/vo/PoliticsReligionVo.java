@@ -28,6 +28,10 @@ public class PoliticsReligionVo {
      */
     private Integer countryId;
     /**
+     * 国家名称
+     */
+    private String countryfullname;
+    /**
      * 关键词
      */
     private String keyword;
@@ -87,6 +91,14 @@ public class PoliticsReligionVo {
 
     public void setCountryId(Integer countryId) {
         this.countryId = countryId;
+    }
+
+    public String getCountryfullname() {
+        return countryfullname;
+    }
+
+    public void setCountryfullname(String countryfullname) {
+        this.countryfullname = countryfullname;
     }
 
     public String getKeyword() {

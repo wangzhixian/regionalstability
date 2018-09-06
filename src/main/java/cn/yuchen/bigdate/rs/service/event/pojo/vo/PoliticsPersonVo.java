@@ -35,6 +35,19 @@ public class PoliticsPersonVo {
      */
 
     private Integer countryId;
+
+    /**
+     * 国家名称
+     */
+
+
+    private String countryfullname;
+    /**
+     * 部门英文名称
+     */
+    private String positionName;
+
+
     /**
      * 等级ID,默认为0表示没有等级
      */
@@ -83,9 +96,17 @@ public class PoliticsPersonVo {
      */
     private Date insertTime;
     /**
-     * 最后更新时间s
+     * 最后更新时间
      */
     private Date updateTime;
+
+    public String getPositionName() {
+        return positionName;
+    }
+
+    public void setPositionName(String positionName) {
+        this.positionName = positionName;
+    }
 
     public Integer getId() {
         return id;
@@ -133,6 +154,14 @@ public class PoliticsPersonVo {
 
     public void setCountryId(Integer countryId) {
         this.countryId = countryId;
+    }
+
+    public String getCountryfullname() {
+        return countryfullname;
+    }
+
+    public void setCountryfullname(String countryfullname) {
+        this.countryfullname = countryfullname;
     }
 
     public Integer getLevelId() {

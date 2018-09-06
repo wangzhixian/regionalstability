@@ -1,12 +1,14 @@
 package cn.yuchen.bigdate.rs.service.event.service.impl;
 import cn.yuchen.bigdate.rs.service.event.dao.PoliticsPartyGroupDao;
 import cn.yuchen.bigdate.rs.service.event.dao.PoliticsPersonDao;
+import cn.yuchen.bigdate.rs.service.event.dao.PoliticsPersonPositionDao;
 import cn.yuchen.bigdate.rs.service.event.pojo.po.PoliticsPartyGroupPo;
 import cn.yuchen.bigdate.rs.service.event.pojo.po.PoliticsPersonPo;
 import cn.yuchen.bigdate.rs.service.event.pojo.po.PoliticsPersonPositionPo;
 import cn.yuchen.bigdate.rs.service.event.pojo.vo.PoliticsPartyGroupVo;
 import cn.yuchen.bigdate.rs.service.event.pojo.vo.PoliticsPersonVo;
 import cn.yuchen.bigdate.rs.service.event.pojo.webpage.PoliticsPersonPage;
+import cn.yuchen.bigdate.rs.service.event.pojo.webpage.PoliticsWeb;
 import cn.yuchen.bigdate.rs.service.event.service.PoliticsPartyGroupService;
 import cn.yuchen.bigdate.rs.service.event.service.PoliticsPersonService;
 import cn.yuchen.bigdate.rs.utility.AssertUtils;
@@ -14,7 +16,9 @@ import com.github.pagehelper.PageHelper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.beans.Transient;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -24,8 +28,12 @@ import java.util.Objects;
  */
 @Service
 public class PoliticsPersonServiceImpl implements PoliticsPersonService {
+
     @Autowired
     private PoliticsPersonDao politicsPersonDao;
+
+    @Autowired
+    private PoliticsPersonPositionDao politicsPersonPositionDao;
 
     @Override
     public int add(PoliticsPersonVo politicsPersonVo) {
@@ -37,11 +45,14 @@ public class PoliticsPersonServiceImpl implements PoliticsPersonService {
         return politicsPersonDao.insert(po);
     }
 
-    @Override
-    public int delete(Integer id) {
 
+    @Override
+    @Transactional
+    public int delete(Integer id) {
         AssertUtils.greaterThanZero(id,"要删除的ID不能为空");
-        return politicsPersonDao.deleteByPrimaryKey(id);
+        politicsPersonDao.deleteByPrimaryKey(id);
+        politicsPersonPositionDao.deletedByPersonId(id);
+        return 1;
     }
 
     @Override
@@ -80,6 +91,25 @@ public class PoliticsPersonServiceImpl implements PoliticsPersonService {
         PageHelper.startPage(politicsPersonPage.getPageNum(),politicsPersonPage.getPageSize());
         return politicsPersonDao.selectByPage(politicsPersonPage);
 
+    }
+
+    @Override
+    @Transactional
+    public boolean deleteByIds(List<Integer> ids) {
+        ids.forEach(id->{
+            delete(id);
+        });
+        return true;
+    }
+
+    @Override
+    @Transactional
+    public void updatePersonByIds(PoliticsWeb politicsWeb) {
+        politicsWeb.getIds().forEach(id->{
+            PoliticsPersonVo politicsPersonVo = findById(id);
+            politicsPersonVo.setLevelId(politicsWeb.getLevelId());
+            update(politicsPersonVo);
+        });
     }
 
 

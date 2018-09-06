@@ -1,35 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.yuchen.bigdate.rs.service.event.dao.PoliticsReligionDao">
-  <resultMap id="BaseResultMap" type="cn.yuchen.bigdate.rs.service.event.pojo.vo.PoliticsReligionVo">
+
+  <resultMap id="BaseResultMap" type="cn.yuchen.bigdate.rs.service.event.pojo.po.PoliticsReligionPo">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="cn_name" jdbcType="VARCHAR" property="cnName" />
     <result column="en_name" jdbcType="VARCHAR" property="enName" />
     <result column="level_id" jdbcType="INTEGER" property="levelId" />
     <result column="country_id" jdbcType="INTEGER" property="countryId" />
+    <result column="countryFullName" jdbcType="VARCHAR" property="countryfullname" />
     <result column="keyword" jdbcType="VARCHAR" property="keyword" />
     <result column="deleted" jdbcType="INTEGER" property="deleted" />
     <result column="operator" jdbcType="VARCHAR" property="operator" />
     <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
+
+  <resultMap id="PageResultMap" type="cn.yuchen.bigdate.rs.service.event.pojo.vo.PoliticsReligionVo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="cn_name" jdbcType="VARCHAR" property="cnName" />
+    <result column="en_name" jdbcType="VARCHAR" property="enName" />
+    <result column="level_id" jdbcType="INTEGER" property="levelId" />
+    <result column="country_id" jdbcType="INTEGER" property="countryId" />
+    <result column="countryFullName" jdbcType="VARCHAR" property="countryfullname" />
+    <result column="keyword" jdbcType="VARCHAR" property="keyword" />
+    <result column="deleted" jdbcType="INTEGER" property="deleted" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
   <sql id="Base_Column_List">
     id, cn_name, en_name, level_id, country_id, keyword, deleted, operator, insert_time, 
     update_time
   </sql>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from politics_religion
-    where id = #{id,jdbcType=INTEGER}
+    select
+    p.id, p.cn_name, p.en_name, p.level_id,
+    p.country_id,p.keyword, h.countryFullName,
+    p.deleted, p.operator, p.insert_time, p.update_time
+    from politics_religion as p , hs_country_new as h
+    where
+    p.id = #{id,jdbcType=INTEGER}
+    and
+    p.deleted = 0
+    and
+    p.country_id = h.number
   </select>
 
   <select id="selectByPage" parameterType="cn.yuchen.bigdate.rs.service.event.pojo.webpage.PoliticsReligionPage" resultMap="PageResultMap">
     select
-    <include refid="Base_Column_List" />
-    from politics_department
+    p.id, p.cn_name, p.en_name, p.level_id,
+    p.country_id,p.keyword, h.countryFullName,
+    p.deleted, p.operator, p.insert_time, p.update_time
+    from politics_religion as p , hs_country_new as h
     <where>
       deleted = 0
+      <if test="countryId !=null and countryId != 0 ">
+        AND p.country_id = h.number
+      </if>
       <if test="cnName !=null and cnName !='' ">
         AND `cn_name` LIKE CONCAT('%',#{cnName},'%')
       </if>
@@ -43,20 +73,13 @@
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from politics_religion
+    update politics_religion
+    set
+    deleted = 1
     where id = #{id,jdbcType=INTEGER}
   </delete>
+
   <insert id="insert" parameterType="cn.yuchen.bigdate.rs.service.event.pojo.po.PoliticsReligionPo">
-    insert into politics_religion (id, cn_name, en_name, 
-      level_id, country_id, keyword, 
-      deleted, operator, insert_time, 
-      update_time)
-    values (#{id,jdbcType=INTEGER}, #{cnName,jdbcType=VARCHAR}, #{enName,jdbcType=VARCHAR}, 
-      #{levelId,jdbcType=INTEGER}, #{countryId,jdbcType=INTEGER}, #{keyword,jdbcType=VARCHAR}, 
-      #{deleted,jdbcType=INTEGER}, #{operator,jdbcType=VARCHAR}, #{insertTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP})
-  </insert>
-  <insert id="insertSelective" parameterType="cn.yuchen.bigdate.rs.service.event.pojo.po.PoliticsReligionPo">
     insert into politics_religion
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -155,6 +178,7 @@
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
+    and deleted = 0
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.yuchen.bigdate.rs.service.event.pojo.po.PoliticsReligionPo">
     update politics_religion

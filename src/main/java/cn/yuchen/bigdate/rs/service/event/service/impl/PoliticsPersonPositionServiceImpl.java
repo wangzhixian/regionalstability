@@ -5,9 +5,13 @@ import cn.yuchen.bigdate.rs.service.event.pojo.po.PoliticsPersonPositionPo;
 import cn.yuchen.bigdate.rs.service.event.pojo.vo.PoliticsPersonPositionVo;
 import cn.yuchen.bigdate.rs.service.event.service.PoliticsPersonPositionService;
 import cn.yuchen.bigdate.rs.utility.AssertUtils;
+import cn.yuchen.bigdate.rs.utility.ResponseResult;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.Objects;
 
 /**
  * Created by lgd on 2018/8/30.
@@ -22,9 +26,19 @@ public class PoliticsPersonPositionServiceImpl implements PoliticsPersonPosition
     public int add(PoliticsPersonPositionVo politicsPersonPositionVo) {
 
         AssertUtils.notNull(politicsPersonPositionVo,"添加部门对象不能为空");
-        AssertUtils.greaterThanZero(politicsPersonPositionVo.getId(),"所属部门的ID不能为空");
+
+        AssertUtils.greaterThanZero(politicsPersonPositionVo.getPositionId(),"职位id不能为空");
+
+        AssertUtils.greaterThanZero(politicsPersonPositionVo.getPersonId(),"人物id不能为空");
+
+        PoliticsPersonPositionPo flagPo = politicsPersonPositionDao.selectPoByVo(politicsPersonPositionVo);
+
+        AssertUtils.isNull(flagPo,"关联关系已存在");
+
         PoliticsPersonPositionPo po = new PoliticsPersonPositionPo();
+
         BeanUtils.copyProperties(politicsPersonPositionVo,po);
+
         return politicsPersonPositionDao.insert(po);
 
     }
@@ -33,33 +47,9 @@ public class PoliticsPersonPositionServiceImpl implements PoliticsPersonPosition
     public int delete(Integer id) {
 
         AssertUtils.greaterThanZero(id,"要删除的ID不能为空");
+
         return politicsPersonPositionDao.deleteByPrimaryKey(id);
-
     }
 
-    @Override
-    public int update(PoliticsPersonPositionVo politicsPersonPositionVo) {
 
-        AssertUtils.notNull(politicsPersonPositionVo,"修改政党对象不能为空");
-        AssertUtils.greaterThanZero(politicsPersonPositionVo.getId(),"要修改的ID不能为空");
-        AssertUtils.greaterThanZero(politicsPersonPositionVo.getPositionId(),"所属国家的ID不能为空");
-        PoliticsPersonPositionPo po = new PoliticsPersonPositionPo();
-        BeanUtils.copyProperties(politicsPersonPositionVo,po);
-        return politicsPersonPositionDao.updateByPrimaryKey(po);
-    }
-
-    public PoliticsPersonPositionVo findById(Integer id){
-
-        AssertUtils.greaterThanZero(id,"查询ID不能为空");
-
-        PoliticsPersonPositionPo politicsPersonPositionPo = politicsPersonPositionDao.selectByPrimaryKey(id);
-
-        PoliticsPersonPositionVo vo = new PoliticsPersonPositionVo();
-
-        BeanUtils.copyProperties(politicsPersonPositionPo,vo);
-
-        return vo;
-    }
-
-    //List<PoliticsDepartmentVo> findByPage(PoliticsDepartmentVo politicsDepartmentVo);
 }

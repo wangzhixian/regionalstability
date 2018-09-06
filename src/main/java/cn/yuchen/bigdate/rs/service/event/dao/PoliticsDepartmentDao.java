@@ -20,7 +20,6 @@ public interface PoliticsDepartmentDao {
 
     int updateByPrimaryKeySelective(PoliticsDepartmentPo record);
 
-    int updateByPrimaryKey(PoliticsDepartmentPo record);
 
     List<PoliticsDepartmentVo> selectByPage(PoliticsDepartmentPage politicsDepartmentPage);
 }

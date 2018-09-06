@@ -16,7 +16,6 @@ public interface PoliticsPositionDao {
 
     int insert(PoliticsPositionPo record);
 
-    int insertSelective(PoliticsPositionPo record);
 
     PoliticsPositionPo selectByPrimaryKey(Integer id);
 
