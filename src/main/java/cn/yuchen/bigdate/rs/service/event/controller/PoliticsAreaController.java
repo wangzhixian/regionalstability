@@ -16,17 +16,17 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/gsvarea")
+@RequestMapping("/area")
 @CrossOrigin
 public class PoliticsAreaController {
     @Autowired
-    private GsvAreaService gsvAreaService;
+    private PoliticsAreaService politicsAreaService;
 
 
     @PostMapping("/add")
-    public ResponseResult<Boolean> add(@RequestBody GsvAreaVo gsvAreaVo) {
+    public ResponseResult<Boolean> add(@RequestBody PoliticsAreaVo politicsAreaVo) {
         Boolean result = false;
-        int addFlag = gsvAreaService.add(gsvAreaVo);
+        int addFlag = politicsAreaService.add(politicsAreaVo);
         if (addFlag == 1) {
             result = true;
         }
@@ -36,7 +36,7 @@ public class PoliticsAreaController {
     @PostMapping("/delete/{id}")
     public ResponseResult<Boolean> delete(@PathVariable("id") Integer id) {
         Boolean result = false;
-        int deleteFlag = gsvAreaService.delete(id);
+        int deleteFlag = politicsAreaService.delete(id);
         if (deleteFlag == 1) {
             result = true;
         }
@@ -45,9 +45,9 @@ public class PoliticsAreaController {
 
 
     @PostMapping("/update")
-    public ResponseResult<Boolean> update(@RequestBody GsvAreaVo gsvAreaVo) {
+    public ResponseResult<Boolean> update(@RequestBody PoliticsAreaVo politicsAreaVo) {
         Boolean result = false;
-        int updateFlag = gsvAreaService.update(gsvAreaVo);
+        int updateFlag = politicsAreaService.update(politicsAreaVo);
         if (updateFlag == 1) {
             result = true;
         }
@@ -58,16 +58,16 @@ public class PoliticsAreaController {
 
 
     @PostMapping("/find/{id}")
-    public ResponseResult<GsvAreaVo> findById(@PathVariable("id") Integer id) {
-        GsvAreaVo gsvAreaVo = gsvAreaService.findById(id);
-        return new ResponseResult<>(gsvAreaVo);
+    public ResponseResult<PoliticsAreaVo> findById(@PathVariable("id") Integer id) {
+         PoliticsAreaVo politicsAreaVo = politicsAreaService.findById(id);
+        return new ResponseResult<>(politicsAreaVo);
     }
 
 
     @PostMapping("/findbypage")
-    public ResponseResult<PageInfo<GsvAreaVo>> findByPage(@RequestBody GsvAreaPage gsvAreaPage) {
-        List<GsvAreaVo> gsvAreaVos = gsvAreaService.findByPage(gsvAreaPage);
+    public ResponseResult<PageInfo<PoliticsAreaVo>> findByPage(@RequestBody PoliticsAreaPage politicsAreaPage) {
+        List<PoliticsAreaVo> politicsAreaVos = politicsAreaService.findByPage(politicsAreaPage);
         //使用PageInfo对查询结果进行封装
-        return new ResponseResult<>(new PageInfo<>(gsvAreaVos));
+        return new ResponseResult<>(new PageInfo<>(politicsAreaVos));
     }
 }

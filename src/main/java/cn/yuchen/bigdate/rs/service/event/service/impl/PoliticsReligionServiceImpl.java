@@ -56,10 +56,8 @@ public class PoliticsReligionServiceImpl implements PoliticsReligionService {
     public PoliticsReligionVo findById(Integer id){
 
         AssertUtils.greaterThanZero(id,"查询ID不能为空");
-        PoliticsReligionPo politicsPositionPo = politicsReligionDao.selectByPrimaryKey(id);
-        PoliticsReligionVo vo = new PoliticsReligionVo();
-        BeanUtils.copyProperties(politicsPositionPo,vo);
-        return vo;
+        PoliticsReligionVo politicsPositionVo = politicsReligionDao.selectByPrimaryKey(id);
+        return politicsPositionVo;
 
     }
 

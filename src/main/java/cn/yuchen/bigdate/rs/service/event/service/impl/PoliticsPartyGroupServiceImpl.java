@@ -59,7 +59,7 @@ public class PoliticsPartyGroupServiceImpl implements PoliticsPartyGroupService 
         AssertUtils.greaterThanZero(politicsPartyGroupVo.getCountryId(),"所属国家的ID不能为空");
         PoliticsPartyGroupPo po = new PoliticsPartyGroupPo();
         BeanUtils.copyProperties(politicsPartyGroupVo,po);
-        return politicsPartyGroupDao.updateByPrimaryKey(po);
+        return politicsPartyGroupDao.update(po);
     }
 
 
@@ -68,13 +68,9 @@ public class PoliticsPartyGroupServiceImpl implements PoliticsPartyGroupService 
 
         AssertUtils.greaterThanZero(id,"查询ID不能为空");
 
-        PoliticsPartyGroupPo politicsPartyGroupPo = politicsPartyGroupDao.selectByPrimaryKey(id);
+        PoliticsPartyGroupVo politicsPartyGroupVo = politicsPartyGroupDao.selectByPrimaryKey(id);
 
-        PoliticsPartyGroupVo vo = new PoliticsPartyGroupVo();
-
-        BeanUtils.copyProperties(politicsPartyGroupPo,vo);
-
-        return vo;
+        return politicsPartyGroupVo;
     }
 
     @Override

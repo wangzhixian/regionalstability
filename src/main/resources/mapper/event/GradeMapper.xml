@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yuchen.bigdate.rs.service.event.dao.GradeDao">
+  <resultMap id="BaseResultMap" type="cn.yuchen.bigdate.rs.service.event.pojo.po.GradePo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="dimensionality" jdbcType="INTEGER" property="dimensionality" />
+    <result column="country_id" jdbcType="INTEGER" property="countryId" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="level_desc" jdbcType="VARCHAR" property="levelDesc" />
+    <result column="level_details" jdbcType="VARCHAR" property="levelDetails" />
+    <result column="die_start" jdbcType="INTEGER" property="dieStart" />
+    <result column="die_end" jdbcType="INTEGER" property="dieEnd" />
+    <result column="hurt_start" jdbcType="INTEGER" property="hurtStart" />
+    <result column="hurt_end" jdbcType="INTEGER" property="hurtEnd" />
+    <result column="deleted" jdbcType="INTEGER" property="deleted" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+  <resultMap id="PageResultMap" type="cn.yuchen.bigdate.rs.service.event.pojo.vo.GradeVo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="dimensionality" jdbcType="INTEGER" property="dimensionality" />
+    <result column="country_id" jdbcType="INTEGER" property="countryId" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="level_desc" jdbcType="VARCHAR" property="levelDesc" />
+    <result column="level_details" jdbcType="VARCHAR" property="levelDetails" />
+    <result column="die_start" jdbcType="INTEGER" property="dieStart" />
+    <result column="die_end" jdbcType="INTEGER" property="dieEnd" />
+    <result column="hurt_start" jdbcType="INTEGER" property="hurtStart" />
+    <result column="hurt_end" jdbcType="INTEGER" property="hurtEnd" />
+    <result column="deleted" jdbcType="INTEGER" property="deleted" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, dimensionality, country_id, `level`, level_desc, level_details, die_start, die_end,
+    hurt_start, hurt_end, deleted, operator, insert_time, update_time
+  </sql>
+
+  <select id="selectByPage" parameterType="cn.yuchen.bigdate.rs.service.event.pojo.webpage.PoliticsWeb" resultMap="PageResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from grade
+    <where>
+      deleted = 0
+      <if test="dimensionality !=null">
+        AND dimensionality = #{dimensionality}
+      </if>
+      <if test="countryId !=null ">
+        AND country_id = #{countryId}
+      </if>
+      <if test="levelId !=null ">
+        AND `level` = #{levelId}
+      </if>
+      order by `level`
+    </where>
+  </select>
+
+  <select id="selectById" parameterType="java.lang.Integer" resultMap="PageResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from grade
+    where id = #{id,jdbcType=INTEGER}
+    and deleted = 0
+  </select>
+
+  <select id="selectByDimensionalityAndLevel" parameterType="java.lang.Integer" resultMap="PageResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from grade
+    where dimensionality = #{dimensionality}
+    and `level` = #{level}
+    and deleted = 0
+  </select>
+
+  <delete id="delete" parameterType="java.lang.Integer">
+    update grade
+    set
+    deleted = 1
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="cn.yuchen.bigdate.rs.service.event.pojo.po.GradePo">
+    insert into grade
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="dimensionality != null">
+        dimensionality,
+      </if>
+      <if test="countryId != null">
+        country_id,
+      </if>
+      <if test="level != null">
+        `level`,
+      </if>
+      <if test="levelDesc != null">
+        level_desc,
+      </if>
+      <if test="levelDetails != null">
+        level_details,
+      </if>
+      <if test="dieStart != null">
+        die_start,
+      </if>
+      <if test="dieEnd != null">
+        die_end,
+      </if>
+      <if test="hurtStart != null">
+        hurt_start,
+      </if>
+      <if test="hurtEnd != null">
+        hurt_end,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+      <if test="operator != null">
+        operator,
+      </if>
+      <if test="insertTime != null">
+        insert_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="dimensionality != null">
+        #{dimensionality,jdbcType=INTEGER},
+      </if>
+      <if test="countryId != null">
+        #{countryId,jdbcType=INTEGER},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="levelDesc != null">
+        #{levelDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="levelDetails != null">
+        #{levelDetails,jdbcType=VARCHAR},
+      </if>
+      <if test="dieStart != null">
+        #{dieStart,jdbcType=INTEGER},
+      </if>
+      <if test="dieEnd != null">
+        #{dieEnd,jdbcType=INTEGER},
+      </if>
+      <if test="hurtStart != null">
+        #{hurtStart,jdbcType=INTEGER},
+      </if>
+      <if test="hurtEnd != null">
+        #{hurtEnd,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null">
+        #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="cn.yuchen.bigdate.rs.service.event.pojo.po.GradePo">
+    update grade
+    <set>
+      <if test="dimensionality != null">
+        dimensionality = #{dimensionality,jdbcType=INTEGER},
+      </if>
+      <if test="countryId != null">
+        country_id = #{countryId,jdbcType=INTEGER},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="levelDesc != null">
+        level_desc = #{levelDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="levelDetails != null">
+        level_details = #{levelDetails,jdbcType=VARCHAR},
+      </if>
+      <if test="dieStart != null">
+        die_start = #{dieStart,jdbcType=INTEGER},
+      </if>
+      <if test="dieEnd != null">
+        die_end = #{dieEnd,jdbcType=INTEGER},
+      </if>
+      <if test="hurtStart != null">
+        hurt_start = #{hurtStart,jdbcType=INTEGER},
+      </if>
+      <if test="hurtEnd != null">
+        hurt_end = #{hurtEnd,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="operator != null">
+        operator = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null">
+        insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

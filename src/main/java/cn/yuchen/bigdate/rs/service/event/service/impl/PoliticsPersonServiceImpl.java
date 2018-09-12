@@ -72,13 +72,9 @@ public class PoliticsPersonServiceImpl implements PoliticsPersonService {
 
         AssertUtils.greaterThanZero(id,"查询ID不能为空");
 
-        PoliticsPersonPo politicsPersonPo = politicsPersonDao.selectByPrimaryKey(id);
+        PoliticsPersonVo politicsPersonVo = politicsPersonDao.selectByPrimaryKey(id);
 
-        PoliticsPersonVo vo = new PoliticsPersonVo();
-
-        BeanUtils.copyProperties(politicsPersonPo,vo);
-
-        return vo;
+        return politicsPersonVo;
 
     }
 

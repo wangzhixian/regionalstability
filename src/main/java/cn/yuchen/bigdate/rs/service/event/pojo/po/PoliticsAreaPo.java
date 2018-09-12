@@ -48,16 +48,6 @@ public class PoliticsAreaPo {
      */
     private Integer countryId;
 
-    private String countryFullName;
-
-    public String getCountryFullName() {
-        return countryFullName;
-    }
-
-    public void setCountryFullName(String countryFullName) {
-        this.countryFullName = countryFullName;
-    }
-
     /**
      * 是否逻辑删除 0 正常 1 删除
      */
@@ -178,6 +168,7 @@ public class PoliticsAreaPo {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+
 
     @Override
     public String toString() {

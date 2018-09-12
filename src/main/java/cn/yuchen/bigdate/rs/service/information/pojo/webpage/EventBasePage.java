@@ -1,6 +1,7 @@
 package cn.yuchen.bigdate.rs.service.information.pojo.webpage;
 
 import cn.yuchen.bigdate.rs.utility.PageUtils;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -16,8 +17,10 @@ public class EventBasePage extends PageUtils implements Serializable {
 
     private Byte type;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date eventTime;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date endTime;
 
     private String longitude;

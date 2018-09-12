@@ -14,12 +14,12 @@ public class PoliticsPersonPage extends PageUtils implements Serializable {
      */
     private Integer id;
     /**
-     * 政党中文名称
+     * 人物中文名称
      */
 
     private String cnName;
     /**
-     * 政党英文名称
+     * 人物英文名称
      */
 
     private String enName;

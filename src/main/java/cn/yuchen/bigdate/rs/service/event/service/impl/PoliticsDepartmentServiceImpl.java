@@ -57,13 +57,9 @@ public class PoliticsDepartmentServiceImpl implements PoliticsDepartmentService 
 
         AssertUtils.greaterThanZero(id,"查询ID不能为空");
 
-        PoliticsDepartmentPo politicsDepartmentPo = politicsDepartmentDao.selectByPrimaryKey(id);
+        PoliticsDepartmentVo politicsDepartmentVo = politicsDepartmentDao.selectByPrimaryKey(id);
 
-        PoliticsDepartmentVo vo = new PoliticsDepartmentVo();
-
-        BeanUtils.copyProperties(politicsDepartmentPo,vo);
-
-        return vo;
+        return politicsDepartmentVo;
 
     }
 

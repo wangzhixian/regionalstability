@@ -22,7 +22,8 @@ public enum RestResultEnum {
     INFORMATION_TODATE_ERROR(100201,"字符串转时间异常"),
 
     //事件模块错误码"03"
-    POLITICS_NULL_ERROR(100301,"不存在该维度");
+    POLITICS_NULL_ERROR(100301,"政治不存在该维度"),
+    GSV_NULL_ERROR(100302,"反恐不存在该纬度");
 
 
 

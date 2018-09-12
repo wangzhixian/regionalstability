@@ -7,12 +7,14 @@ import cn.yuchen.bigdate.rs.service.event.pojo.vo.GsvAreaVo;
 import cn.yuchen.bigdate.rs.service.event.pojo.vo.PoliticsAreaVo;
 import cn.yuchen.bigdate.rs.service.event.pojo.webpage.GsvAreaPage;
 import cn.yuchen.bigdate.rs.service.event.pojo.webpage.PoliticsAreaPage;
+import cn.yuchen.bigdate.rs.service.event.pojo.webpage.PoliticsWeb;
 import cn.yuchen.bigdate.rs.service.event.service.GsvAreaService;
 import cn.yuchen.bigdate.rs.utility.AssertUtils;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +30,8 @@ public class GsvAreaServiceImpl implements GsvAreaService {
     public int add(GsvAreaVo gsvAreaVo) {
 
         AssertUtils.notNull(gsvAreaVo,"添加地理位置对象不能为空");
-
+        AssertUtils.greaterThanZero(gsvAreaVo.getId(),"地理对象的ID不能为空");
+        AssertUtils.hasText(gsvAreaVo.getAreaEnName(),"地理对象英文名不能为空");
         GsvAreaPo po = new GsvAreaPo();
         //将vo复制给po
         BeanUtils.copyProperties(gsvAreaVo,po);
@@ -50,6 +53,7 @@ public class GsvAreaServiceImpl implements GsvAreaService {
     public int update(GsvAreaVo gsvAreaVo) {
 
         AssertUtils.notNull(gsvAreaVo,"修改地理位置对象不能为空");
+        AssertUtils.hasText(gsvAreaVo.getAreaEnName(),"地理对象英文名不能为空");
         AssertUtils.greaterThanZero(gsvAreaVo.getId(),"要修改的ID不能为空");
         GsvAreaPo po = new GsvAreaPo();
         BeanUtils.copyProperties(gsvAreaVo,po);
@@ -77,5 +81,21 @@ public class GsvAreaServiceImpl implements GsvAreaService {
         PageHelper.startPage(gsvAreaPage.getPageNum(),gsvAreaPage.getPageSize());
 
         return gsvAreaDao.selectByPage(gsvAreaPage);
+    }
+
+    @Override
+    @Transactional
+    public boolean deleteByIds(List<Integer> ids) {
+        ids.forEach(this::delete);
+        return true;
+    }
+
+    @Override
+    public void updateWeaponByIds(PoliticsWeb politicsWeb) {
+        politicsWeb.getIds().forEach(id->{
+            GsvAreaVo gsvAreaVo = gsvAreaDao.selectByPrimaryKey(id);
+            gsvAreaVo.setLevelId(politicsWeb.getLevelId());
+            update(gsvAreaVo);
+        });
     }
 }

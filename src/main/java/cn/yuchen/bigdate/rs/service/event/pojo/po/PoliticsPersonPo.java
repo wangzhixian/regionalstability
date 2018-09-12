@@ -11,14 +11,12 @@ public class PoliticsPersonPo {
      */
     private Integer id;
     /**
-     * 政党中文名称
+     * 人物中文名称
      */
-
     private String cnName;
     /**
-     * 政党英文名称
+     * 人物英文名称
      */
-
     private String enName;
     /**
      * 人物中文名称缩写
@@ -38,15 +36,6 @@ public class PoliticsPersonPo {
     /**
      * 等级ID,默认为0表示没有等级
      */
-    private String countryfullname;
-
-    public String getCountryfullname() {
-        return countryfullname;
-    }
-
-    public void setCountryfullname(String countryfullname) {
-        this.countryfullname = countryfullname;
-    }
 
     private Integer levelId;
 

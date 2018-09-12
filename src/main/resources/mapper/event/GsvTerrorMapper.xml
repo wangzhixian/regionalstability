@@ -12,31 +12,58 @@
     <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
+
+  <resultMap id="BaseResultMapVo" type="cn.yuchen.bigdate.rs.service.event.pojo.vo.GsvTerrorVo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="terror_en_name" jdbcType="VARCHAR" property="terrorEnName" />
+    <result column="terror_zh_name" jdbcType="VARCHAR" property="terrorZhName" />
+    <result column="terror_remark" jdbcType="VARCHAR" property="terrorRemark" />
+    <result column="level_id" jdbcType="INTEGER" property="levelId" />
+    <result column="deleted" jdbcType="INTEGER" property="deleted" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
   <sql id="Base_Column_List">
     id, terror_en_name, terror_zh_name, terror_remark, level_id, deleted, operator, insert_time, 
     update_time
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMapVo">
     select 
     <include refid="Base_Column_List" />
     from gsv_terror
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+
+  <select id="selectByPage" parameterType="cn.yuchen.bigdate.rs.service.event.pojo.webpage.GsvTerrorPage" resultMap="BaseResultMapVo">
+    select
+    <include refid="Base_Column_List" />
+    from gsv_terror
+    <where>
+      deleted = 0
+      <if test="terrorEnName !=null and terrorEnName !='' ">
+        AND `terror_en_name` LIKE CONCAT('%',#{terrorEnName},'%')
+      </if>
+      <if test="terrorZhName !=null and terrorZhName !='' ">
+        AND `terror_zh_name` LIKE CONCAT('%',#{terrorZhName},'%')
+      </if>
+      <if test="levelId != null and levelId != 0">
+        AND level_id = #{levelId,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from gsv_terror
+    update gsv_terror
+    set
+    deleted = 1
     where id = #{id,jdbcType=INTEGER}
   </delete>
+
   <insert id="insert" parameterType="cn.yuchen.bigdate.rs.service.event.pojo.po.GsvTerrorPo">
-    insert into gsv_terror (id, terror_en_name, terror_zh_name, 
-      terror_remark, level_id, deleted, 
-      operator, insert_time, update_time
-      )
-    values (#{id,jdbcType=INTEGER}, #{terrorEnName,jdbcType=VARCHAR}, #{terrorZhName,jdbcType=VARCHAR}, 
-      #{terrorRemark,jdbcType=VARCHAR}, #{levelId,jdbcType=INTEGER}, #{deleted,jdbcType=INTEGER}, 
-      #{operator,jdbcType=VARCHAR}, #{insertTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="cn.yuchen.bigdate.rs.service.event.pojo.po.GsvTerrorPo">
     insert into gsv_terror
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -97,7 +124,8 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.yuchen.bigdate.rs.service.event.pojo.po.GsvTerrorPo">
+
+  <update id="updateByPrimaryKey" parameterType="cn.yuchen.bigdate.rs.service.event.pojo.po.GsvTerrorPo">
     update gsv_terror
     <set>
       <if test="terrorEnName != null">
@@ -127,16 +155,5 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.yuchen.bigdate.rs.service.event.pojo.po.GsvTerrorPo">
-    update gsv_terror
-    set terror_en_name = #{terrorEnName,jdbcType=VARCHAR},
-      terror_zh_name = #{terrorZhName,jdbcType=VARCHAR},
-      terror_remark = #{terrorRemark,jdbcType=VARCHAR},
-      level_id = #{levelId,jdbcType=INTEGER},
-      deleted = #{deleted,jdbcType=INTEGER},
-      operator = #{operator,jdbcType=VARCHAR},
-      insert_time = #{insertTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+
 </mapper>

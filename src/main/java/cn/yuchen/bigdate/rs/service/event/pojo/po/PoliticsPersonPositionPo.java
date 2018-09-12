@@ -13,7 +13,6 @@ public class PoliticsPersonPositionPo {
     /**
      * 人物的ID
      */
-
     private Integer personId;
     /**
      * 所对应职务的ID

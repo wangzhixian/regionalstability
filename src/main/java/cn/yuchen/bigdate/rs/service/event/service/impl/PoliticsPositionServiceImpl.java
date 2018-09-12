@@ -56,10 +56,9 @@ public class PoliticsPositionServiceImpl implements PoliticsPositionService {
     public PoliticsPositionVo findById(Integer id){
 
         AssertUtils.greaterThanZero(id,"查询ID不能为空");
-        PoliticsPositionPo politicsPositionPo = politicsPositionDao.selectByPrimaryKey(id);
-        PoliticsPositionVo vo = new PoliticsPositionVo();
-        BeanUtils.copyProperties(politicsPositionPo,vo);
-        return vo;
+        PoliticsPositionVo politicsPositionVo = politicsPositionDao.selectByPrimaryKey(id);
+
+        return politicsPositionVo;
 
     }
 

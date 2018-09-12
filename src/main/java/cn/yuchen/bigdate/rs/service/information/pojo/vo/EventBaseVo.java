@@ -20,6 +20,15 @@ public class EventBaseVo {
 
     private Date eventTime;
 
+    private Date endTime;
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
 
     public Long getId() {
         return id;

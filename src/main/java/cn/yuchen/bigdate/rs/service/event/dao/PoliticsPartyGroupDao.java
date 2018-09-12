@@ -19,11 +19,9 @@ public interface PoliticsPartyGroupDao {
 
     int insertSelective(PoliticsPartyGroupPo record);
 
-    PoliticsPartyGroupPo selectByPrimaryKey(Integer id);
+    PoliticsPartyGroupVo selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKeySelective(PoliticsPartyGroupPo record);
-
-    int updateByPrimaryKey(PoliticsPartyGroupPo record);
+    int update(PoliticsPartyGroupPo record);
 
     List<PoliticsPartyGroupVo> selectByPage(PoliticsPartyGroupPage politicsPartyGroupPage);
 }

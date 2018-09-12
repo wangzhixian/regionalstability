@@ -8,7 +8,6 @@
     <result column="mini_cn_name" jdbcType="VARCHAR" property="miniCnName" />
     <result column="mini_en_name" jdbcType="VARCHAR" property="miniEnName" />
     <result column="country_id" jdbcType="INTEGER" property="countryId" />
-    <result column="countryFullName" jdbcType="VARCHAR" property="countryfullname" />
     <result column="level_id" jdbcType="INTEGER" property="levelId" />
     <result column="partygroup_id" jdbcType="INTEGER" property="partygroupId" />
     <result column="resume" jdbcType="VARCHAR" property="resume" />
@@ -49,10 +48,10 @@
     resume, area1, area2, area3, keyword, deleted, operator, insert_time, update_time
   </sql>
 
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="Page">
     select
-    p.id, p.cn_name, p.en_name, p.mini_cn_name,p.mini_en_name, p.country_id, p.level_id,p.partygroup_id
-    p.resume,p.area1,p.area2,p.area3,p.keyword,  h.countryFullName,
+    p.id, p.cn_name, p.en_name, p.mini_cn_name,p.mini_en_name, p.country_id, p.level_id,p.partygroup_id,
+    p.resume,p.area1,p.area2,p.area3,p.keyword,h.countryFullName,
     p.deleted, p.operator, p.insert_time, p.update_time
     from politics_person as p , hs_country_new as h
     where

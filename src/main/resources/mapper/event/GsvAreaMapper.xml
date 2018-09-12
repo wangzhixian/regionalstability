@@ -21,6 +21,7 @@
       <result column="area_zh_name" jdbcType="VARCHAR" property="areaZhName" />
       <result column="parent_id" jdbcType="INTEGER" property="parentId" />
       <result column="country_id" jdbcType="INTEGER" property="countryId" />
+      <result column="countryFullName" jdbcType="VARCHAR" property="countryfullname" />
       <result column="area_remark" jdbcType="VARCHAR" property="areaRemark" />
       <result column="level_id" jdbcType="INTEGER" property="levelId" />
       <result column="deleted" jdbcType="INTEGER" property="deleted" />
@@ -35,6 +36,7 @@
     <result column="area_zh_name" jdbcType="VARCHAR" property="areaZhName" />
     <result column="parent_id" jdbcType="INTEGER" property="parentId" />
     <result column="country_id" jdbcType="INTEGER" property="countryId" />
+    <result column="countryFullName" jdbcType="VARCHAR" property="countryfullname" />
     <result column="area_remark" jdbcType="VARCHAR" property="areaRemark" />
     <result column="level_id" jdbcType="INTEGER" property="levelId" />
     <result column="deleted" jdbcType="INTEGER" property="deleted" />
@@ -49,29 +51,47 @@
   </sql>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMapVo">
-    select 
-    <include refid="Base_Column_List" />
-    from gsv_area
-    where id = #{id,jdbcType=INTEGER}
+    select
+    ga.id, ga.area_en_name, ga.area_zh_name, ga.parent_id,
+    ga.country_id,ga.area_remark, h.countryFullName,
+    ga.level_id, ga.deleted, ga.operator, ga.insert_time ,ga.update_time
+    from gsv_area as ga , hs_country_new as h
+    where
+    ga.id = #{id,jdbcType=INTEGER}
+    and
+    ga.deleted = 0
+    and
+    ga.country_id = h.number
   </select>
 
   <select id="selectByPage" parameterType="cn.yuchen.bigdate.rs.service.event.pojo.webpage.GsvAreaPage" resultMap="PageResultMap">
     select
-    <include refid="Base_Column_List" />
-    from gsv_area
+    ga.id, ga.area_en_name, ga.area_zh_name, ga.parent_id,
+    ga.country_id,ga.area_remark, h.countryFullName,
+    ga.level_id, ga.deleted, ga.operator, ga.insert_time ,ga.update_time
+    from gsv_area as ga , hs_country_new as h
     <where>
-      deleted = 0
+     deleted = 0
+     AND ga.country_id = h.number
+      <if test="countryId !=null and countryId !='' ">
+        AND ga.country_id = #{countryId}
+      </if>
       <if test="areaEnName !=null and areaEnName !='' ">
         AND `area_en_name` LIKE CONCAT('%',#{areaEnName},'%')
       </if>
       <if test="areaZhName !=null and areaZhName !='' ">
         AND `area_zh_name` LIKE CONCAT('%',#{areaZhName},'%')
       </if>
+      <if test="levelId != null and levelId != 0">
+        AND ga.level_id = #{levelId,jdbcType=INTEGER}
+      </if>
     </where>
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from gsv_area
+    update gsv_area
+    set
+    deleted = 1
     where id = #{id,jdbcType=INTEGER}
   </delete>
 

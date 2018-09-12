@@ -3,25 +3,45 @@ package cn.yuchen.bigdate.rs.service.event.pojo.vo;
 import java.util.Date;
 
 public class GsvWeaponVo {
-
+    /**
+     * 自增ID
+     */
     private Integer id;
-
+    /**
+     * 武器英文名称
+     */
     private String weaponEnName;
-
+    /**
+     * 武器中文名称
+     */
     private String weaponZhName;
-
+    /**
+     * 武器描述
+     */
     private String weaponDesc;
-
+    /**
+     * 备注信息
+     */
     private String weaponRemark;
-
+    /**
+     * 影响等级(外键)
+     */
     private Integer levelId;
-
+    /**
+     * 是否逻辑删除 0 正常 1 删
+     */
     private Integer deleted;
-
+    /**
+     * 操作人员
+     */
     private String operator;
-
+    /**
+     * 创建时间
+     */
     private Date insertTime;
-
+    /**
+     * 最后更新时间
+     */
     private Date updateTime;
 
     public Integer getId() {

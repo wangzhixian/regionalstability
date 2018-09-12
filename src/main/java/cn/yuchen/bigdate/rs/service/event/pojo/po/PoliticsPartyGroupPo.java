@@ -33,16 +33,6 @@ public class PoliticsPartyGroupPo {
     /**
      * 等级ID,默认为0表示没有等级
      */
-    private String countryfullname;
-
-    public String getCountryfullname() {
-        return countryfullname;
-    }
-
-    public void setCountryfullname(String countryfullname) {
-        this.countryfullname = countryfullname;
-    }
-
     private Integer levelId;
     /**
      * 关键词

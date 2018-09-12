@@ -84,6 +84,21 @@ public class AssertUtils {
     }
 
     /**
+     * 必须不为1
+     *
+     *@param i
+     * @param message 异常message
+     */
+    public static void isTrue(Byte i, String message) {
+        if (Objects.isNull(i)) {
+            throw new ArgumentException(message);
+        }
+        if (i == 1) {
+            throw new ArgumentException(message);
+        }
+    }
+
+    /**
      * 断言大于0
      */
     public static void greaterThanZero(BigDecimal num) {

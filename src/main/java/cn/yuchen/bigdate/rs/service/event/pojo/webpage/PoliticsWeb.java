@@ -14,7 +14,7 @@ public class PoliticsWeb extends PageUtils {
      */
     private Integer countryId;
     /**
-     * 维度:1、政治人物，2、行政区域，3、政府及政党，4、宗教组织，5、政治会议
+     * 维度:1、政治人物，2、行政区域，3、政府及政党，4、宗教组织，5、政治会议，6、伤亡人数，7、武器等级，8、恐怖组织，9、地理位置
      */
     private Integer dimensionality;
     /**

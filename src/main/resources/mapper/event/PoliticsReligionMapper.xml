@@ -8,7 +8,6 @@
     <result column="en_name" jdbcType="VARCHAR" property="enName" />
     <result column="level_id" jdbcType="INTEGER" property="levelId" />
     <result column="country_id" jdbcType="INTEGER" property="countryId" />
-    <result column="countryFullName" jdbcType="VARCHAR" property="countryfullname" />
     <result column="keyword" jdbcType="VARCHAR" property="keyword" />
     <result column="deleted" jdbcType="INTEGER" property="deleted" />
     <result column="operator" jdbcType="VARCHAR" property="operator" />
@@ -35,7 +34,7 @@
     update_time
   </sql>
 
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="PageResultMap">
     select
     p.id, p.cn_name, p.en_name, p.level_id,
     p.country_id,p.keyword, h.countryFullName,

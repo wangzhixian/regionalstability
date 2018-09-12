@@ -3,23 +3,41 @@ package cn.yuchen.bigdate.rs.service.event.pojo.vo;
 import java.util.Date;
 
 public class GsvTerrorVo {
-
+    /**
+     * 自增ID
+     */
     private Integer id;
-
+    /**
+     * 组织英文名称
+     */
     private String terrorEnName;
-
+    /**
+     * 组织中文名称
+     */
     private String terrorZhName;
-
+    /**
+     * 备注信息
+     */
     private String terrorRemark;
-
+    /**
+     * 影响等级(外键)
+     */
     private Integer levelId;
-
+    /**
+     * 是否逻辑删除 0 正常 1 删除
+     */
     private Integer deleted;
-
+    /**
+     * 操作人员
+     */
     private String operator;
-
+    /**
+     * 创建时间
+     */
     private Date insertTime;
-
+    /**
+     * 最后更新时间
+     */
     private Date updateTime;
 
     public Integer getId() {

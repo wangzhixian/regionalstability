@@ -30,15 +30,6 @@ public class PoliticsReligionPo {
     /**
      * 关键词
      */
-    private String countryfullname;
-
-    public String getCountryfullname() {
-        return countryfullname;
-    }
-
-    public void setCountryfullname(String countryfullname) {
-        this.countryfullname = countryfullname;
-    }
 
     private String keyword;
     /**
@@ -138,4 +129,5 @@ public class PoliticsReligionPo {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+
 }
