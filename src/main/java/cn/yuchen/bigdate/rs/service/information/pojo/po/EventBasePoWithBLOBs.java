@@ -25,6 +25,7 @@ public class EventBasePoWithBLOBs extends EventBasePo {
 
     private String casualties;
 
+
     public String getOrginizations() {
         return orginizations;
     }

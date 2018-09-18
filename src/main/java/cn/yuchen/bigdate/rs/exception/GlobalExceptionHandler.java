@@ -6,6 +6,7 @@ import com.mongodb.MongoCommandException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authz.UnauthenticatedException;
 import org.apache.shiro.authz.UnauthorizedException;
+import org.apache.shiro.session.SessionException;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -90,8 +91,17 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(UnauthenticatedException.class)
-    public ResponseResult<String> handleUnauthorizedException(UnauthenticatedException unauthenticated){
+    public ResponseResult<String> handleUnauthenticatedException(UnauthenticatedException unauthenticated){
         log.info("用户未登录异常,抛出UnauthenticatedException:{}",unauthenticated);
         return new ResponseResult<>(RestResultEnum.USER_NOT_LOGIN);
     }
+
+    @ExceptionHandler(SessionException.class)
+    public ResponseResult<String> handleSessionException(SessionException sessionException){
+        log.info("用户退出异常,抛出sessionException:{}",sessionException);
+        return new ResponseResult<>(RestResultEnum.LOGOUT_ERROR);
+    }
+
+
+
 }

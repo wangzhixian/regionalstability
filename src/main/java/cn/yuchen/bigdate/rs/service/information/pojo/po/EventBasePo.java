@@ -36,6 +36,19 @@ public class EventBasePo {
 
     private Date updateTime;
 
+    /**
+     * 国家名称
+     */
+    private String countryFullName;
+
+    public String getCountryFullName() {
+        return countryFullName;
+    }
+
+    public void setCountryFullName(String countryFullName) {
+        this.countryFullName = countryFullName;
+    }
+
     public Long getId() {
         return id;
     }

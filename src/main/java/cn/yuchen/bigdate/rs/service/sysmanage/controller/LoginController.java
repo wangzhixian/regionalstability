@@ -15,6 +15,7 @@ import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresRoles;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -96,6 +97,17 @@ public class LoginController {
         //登陆成功后查菜单
         Map<String, List<String>> powers = getMenus(sysUserVo);
         return new ResponseResult<>(JSON.toJSONString(powers));
+    }
+
+    /**
+     * 退出操作
+     * @return
+     */
+    @GetMapping("/gologout")
+    public ResponseResult<String> logout(){
+        Session session = SecurityUtils.getSubject().getSession();
+        session.removeAttribute("USER_SESSION");
+        return new ResponseResult<>(RestResultEnum.SUCCESS);
     }
 
     /**

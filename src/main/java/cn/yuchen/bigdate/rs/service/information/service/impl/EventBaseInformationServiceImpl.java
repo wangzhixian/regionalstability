@@ -50,7 +50,6 @@ public class EventBaseInformationServiceImpl implements EventBaseInformationServ
 
 
     @Override
-
     public int update(EventBasePoWithBLOBs eventBasePoWithBLOBs) {
         AssertUtils.notNull(eventBasePoWithBLOBs,"添加原新闻对象不能为空");
         AssertUtils.greaterThanZero(eventBasePoWithBLOBs.getId(),"主键ID不能为空");
@@ -77,5 +76,17 @@ public class EventBaseInformationServiceImpl implements EventBaseInformationServ
     @Override
     public EventBasePoWithBLOBs findById(Long id) {
         return eventBaseDao.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public int findTotal(Byte type) {
+
+        return eventBaseDao.findTotalNumber(type);
+    }
+
+    @Override
+    public List<EventBasePoWithBLOBs> findAllByType(EventBasePage eventBasePage) {
+        PageHelper.startPage(eventBasePage.getPageNum(),eventBasePage.getPageSize());
+        return eventBaseDao.selectAllForType(eventBasePage);
     }
 }

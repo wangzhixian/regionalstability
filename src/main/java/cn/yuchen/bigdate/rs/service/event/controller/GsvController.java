@@ -49,7 +49,7 @@ public class GsvController {
      * @param politicsWeb
      * @return
      */
-    @PostMapping("/updateByIds")
+    @PostMapping("/updatebyids")
     public ResponseResult<Boolean> updateByIds(@RequestBody PoliticsWeb politicsWeb) {
         AssertUtils.notNull(politicsWeb,"参数对象不能为空");
         AssertUtils.notNull(politicsWeb.getIds(),"要修改的id不能为空");

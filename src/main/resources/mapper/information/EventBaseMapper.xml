@@ -16,6 +16,7 @@
     <result column="operator" jdbcType="VARCHAR" property="operator" />
     <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="countryFullName" jdbcType="VARCHAR" property="countryFullName" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.yuchen.bigdate.rs.service.information.pojo.po.EventBasePoWithBLOBs">
     <result column="orginizations" jdbcType="LONGVARCHAR" property="orginizations" />
@@ -332,7 +333,7 @@
   <select id="selectByPage" parameterType="cn.yuchen.bigdate.rs.service.information.pojo.webpage.EventBasePage" resultMap="PageResultMap">
     select
     ieb.id,ieb.event_name,ieb.country_id,ieb.event_time,ieb.end_time,ieb.relevants,ieb.sites,h.countryFullName
-    from information_event_base ieb , hs_country_new as h
+    from information_event_base as ieb , hs_country_new as h
     <where>
       deleted = 0
       AND ieb.country_id = h.number
@@ -341,6 +342,41 @@
       </if>
       <if test="eventName !=null and eventName !='' ">
         AND `event_name` LIKE CONCAT('%',#{eventName},'%')
+      </if>
+      <if test="eventTime != null">
+        AND   <![CDATA[ event_time >=  #{eventTime,jdbcType=TIMESTAMP} ]]>
+      </if>
+      <if test="endTime !=null">
+        AND  <![CDATA[ event_time  <= #{endTime,jdbcType=TIMESTAMP} ]]>
+      </if>
+    </where>
+  </select>
+
+  <select id="findTotalNumber" resultType="java.lang.Integer">
+   select count(1) from information_event_base
+   <where>
+     <if test="type !=null">
+       AND `type` = #{type,jdbcType=TINYINT}
+     </if>
+   </where>
+  </select>
+
+  <select id="selectAllForType" parameterType="cn.yuchen.bigdate.rs.service.information.pojo.webpage.EventBasePage" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    ,
+    h.countryFullName
+    from information_event_base as ieb , hs_country_new as h
+    <where>
+      deleted = 0
+      AND ieb.country_id = h.number
+      <if test="type !=null">
+        AND ieb.type = #{type}
+      </if>
+      <if test="countryId !=null and countryId !='' ">
+        AND ieb.country_id = #{countryId}
       </if>
       <if test="eventTime != null">
         AND   <![CDATA[ event_time >=  #{eventTime,jdbcType=TIMESTAMP} ]]>

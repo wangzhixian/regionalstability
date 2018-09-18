@@ -26,5 +26,13 @@ public interface EventBaseInformationService {
 
     EventBasePoWithBLOBs findById(Long id);
 
+    int findTotal(Byte type);
+    /**
+     * 新闻、政治、反恐事件分析页面 根据类型查询所有接口
+     * @param eventBasePage
+     * @return
+     */
+    List<EventBasePoWithBLOBs> findAllByType(EventBasePage eventBasePage);
+
 
 }

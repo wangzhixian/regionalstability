@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yuchen.bigdate.rs.service.event.dao.GdpDao">
+  <resultMap id="BaseResultMap" type="cn.yuchen.bigdate.rs.service.event.pojo.po.GdpPo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="country_id" jdbcType="INTEGER" property="countryId" />
+    <result column="year" jdbcType="INTEGER" property="year" />
+    <result column="amount" jdbcType="DOUBLE" property="amount" />
+    <result column="growth" jdbcType="DOUBLE" property="growth" />
+    <result column="deleted" jdbcType="INTEGER" property="deleted" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+  <resultMap id="BaseResultMapVo" type="cn.yuchen.bigdate.rs.service.event.pojo.vo.GdpVo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="country_id" jdbcType="INTEGER" property="countryId" />
+    <result column="countryFullName" jdbcType="VARCHAR" property="countryfullname" />
+    <result column="year" jdbcType="INTEGER" property="year" />
+    <result column="amount" jdbcType="DOUBLE" property="amount" />
+    <result column="growth" jdbcType="DOUBLE" property="growth" />
+    <result column="deleted" jdbcType="INTEGER" property="deleted" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, country_id, year, amount, growth, deleted, operator, insert_time, update_time
+  </sql>
+  <select id="selectByPage" parameterType="cn.yuchen.bigdate.rs.service.event.pojo.webpage.GdpPage" resultMap="BaseResultMapVo">
+    select
+    g.id, g.country_id, h.countryFullName,g.year,g.amount,g.growth,
+    g.deleted, g.operator, g.insert_time, g.update_time
+    from information_eco_gdp as g , hs_country_new as h
+    <where>
+      deleted = 0
+      <if test="countryId !=null and countryId != 0 ">
+        AND p.country_id = h.number
+      </if>
+      <if test="year!=null and year !='' ">
+        AND `year` LIKE CONCAT('%',#{year},'%')
+      </if>
+      <if test="amount !=null and amount !='' ">
+        AND `amount` LIKE CONCAT('%',#{amount},'%')
+      </if>
+      <if test="growth !=null and growth !='' ">
+        AND `growth` LIKE CONCAT('%',#{growth},'%')
+      </if>
+      <if test="countryId != null">
+        AND country_id = #{countryId,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+</mapper>

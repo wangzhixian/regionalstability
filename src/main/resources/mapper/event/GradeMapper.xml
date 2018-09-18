@@ -52,7 +52,7 @@
       <if test="countryId !=null ">
         AND country_id = #{countryId}
       </if>
-      <if test="levelId !=null ">
+      <if test="levelId !=null and levelId != 0">
         AND `level` = #{levelId}
       </if>
       order by `level`

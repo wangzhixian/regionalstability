@@ -41,7 +41,6 @@ public class EventController {
         AssertUtils.notNull(eventWeb.getIds(),"ids组不能为空");
         AssertUtils.notNull(eventWeb.getEventTime(),"开始时间不能为空");
         AssertUtils.notNull(eventWeb.getEndTime(),"结束时间不能为空");
-
         eventWeb.getIds().forEach(id->{
             EventBasePoWithBLOBs eventBasePoWithBLOBs = eventBaseInformationService.findById(id);
             eventBasePoWithBLOBs.setEventTime(eventWeb.getEventTime());
@@ -71,7 +70,7 @@ public class EventController {
         eventWeb.getIds().forEach(id->{
             EventBasePoWithBLOBs eventBasePoWithBLOBs = eventBaseInformationService.findById(id);
             eventBasePoWithBLOBs.setEventName(eventWeb.getEventName());
-            eventBasePoWithBLOBs.setEndTime(eventWeb.getEventTime());
+            eventBasePoWithBLOBs.setEventTime(eventWeb.getEventTime());
             eventBasePoWithBLOBs.setEndTime(eventWeb.getEndTime());
             eventBasePoWithBLOBs.setRelevants(eventWeb.getRelevants());
             eventBasePoWithBLOBs.setSites(eventWeb.getSites());

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yuchen.bigdate.rs.service.event.dao.StockpointDao">
+  <resultMap id="BaseResultMap" type="cn.yuchen.bigdate.rs.service.event.pojo.po.StockpointPo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="country_id" jdbcType="INTEGER" property="countryId" />
+    <result column="day" jdbcType="TIMESTAMP" property="day" />
+    <result column="rate" jdbcType="DOUBLE" property="rate" />
+    <result column="growth" jdbcType="DOUBLE" property="growth" />
+    <result column="stock_name" jdbcType="VARCHAR" property="stockName" />
+    <result column="stock_short" jdbcType="VARCHAR" property="stockShort" />
+    <result column="deleted" jdbcType="INTEGER" property="deleted" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+  <resultMap id="BaseResultMapVo" type="cn.yuchen.bigdate.rs.service.event.pojo.vo.StockpointVo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="country_id" jdbcType="INTEGER" property="countryId" />
+    <result column="countryFullName" jdbcType="VARCHAR" property="countryfullname" />
+    <result column="day" jdbcType="TIMESTAMP" property="day" />
+    <result column="rate" jdbcType="DOUBLE" property="rate" />
+    <result column="growth" jdbcType="DOUBLE" property="growth" />
+    <result column="stock_name" jdbcType="VARCHAR" property="stockName" />
+    <result column="stock_short" jdbcType="VARCHAR" property="stockShort" />
+    <result column="deleted" jdbcType="INTEGER" property="deleted" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, country_id, day, rate, growth, stock_name, stock_short, deleted, operator, insert_time, 
+    update_time
+  </sql>
+  <select id="selectByPage" parameterType="cn.yuchen.bigdate.rs.service.event.pojo.webpage.StockpointPage" resultMap="BaseResultMapVo">
+    select
+    s.id, s.country_id, h.countryFullName,s.day,s.growth,s.stock_name,s.stock_short,
+    s.deleted, s.operator, s.insert_time, s.update_time
+    from information_eco_stockpoint as s , hs_country_new as h
+    <where>
+      deleted = 0
+      <if test="countryId !=null and countryId != 0 ">
+        AND p.country_id = h.number
+      </if>
+      <if test="stockName!=null and stockName !='' ">
+        AND `stock_name` LIKE CONCAT('%',#{stockName},'%')
+      </if>
+      <if test="stockShort !=null and stockShort !='' ">
+        AND `stock_short` LIKE CONCAT('%',#{stockShort},'%')
+      </if>
+      <if test="countryId != null">
+        AND country_id = #{countryId,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+</mapper>
